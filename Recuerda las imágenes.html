@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aventura Visual - Enfoque y Memoria</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="recuerda las imágenes.css">
+</head>
+
+<body>
+
+    <!-- PAISAJE PASTEL -->
+
+    <div class="sun"></div>
+
+    <div class="clouds">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="cloud cloud-4"></div>
+        <div class="cloud cloud-5"></div>
+    </div>
+
+    <div class="bird bird-1">🐦</div>
+    <div class="bird bird-2">🐦</div>
+    <div class="bird bird-3">🐧</div>
+
+    <div class="butterfly butterfly-1">🦋</div>
+    <div class="butterfly butterfly-2">🦋</div>
+    <div class="butterfly butterfly-3">🦋</div>
+
+    <div class="sparkle">✦</div>
+    <div class="sparkle">✧</div>
+    <div class="sparkle">✦</div>
+    <div class="sparkle">✧</div>
+    <div class="sparkle">✦</div>
+
+    <div class="hills">
+        <div class="hill hill-1"></div>
+        <div class="hill hill-2"></div>
+        <div class="hill hill-3"></div>
+    </div>
+
+    <div class="trees">
+
+        <div class="tree tree-1">
+            <div class="tree-top"></div>
+            <div class="tree-trunk"></div>
+        </div>
+
+        <div class="tree tree-2">
+            <div class="tree-top"></div>
+            <div class="tree-trunk"></div>
+        </div>
+
+        <div class="tree tree-3">
+            <div class="tree-top"></div>
+            <div class="tree-trunk"></div>
+        </div>
+
+        <div class="tree tree-4">
+            <div class="tree-top"></div>
+            <div class="tree-trunk"></div>
+        </div>
+
+    </div>
+
+    <div class="flowers">
+        <div class="flower">🌸</div>
+        <div class="flower">🌷</div>
+        <div class="flower">🌼</div>
+        <div class="flower">🌺</div>
+        <div class="flower">🌸</div>
+        <div class="flower">🌹</div>
+        <div class="flower">🌼</div>
+        <div class="flower">🌷</div>
+        <div class="flower">🌸</div>
+        <div class="flower">🌺</div>
+    </div>
+
+    <div class="confetti-container" id="confettiContainer"></div>
+
+
+    <!-- PANTALLA DE INSTRUCCIONES -->
+
+    <div class="instructions-overlay" id="instructionsOverlay">
+
+        <div class="instructions-box">
+
+            <h2>Cómo jugar</h2>
+
+            <div class="instructions-steps">
+
+                <div class="instruction-step">
+                    <div class="step-icon">👀</div>
+                    <div class="step-text">
+                        Mira los emojis que aparecen
+                    </div>
+                </div>
+
+                <div class="instruction-step">
+                    <div class="step-icon">🧠</div>
+                    <div class="step-text">
+                        Memorízalos rápido
+                    </div>
+                </div>
+
+                <div class="instruction-step">
+                    <div class="step-icon">👆</div>
+                    <div class="step-text">
+                        Selecciona los que viste
+                    </div>
+                </div>
+
+                <div class="instruction-step">
+                    <div class="step-icon">🔄</div>
+                    <div class="step-text">
+                        Puedes verlos otra vez si necesitas
+                    </div>
+                </div>
+
+            </div>
+
+            <button class="btn-jugar" id="btnJugar">
+                Jugar
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTENIDO DEL JUEGO -->
+
+    <div class="container" id="gameContainer">
+
+        <div class="stars">
+            <div class="star">⭐</div>
+            <div class="star">✨</div>
+            <div class="star">⭐</div>
+            <div class="star">✨</div>
+            <div class="star">⭐</div>
+            <div class="star">✨</div>
+        </div>
+
+        <h1>Aventura Visual</h1>
+
+        <div id="nivel">
+            Nivel 1
+        </div>
+
+        <div id="mensaje">
+            Observa con atención los elementos del paisaje.
+        </div>
+
+        <div
+            class="progress-container"
+            id="progressContainer"
+        >
+            <div
+                class="progress-bar"
+                id="progressBar"
+            ></div>
+        </div>
+
+        <div
+            class="selector-info"
+            id="selectorInfo"
+            style="display: none;"
+        >
+            <span class="selector-count">
+                Seleccionados:
+                <span class="num" id="selCount">0</span>
+                /
+                <span class="num" id="selTotal">0</span>
+            </span>
+        </div>
+
+        <div
+            class="grid"
+            id="grid"
+        ></div>
+
+        <div
+            class="btn-row"
+            id="btnRow"
+        ></div>
+
+        <div id="resultado"></div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="recuerda las imágenes.js"></script>
+
+</body>
+</html>

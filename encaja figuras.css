@@ -1,0 +1,857 @@
+:root {
+  --bg-1: #E0F7FA;
+  --bg-2: #FCE4EC;
+  --panel-bg: rgba(255, 255, 255, 0.95);
+  --panel-border: #F48FB1;
+  --accent: #29B6F6;
+  --text: #5D5D81;
+  --piece-size: 75px;
+}
+
+/* =========================
+   RESET
+========================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   BODY
+========================= */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Fredoka', sans-serif;
+  background: radial-gradient(
+    circle at 50% 20%,
+    var(--bg-1),
+    var(--bg-2)
+  );
+  color: var(--text);
+  overflow: hidden;
+  user-select: none;
+  transition:
+    background 1.5s ease-in-out,
+    color 1s ease;
+}
+
+/* =========================
+   FONDO
+========================= */
+
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 1s;
+}
+
+.floating-element {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: floatUp linear infinite;
+}
+
+.floating-element.cloud {
+  border-radius: 20px;
+  height: 30px;
+  opacity: 0.5;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(0.8);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.5;
+  }
+
+  80% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(-10vh) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* =========================
+   APP
+========================= */
+
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  display: flex;
+  width: min(1100px, 96vw);
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 15px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--panel-border);
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+  transition: color 1s;
+}
+
+/* =========================
+   ESTRELLAS DE PROGRESO
+========================= */
+
+.progress-stars {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: var(--panel-bg);
+  padding: 8px 16px;
+  border-radius: 50px;
+  box-shadow:
+    0 6px 0 rgba(244, 143, 177, 0.2),
+    0 10px 20px rgba(41, 182, 246, 0.1);
+  border: 4px solid var(--panel-border);
+  transition:
+    border-color 1s,
+    background 1s;
+}
+
+.star-icon {
+  width: 24px;
+  height: 24px;
+  fill: #FFE0E0;
+  transition: fill 0.8s ease;
+}
+
+.star-icon.earned {
+  fill: #FFCA28;
+  filter: drop-shadow(0 0 4px #FFD700);
+}
+
+/* =========================
+   CONTROLES
+========================= */
+
+.controls {
+  display: flex;
+  gap: 12px;
+}
+
+button {
+  border: 0;
+  padding: 12px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+  background: var(--accent);
+  box-shadow:
+    0 6px 0 rgba(41, 182, 246, 0.3),
+    0 10px 20px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 1s;
+  font-family: 'Fredoka', sans-serif;
+  flex-shrink: 0;
+}
+
+button:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(41, 182, 246, 0.3);
+}
+
+button.secondary {
+  background: #F48FB1;
+  box-shadow: 0 6px 0 rgba(244, 143, 177, 0.3);
+}
+
+button.secondary:active {
+  box-shadow: 0 2px 0 rgba(244, 143, 177, 0.3);
+}
+
+button.info {
+  background: #FFCA28;
+  color: #5D5D81;
+  box-shadow: 0 6px 0 rgba(255, 202, 40, 0.3);
+}
+
+button.info:active {
+  box-shadow: 0 2px 0 rgba(255, 202, 40, 0.3);
+}
+
+/* =========================
+   CONTENEDOR DEL JUEGO
+========================= */
+
+.game-container {
+  display: flex;
+  gap: 30px;
+  width: min(1100px, 96vw);
+  flex: 1;
+  min-height: 300px;
+  max-height: 80vh;
+  align-items: stretch;
+  transition: gap 1s;
+}
+
+/* =========================
+   TABLERO
+========================= */
+
+.board-panel {
+  flex: 1;
+  background: var(--panel-bg);
+  border-radius: 30px;
+  padding: 20px;
+  box-shadow:
+    0 10px 0 rgba(255, 255, 255, 0.5),
+    0 15px 30px rgba(244, 143, 177, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 6px solid var(--panel-border);
+  transition:
+    background 1s,
+    border-color 1s;
+  overflow: hidden;
+}
+
+/* =========================
+   GRID DEL PUZZLE
+========================= */
+
+.puzzle-grid {
+  display: grid;
+  gap: 15px;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+}
+
+/* =========================
+   ESPACIOS DEL TABLERO
+========================= */
+
+.slot {
+  position: relative;
+  border-radius: 20px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 40%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  border: 5px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 4px 10px rgba(244, 143, 177, 0.1);
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s,
+    background 0.4s;
+  min-width: 0;
+  min-height: 0;
+}
+
+.slot svg {
+  width: 75%;
+  height: 75%;
+  opacity: 0.35;
+  transition: opacity 0.5s;
+}
+
+.slot.magnet-hover {
+  transform: scale(1.05);
+  border-color: var(--accent);
+  background: radial-gradient(
+    circle,
+    rgba(224, 247, 250, 1) 20%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+}
+
+.slot.occupied {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.slot.occupied svg {
+  opacity: 0;
+}
+
+.slot.flash-success {
+  animation: gentlePulse 0.8s ease;
+}
+
+/* =========================
+   ANIMACIÓN DE ÉXITO
+========================= */
+
+@keyframes gentlePulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   BANDEJA DE PIEZAS
+========================= */
+
+.tray-panel {
+  width: 320px;
+  background: var(--panel-bg);
+  border-radius: 30px;
+  padding: 20px;
+  box-shadow:
+    0 10px 0 rgba(255, 255, 255, 0.5),
+    0 15px 30px rgba(41, 182, 246, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 6px solid var(--accent);
+  transition:
+    background 1s,
+    border-color 1s;
+  flex-shrink: 0;
+}
+
+.tray-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  align-content: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+/* =========================
+   PIEZAS
+========================= */
+
+.piece {
+  position: relative;
+  width: var(--piece-size);
+  height: var(--piece-size);
+  cursor: grab;
+  touch-action: none;
+  z-index: 10;
+  filter: drop-shadow(
+    0 4px 6px rgba(93, 93, 129, 0.15)
+  );
+  transition:
+    transform 0.3s ease,
+    filter 0.3s;
+}
+
+.piece svg {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.piece.dragging {
+  position: absolute;
+  z-index: 9999;
+  cursor: grabbing;
+  transform: scale(1.15);
+  filter: drop-shadow(
+    0 8px 12px rgba(93, 93, 129, 0.2)
+  );
+  transition:
+    transform 0.1s,
+    filter 0.1s;
+}
+
+.piece.placed {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(
+    0 4px 6px rgba(93, 93, 129, 0.15)
+  );
+  transform: scale(1);
+  transition: none;
+}
+
+.piece.snap-success {
+  animation: bounceInSlow 0.8s
+    cubic-bezier(.25, .75, .5, 1.25)
+    forwards;
+  pointer-events: none;
+}
+
+/* =========================
+   ANIMACIÓN PIEZA CORRECTA
+========================= */
+
+@keyframes bounceInSlow {
+  0% {
+    transform: scale(1.3);
+  }
+
+  40% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   BRILLOS
+========================= */
+
+.sparkle-container {
+  position: fixed;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: sparkleFade 1.2s ease-out forwards;
+}
+
+@keyframes sparkleFade {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* =========================
+   ANIMACIÓN PIEZA INCORRECTA
+========================= */
+
+.piece.snap-fail {
+  animation: gentleReturn 0.8s ease-in-out;
+}
+
+@keyframes gentleReturn {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(0.95) translateX(5px);
+  }
+
+  60% {
+    transform: scale(0.95) translateX(-5px);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   MASCOTA
+========================= */
+
+.mascot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.mascot-bubble {
+  background: white;
+  padding: 10px 20px;
+  border-radius: 20px 20px 0 20px;
+  font-weight: 700;
+  font-size: 20px;
+  color: #F48FB1;
+  box-shadow: 0 4px 0 rgba(244, 143, 177, 0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s,
+    transform 0.6s;
+}
+
+.mascot-bubble.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mascot-svg {
+  width: 80px;
+  height: 80px;
+  filter: drop-shadow(
+    0 4px 6px rgba(244, 143, 177, 0.3)
+  );
+  transition: transform 0.3s;
+}
+
+.mascot-svg.bounce {
+  animation: mascotBounce 0.6s ease;
+}
+
+@keyframes mascotBounce {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   MODAL DE INSTRUCCIONES
+========================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 30px;
+  padding: 40px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow:
+    0 15px 0 rgba(244, 143, 177, 0.2),
+    0 20px 40px rgba(93, 93, 129, 0.1);
+  border: 6px solid #F48FB1;
+  text-align: center;
+  transform: scale(0.9);
+  transition:
+    transform 0.4s
+    cubic-bezier(.25, .75, .5, 1.25);
+}
+
+.modal-overlay.show .modal-content {
+  transform: scale(1);
+}
+
+.modal-content h2 {
+  font-size: 32px;
+  color: #F48FB1;
+  margin-bottom: 25px;
+}
+
+.instruction-step {
+  font-size: 20px;
+  color: #5D5D81;
+  margin-bottom: 20px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.instruction-icon {
+  font-size: 28px;
+}
+
+.modal-close-btn {
+  margin-top: 20px;
+  background: #29B6F6;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  border: 0;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Fredoka', sans-serif;
+  box-shadow: 0 6px 0 rgba(41, 182, 246, 0.3);
+  transition: transform 0.1s;
+}
+
+.modal-close-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgba(41, 182, 246, 0.3);
+}
+
+/* =========================
+   PANTALLA DE CELEBRACIÓN
+========================= */
+
+.level-complete {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease-in-out;
+}
+
+.level-complete.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.medal-svg {
+  width: 150px;
+  height: 150px;
+  animation: medalAppear 1.5s ease forwards;
+  filter: drop-shadow(
+    0 10px 15px rgba(255, 215, 0, 0.4)
+  );
+}
+
+@keyframes medalAppear {
+  0% {
+    transform: scale(0) rotate(-30deg);
+  }
+
+  60% {
+    transform: scale(1.2) rotate(10deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.celebrate-text {
+  font-size: 36px;
+  font-weight: 700;
+  color: #F48FB1;
+  margin-top: 30px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.continue-btn {
+  margin-top: 30px;
+  background: #F48FB1;
+  box-shadow: 0 6px 0 rgba(244, 143, 177, 0.3);
+}
+
+/* =========================
+   CONFETI
+========================= */
+
+.confetti-piece {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: confettiFall 4s linear forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+
+  .game-container {
+    flex-direction: column-reverse;
+    height: auto;
+    max-height: 90vh;
+  }
+
+  .tray-panel {
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+  }
+
+  .board-panel {
+    height: min(400px, 50vh);
+  }
+
+  .mascot-container {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .mascot-svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .mascot-bubble {
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   PANTALLAS MUY PEQUEÑAS
+========================= */
+
+@media (max-width: 500px) {
+
+  .app {
+    padding: 10px;
+  }
+
+  .header {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 25px;
+    text-align: center;
+  }
+
+  .controls {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 10px 18px;
+  }
+
+  .game-container {
+    width: 100%;
+    gap: 15px;
+  }
+
+  .board-panel {
+    padding: 10px;
+    border-width: 4px;
+  }
+
+  .tray-panel {
+    padding: 10px;
+    border-width: 4px;
+  }
+
+  .puzzle-grid {
+    gap: 8px;
+  }
+
+  .slot {
+    border-width: 3px;
+    border-radius: 14px;
+  }
+
+  .tray-grid {
+    gap: 8px;
+  }
+
+  :root {
+    --piece-size: 60px;
+  }
+
+  .modal-content {
+    padding: 25px 20px;
+  }
+
+  .modal-content h2 {
+    font-size: 26px;
+  }
+
+  .instruction-step {
+    font-size: 17px;
+  }
+
+  .celebrate-text {
+    font-size: 28px;
+  }
+}

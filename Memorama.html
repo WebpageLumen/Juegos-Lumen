@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>🧠 Memorama Extremo</title>
+
+    <link rel="stylesheet" href="memorama.css">
+</head>
+
+<body>
+
+    <!-- Fondo decorativo -->
+    <div id="bg-canvas"></div>
+
+    <div class="bg-shape"></div>
+    <div class="bg-shape"></div>
+    <div class="bg-shape"></div>
+    <div class="bg-shape"></div>
+
+    <!-- Canvas para efectos -->
+    <canvas id="fx-canvas"></canvas>
+
+    <!-- Contenedor principal -->
+    <div id="app">
+
+        <!-- ============ PANTALLA PRINCIPAL ============ -->
+        <section class="screen active" id="screen-home">
+            <div class="home-content">
+
+                <h1 class="title">
+                    <span class="title-emoji">🧠</span> MEMORAMA
+                </h1>
+
+                <p class="subtitle">
+                    Versión Extrema: ¡8 niveles de alta complejidad!
+                </p>
+
+                <div class="menu-buttons">
+
+                    <button class="btn btn-primary btn-large" onclick="Game.startGame()">
+                        <span>▶</span> Comenzar
+                    </button>
+
+                    <button class="btn btn-ghost" onclick="UI.showScreen('settings')">
+                        <span>⚙</span> Configuración
+                    </button>
+
+                    <button class="btn btn-ghost" onclick="UI.showScreen('scores')">
+                        <span>🏆</span> Mejores puntuaciones
+                    </button>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ CONFIGURACIÓN ============ -->
+        <section class="screen" id="screen-settings">
+
+            <div class="panel">
+
+                <h2 class="panel-title">⚙ Configuración</h2>
+
+                <div class="setting-item">
+                    <span class="setting-label">🎵 Música</span>
+                    <div
+                        class="switch"
+                        id="switch-music"
+                        onclick="Settings.toggle('music')">
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <span class="setting-label">🔊 Sonidos</span>
+                    <div
+                        class="switch"
+                        id="switch-sound"
+                        onclick="Settings.toggle('sound')">
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <span class="setting-label">✨ Animaciones</span>
+                    <div
+                        class="switch"
+                        id="switch-anim"
+                        onclick="Settings.toggle('anim')">
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <button
+                        class="btn btn-primary"
+                        onclick="UI.showScreen('home')">
+                        Volver al inicio
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ============ PUNTUACIONES ============ -->
+        <section class="screen" id="screen-scores">
+
+            <div class="panel">
+
+                <h2 class="panel-title">
+                    🏆 Mejores puntuaciones
+                </h2>
+
+                <div class="scores-list" id="scores-list"></div>
+
+                <button
+                    class="btn btn-ghost btn-small"
+                    onclick="Storage.clearScores()"
+                    style="margin-top:10px;width:100%;">
+                    Borrar puntuaciones
+                </button>
+
+                <div style="margin-top: 16px;">
+                    <button
+                        class="btn btn-primary"
+                        onclick="UI.showScreen('home')">
+                        Volver al inicio
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ============ PANTALLA DE JUEGO ============ -->
+        <section class="screen" id="screen-game">
+
+            <div class="hud">
+
+                <div class="hud-group">
+
+                    <div class="hud-stat">
+                        <span class="hud-stat-label">Nivel</span>
+                        <span
+                            class="hud-stat-value level"
+                            id="hud-level">
+                            1
+                        </span>
+                    </div>
+
+                    <div class="hud-stat">
+                        <span class="hud-stat-label">Mov.</span>
+                        <span
+                            class="hud-stat-value moves"
+                            id="hud-moves">
+                            0
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="hud-group">
+
+                    <div class="hud-stat">
+                        <span class="hud-stat-label">Tiempo</span>
+                        <span
+                            class="hud-stat-value time"
+                            id="hud-time">
+                            0:00
+                        </span>
+                    </div>
+
+                    <div class="hud-stat">
+                        <span class="hud-stat-label">Parejas</span>
+                        <span
+                            class="hud-stat-value pairs"
+                            id="hud-pairs">
+                            0/0
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="hud-group">
+
+                    <button
+                        class="btn btn-secondary btn-icon"
+                        onclick="Game.togglePause()"
+                        title="Pausa">
+                        ⏸
+                    </button>
+
+                    <button
+                        class="btn btn-secondary btn-icon"
+                        onclick="Game.restartLevel()"
+                        title="Reiniciar">
+                        ↻
+                    </button>
+
+                    <button
+                        class="btn btn-secondary btn-icon"
+                        onclick="Game.quitGame()"
+                        title="Salir">
+                        ✕
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- Powerups -->
+            <div class="powerups">
+
+                <button
+                    class="powerup-btn peek"
+                    id="btn-peek"
+                    onclick="Game.usePeek()">
+                    <span>👀</span>
+                    Ver cartas
+                </button>
+
+                <button
+                    class="powerup-btn shuffle"
+                    id="btn-shuffle"
+                    onclick="Game.useShuffle()">
+                    <span>🔄</span>
+                    Mezclar
+                </button>
+
+            </div>
+
+            <!-- Tablero -->
+            <div class="board-wrapper">
+                <div class="board" id="board"></div>
+            </div>
+
+            <!-- Overlay de pausa -->
+            <div class="pause-overlay" id="pause-overlay">
+
+                <div class="pause-content">
+
+                    <h2 class="pause-title">
+                        ⏸ Pausa
+                    </h2>
+
+                    <div class="pause-buttons">
+
+                        <button
+                            class="btn btn-primary"
+                            onclick="Game.togglePause()">
+                            Continuar
+                        </button>
+
+                        <button
+                            class="btn btn-ghost"
+                            onclick="Game.restartLevel()">
+                            Reiniciar nivel
+                        </button>
+
+                        <button
+                            class="btn btn-ghost"
+                            onclick="Game.quitGame()">
+                            Salir al menú
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ============ NIVEL COMPLETADO ============ -->
+        <section class="screen" id="screen-level-complete">
+
+            <div class="celebration-content">
+
+                <h2
+                    class="celebration-title"
+                    id="celebration-title">
+                    ⭐ Nivel completado
+                </h2>
+
+                <p
+                    class="celebration-subtitle"
+                    id="celebration-subtitle">
+                    ¡Lo lograste!
+                </p>
+
+                <div
+                    class="stars-display"
+                    id="celebration-stars">
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div
+                            class="stat-card-value"
+                            id="celebration-time">
+                            0:00
+                        </div>
+                        <div class="stat-card-label">
+                            Tiempo
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div
+                            class="stat-card-value"
+                            id="celebration-moves">
+                            0
+                        </div>
+                        <div class="stat-card-label">
+                            Movimientos
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div
+                            class="stat-card-value"
+                            id="celebration-accuracy">
+                            100%
+                        </div>
+                        <div class="stat-card-label">
+                            Precisión
+                        </div>
+                    </div>
+
+                </div>
+
+                <button
+                    class="btn btn-success btn-large"
+                    id="celebration-next"
+                    onclick="Game.nextLevel()">
+                    Siguiente nivel →
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- ============ PANTALLA FINAL ============ -->
+        <section class="screen" id="screen-game-complete">
+
+            <div class="celebration-content">
+
+                <h2 class="celebration-title">
+                    🎉 ¡Felicidades!
+                </h2>
+
+                <p class="celebration-subtitle">
+                    Has completado el Memorama Extremo.
+                </p>
+
+                <div
+                    class="stars-display"
+                    id="final-stars">
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div
+                            class="stat-card-value"
+                            id="final-time">
+                            0:00
+                        </div>
+                        <div class="stat-card-label">
+                            Tiempo total
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div
+                            class="stat-card-value"
+                            id="final-moves">
+                            0
+                        </div>
+                        <div class="stat-card-label">
+                            Movimientos
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div
+                            class="stat-card-value"
+                            id="final-stars-count">
+                            0
+                        </div>
+                        <div class="stat-card-label">
+                            Estrellas
+                        </div>
+                    </div>
+
+                </div>
+
+                <button
+                    class="btn btn-primary btn-large"
+                    onclick="Game.restartAll()">
+                    🔄 Jugar nuevamente
+                </button>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- JavaScript externo -->
+    <script src="memorama.js"></script>
+
+</body>
+</html>

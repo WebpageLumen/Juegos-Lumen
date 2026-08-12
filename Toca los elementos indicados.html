@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Secuencias lógicas</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="toca los elementos indicados.css">
+</head>
+
+<body>
+
+    <!-- Blobs decorativos flotantes -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+
+    <!-- Pequeñas decoraciones -->
+    <div class="deco deco-1">✦</div>
+    <div class="deco deco-2">♡</div>
+    <div class="deco deco-3">✧</div>
+    <div class="deco deco-4">⋆</div>
+    <div class="deco deco-5">✿</div>
+    <div class="deco deco-6">◈</div>
+
+    <div class="juego">
+
+        <h1>Secuencias lógicas</h1>
+
+        <div class="nivel" id="nivelTxt">
+            Nivel 1 de 20
+        </div>
+
+        <div class="caja-regla">
+
+            <div class="titulo-regla">
+                Instrucción
+            </div>
+
+            <div class="regla" id="reglaTxt">
+                Apaga las luces
+            </div>
+
+        </div>
+
+        <div class="progreso-iconos" id="iconosProgreso"></div>
+
+        <div class="barra-objetivo-contenedor">
+            <div class="barra-objetivo" id="progreso"></div>
+        </div>
+
+        <div class="tablero" id="tablero"></div>
+
+    </div>
+
+    <div id="mensajeAcierto" class="mensaje-acierto"></div>
+
+    <div class="pantalla-final" id="final">
+
+        <h2 id="mensajeFinal">
+            ¡Muy bien!
+        </h2>
+
+        <p id="subMensajeFinal">
+            Has completado el nivel
+        </p>
+
+        <button id="btnSiguiente">
+            Continuar ➜
+        </button>
+
+    </div>
+
+    <script src="toca los elementos indicados.js"></script>
+
+</body>
+</html>

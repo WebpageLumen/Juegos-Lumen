@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Encajar Figuras - Mundo Pastel</title>
+
+  <!-- Fuente Fredoka -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Archivo CSS -->
+  <link rel="stylesheet" href="encaja figuras.css">
+
+  <!-- Archivo JavaScript -->
+  <script src="encaja figuras.js" defer></script>
+</head>
+
+<body>
+
+  <!-- Fondo -->
+  <div class="bg-layer" id="bgLayer"></div>
+
+  <!-- Aplicación -->
+  <div class="app" id="appRoot">
+
+    <!-- HEADER -->
+    <div class="header">
+
+      <div class="title">
+        Encajar Figuras
+      </div>
+
+      <!-- Estrellas de progreso -->
+      <div class="progress-stars" id="progressStars"></div>
+
+      <!-- Controles -->
+      <div class="controls">
+
+        <button id="infoBtn" class="info">
+          Instrucciones
+        </button>
+
+        <button id="nextBtn">
+          Siguiente ➜
+        </button>
+
+        <button id="resetBtn" class="secondary">
+          Reiniciar
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ÁREA DEL JUEGO -->
+    <div class="game-container">
+
+      <!-- TABLERO -->
+      <div class="board-panel">
+
+        <div
+          id="puzzle"
+          class="puzzle-grid">
+        </div>
+
+      </div>
+
+
+      <!-- BANDEJA DE FIGURAS -->
+      <div class="tray-panel">
+
+        <div
+          id="tray"
+          class="tray-grid">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==========================================
+       MODAL DE INSTRUCCIONES
+       ========================================== -->
+
+  <div
+    class="modal-overlay"
+    id="infoModal"
+  >
+
+    <div class="modal-content">
+
+      <h2>
+        ¿Cómo Jugar?
+      </h2>
+
+
+      <div class="instruction-step">
+
+        <span class="instruction-icon">
+          🖐️
+        </span>
+
+        <span>
+          Arrastra la figura con tu dedo o ratón.
+        </span>
+
+      </div>
+
+
+      <div class="instruction-step">
+
+        <span class="instruction-icon">
+          🧩
+        </span>
+
+        <span>
+          Suelta la figura sobre la silueta que sea igual.
+        </span>
+
+      </div>
+
+
+      <div class="instruction-step">
+
+        <span class="instruction-icon">
+          🧲
+        </span>
+
+        <span>
+          Si te acercas mucho, ¡se soltará sola!
+        </span>
+
+      </div>
+
+
+      <div class="instruction-step">
+
+        <span class="instruction-icon">
+          ↩️
+        </span>
+
+        <span>
+          Si te equivocas, no pasa nada. Vuelve a intentarlo.
+        </span>
+
+      </div>
+
+
+      <div class="instruction-step">
+
+        <span class="instruction-icon">
+          🏆
+        </span>
+
+        <span>
+          ¡Llena todos los espacios para ganar!
+        </span>
+
+      </div>
+
+
+      <button
+        id="closeInfoBtn"
+        class="modal-close-btn"
+      >
+        ¡Entendido!
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==========================================
+       MASCOTA CONEJITA ROSA
+       ========================================== -->
+
+  <div class="mascot-container">
+
+    <!-- Burbuja de diálogo -->
+    <div
+      class="mascot-bubble"
+      id="mascotBubble"
+    >
+      ¡Muy bien!
+    </div>
+
+
+    <!-- Conejita -->
+    <svg
+      class="mascot-svg"
+      id="mascotFox"
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+
+      <!-- Oreja izquierda -->
+      <ellipse
+        cx="35"
+        cy="30"
+        rx="10"
+        ry="25"
+        fill="#F48FB1"
+        transform="rotate(-15 35 30)"
+      />
+
+      <!-- Interior oreja izquierda -->
+      <ellipse
+        cx="35"
+        cy="30"
+        rx="5"
+        ry="15"
+        fill="#FCE4EC"
+        transform="rotate(-15 35 30)"
+      />
+
+
+      <!-- Oreja derecha -->
+      <ellipse
+        cx="65"
+        cy="30"
+        rx="10"
+        ry="25"
+        fill="#F48FB1"
+        transform="rotate(15 65 30)"
+      />
+
+      <!-- Interior oreja derecha -->
+      <ellipse
+        cx="65"
+        cy="30"
+        rx="5"
+        ry="15"
+        fill="#FCE4EC"
+        transform="rotate(15 65 30)"
+      />
+
+
+      <!-- Cabeza -->
+      <circle
+        cx="50"
+        cy="55"
+        r="30"
+        fill="#F48FB1"
+      />
+
+
+      <!-- Parte inferior de la cara -->
+      <circle
+        cx="50"
+        cy="65"
+        r="18"
+        fill="#FCE4EC"
+      />
+
+
+      <!-- Ojo izquierdo -->
+      <circle
+        cx="40"
+        cy="50"
+        r="4"
+        fill="#5D5D81"
+      />
+
+      <!-- Ojo derecho -->
+      <circle
+        cx="60"
+        cy="50"
+        r="4"
+        fill="#5D5D81"
+      />
+
+
+      <!-- Brillo ojo izquierdo -->
+      <circle
+        cx="41"
+        cy="49"
+        r="1.5"
+        fill="white"
+      />
+
+      <!-- Brillo ojo derecho -->
+      <circle
+        cx="61"
+        cy="49"
+        r="1.5"
+        fill="white"
+      />
+
+
+      <!-- Nariz -->
+      <circle
+        cx="50"
+        cy="60"
+        r="2.5"
+        fill="#5D5D81"
+      />
+
+
+      <!-- Boca -->
+      <path
+        d="M 45 63 Q 50 68 55 63"
+        stroke="#5D5D81"
+        stroke-width="2"
+        fill="none"
+      />
+
+    </svg>
+
+  </div>
+
+
+  <!-- ==========================================
+       PANTALLA DE CELEBRACIÓN
+       ========================================== -->
+
+  <div
+    class="level-complete"
+    id="levelComplete"
+  >
+
+    <!-- Medalla -->
+    <svg
+      class="medal-svg"
+      viewBox="0 0 100 100"
+    >
+
+      <!-- Estrella exterior -->
+      <polygon
+        points="50,10 61,38 95,38 67,59 78,91 50,71 22,91 33,59 5,38 39,38"
+        fill="#FFD700"
+      />
+
+
+      <!-- Estrella interior -->
+      <polygon
+        points="50,20 58,40 80,40 62,55 70,80 50,65 30,80 38,55 20,40 42,40"
+        fill="#FFCA28"
+      />
+
+
+      <!-- Centro -->
+      <circle
+        cx="50"
+        cy="50"
+        r="10"
+        fill="white"
+      />
+
+
+      <!-- Número -->
+      <text
+        x="50"
+        y="55"
+        font-family="Fredoka"
+        font-size="14"
+        font-weight="700"
+        text-anchor="middle"
+        fill="#FFC107"
+      >
+        1
+      </text>
+
+    </svg>
+
+
+    <!-- Texto de celebración -->
+    <div
+      class="celebrate-text"
+      id="completeText"
+    >
+      ¡Nivel Completado!
+    </div>
+
+
+    <!-- Botón continuar -->
+    <button
+      id="continueBtn"
+      class="continue-btn"
+    >
+      Continuar
+    </button>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Encuentra la Figura Mágica</title>
+  <link rel="stylesheet" href="encuentra al intruso.css" />
+</head>
+<body>
+  <div class="app">
+    <div class="top">
+      <div class="titleBox">
+        <h1>Encuentra la Figura Magica</h1>
+        <p class="subtitle">Descifra las formas encantadas y encuentra al intruso oculto entre las demas figuras.</p>
+
+        <div class="basket" id="basket">
+          <h3>
+            <span class="basketTitle">🪄 Bolsa Magica</span>
+            <span class="magicCount" id="magicCount">✨ ×0</span>
+          </h3>
+
+          <div class="basketStage">
+            <div class="basketBase"></div>
+            <div class="magicCircle"></div>
+            <div class="runeRing"></div>
+
+            <div class="bagGlow"></div>
+
+            <div class="magicBag" id="magicBag">
+              <div class="bagShadow"></div>
+              <div class="bagTop"></div>
+              <div class="bagOpening"></div>
+              <div class="knot"></div>
+              <div class="rope"></div>
+              <div class="ropeEnds"></div>
+              <div class="bagBody"></div>
+              <div class="bagFold"></div>
+              <div class="bagStitch"></div>
+              <div class="basketInnerGlow" id="basketInnerGlow"></div>
+              <div class="bagItems" id="basketBox"></div>
+              <div class="bagParticles" id="bagParticles"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="uiBox">
+        <div class="stats">
+          <div class="stat"><span>Nivel</span><strong id="level">Nivel 1 - 1/10</strong></div>
+          <div class="stat"><span>Tiempo</span><strong id="timer">02:30</strong></div>
+          <div class="stat"><span>Progreso</span><strong id="score">0</strong></div>
+        </div>
+
+        <div class="targetLine">
+          <div class="targetBubble" id="targetBubble"></div>
+          <div class="targetText" id="targetText"></div>
+        </div>
+
+        <div class="progressWrap" aria-label="Progreso de subniveles">
+          <div class="progressBar" id="progressBar"></div>
+        </div>
+
+        <button id="hintBtn">Pista</button>
+        <div class="toast" id="toast"></div>
+      </div>
+    </div>
+
+    <section class="stage">
+      <div class="board" id="board"></div>
+      <div class="fx-layer" id="fxLayer"></div>
+    </section>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="modal" id="overlayContent">
+      <h2>Se acabo el tiempo!</h2>
+      <p>Respira hondo y vuelve a intentarlo. Cada intento te hace mejor!</p>
+      <button id="overlayRestartBtn">✨ Comenzar de nuevo</button>
+    </div>
+  </div>
+
+  <script src="encuentra al intruso.js"></script>
+</body>
+</html>

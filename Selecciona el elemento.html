@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Elegir lo correcto - 24 Niveles</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="selecciona el elemento.css">
+</head>
+
+<body>
+
+    <!-- Paisaje nocturno monocromático índigo -->
+    <div class="paisaje" id="paisaje">
+        <div class="cielo"></div>
+        <div class="aurora"></div>
+        <div class="aurora aurora2"></div>
+        <div class="luna"></div>
+
+        <div class="nube nube1"></div>
+        <div class="nube nube2"></div>
+        <div class="nube nube3"></div>
+
+        <div class="mont1"></div>
+        <div class="mont2"></div>
+        <div class="mont3"></div>
+
+        <div class="lago">
+            <div class="reflejo"></div>
+            <div class="reflejo reflejo2"></div>
+            <div class="brillo-lago"></div>
+        </div>
+    </div>
+
+    <!-- Contenido del juego -->
+    <div class="game-wrapper">
+        <div class="game-border"></div>
+
+        <div class="game" role="application" aria-label="Juego elegir lo correcto">
+
+            <header>
+                <h1>🎯 Elegir lo correcto</h1>
+
+                <div class="meta">
+                    <div class="pill score">
+                        ⭐ <span id="score">0</span>
+                    </div>
+
+                    <div class="pill level">
+                        🎮 <span id="levelNum">1</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="level-bar">
+                <div class="level-bar-fill" id="levelBarFill"></div>
+            </div>
+
+            <div id="title"></div>
+
+            <div id="board" aria-live="polite"></div>
+
+            <div id="message" aria-atomic="true"></div>
+
+            <footer>
+                <button id="btnPrev">⬅ Anterior</button>
+                <button id="btnRestart">🔄 Reiniciar</button>
+                <button id="btnNext">Saltar ➡</button>
+            </footer>
+
+            <small>
+                Tablero 9×9 — Toca solo el/los objeto(s) indicado(s)
+            </small>
+
+        </div>
+    </div>
+
+    <script src="selecciona el elemento.js"></script>
+
+</body>
+</html>
