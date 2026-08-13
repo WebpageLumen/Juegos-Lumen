@@ -125,32 +125,32 @@ document.addEventListener("mousemove", (e) => {
 
 const bancoOriginal = [
 
-    { letra: "A", emoji: "🌳" },
-    { letra: "B", emoji: "🚢" },
-    { letra: "C", emoji: "🏠" },
-    { letra: "D", emoji: "🎲" },
-    { letra: "E", emoji: "🐘" },
-    { letra: "F", emoji: "🍓" },
-    { letra: "G", emoji: "🐱" },
-    { letra: "H", emoji: "🧊" },
-    { letra: "I", emoji: "🏝️" },
-    { letra: "J", emoji: "🦒" },
-    { letra: "K", emoji: "🥝" },
-    { letra: "L", emoji: "🦁" },
-    { letra: "M", emoji: "🍎" },
-    { letra: "N", emoji: "🌙" },
-    { letra: "O", emoji: "🐻" },
-    { letra: "P", emoji: "🐶" },
-    { letra: "Q", emoji: "🧀" },
-    { letra: "R", emoji: "🤖" },
-    { letra: "S", emoji: "☀️" },
-    { letra: "T", emoji: "🐢" },
-    { letra: "U", emoji: "🍇" },
-    { letra: "V", emoji: "🐄" },
-    { letra: "W", emoji: "🌊" },
-    { letra: "X", emoji: "❌" },
-    { letra: "Y", emoji: "🪀" },
-    { letra: "Z", emoji: "🦓" }
+    { letra: "A", emoji: "🌳" }, // Árbol
+    { letra: "B", emoji: "🚢" }, // Barco
+    { letra: "C", emoji: "🏠" }, // Casa
+    { letra: "D", emoji: "🎲" }, // Dado
+    { letra: "E", emoji: "🐘" }, // Elefante
+    { letra: "F", emoji: "🍓" }, // Fresa
+    { letra: "G", emoji: "🐱" }, // Gato
+    { letra: "H", emoji: "🧊" }, // Hielo
+    { letra: "I", emoji: "🏝️" }, // Isla
+    { letra: "J", emoji: "🦒" }, // Jirafa
+    { letra: "K", emoji: "🥝" }, // Kiwi
+    { letra: "L", emoji: "🦁" }, // León
+    { letra: "M", emoji: "🍎" }, // Manzana
+    { letra: "N", emoji: "☁️" }, // Nube (Corregido)
+    { letra: "O", emoji: "🐻" }, // Oso
+    { letra: "P", emoji: "🐶" }, // Perro
+    { letra: "Q", emoji: "🧀" }, // Queso
+    { letra: "R", emoji: "🤖" }, // Robot
+    { letra: "S", emoji: "☀️" }, // Sol
+    { letra: "T", emoji: "🐢" }, // Tortuga
+    { letra: "U", emoji: "🍇" }, // Uva
+    { letra: "V", emoji: "🐄" }, // Vaca
+    { letra: "W", emoji: "🌐" }, // Web (Corregido)
+    { letra: "X", emoji: "❌" }, // Equis
+    { letra: "Y", emoji: "🪀" }, // Yoyó
+    { letra: "Z", emoji: "🦊" }  // Zorro (Corregido)
 
 ];
 

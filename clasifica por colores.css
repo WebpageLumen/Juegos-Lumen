@@ -1,368 +1,1199 @@
-body{
-    font-family:Arial, sans-serif;
-    margin:0;
-    text-align:center;
-    overflow-x:hidden;
-    min-height:100vh;
-    padding:30px;
+/* =====================================================
+   🌈 FONDO — MUNDO MÁGICO INFANTIL
+   PALETA: CELESTE + LILA + VERDE + BLANCO
+===================================================== */
 
-    /* Cielo mágico: degradado atardecer pastel */
-    background: linear-gradient(
-        to bottom,
-        #ffd6e7 0%,
-        #ffe5b4 30%,
-        #fff1c1 50%,
-        #c8f0e5 75%,
-        #a8e6f0 100%
-    );
+:root {
+    --celeste: #b9e6fa;
+    --celeste-claro: #dff4fc;
+    --lila: #d8ccf2;
+    --lila-oscuro: #a99bd0;
+    --verde: #c8ead5;
+    --verde-oscuro: #a9d9bd;
+    --blanco: #ffffff;
+    --texto: #536b7d;
+}
 
-    /* Brillos decorativos encima de todo */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    padding: 30px;
+
+    text-align: center;
+    overflow-x: hidden;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at 50% 12%,
+            rgba(255,255,255,.95) 0%,
+            rgba(255,255,255,0) 28%
+        ),
+        linear-gradient(
+            180deg,
+            #a9dcf5 0%,
+            #c5eafa 38%,
+            #e0d8f4 68%,
+            #cbe9d6 100%
+        );
+
     background-attachment: fixed;
-    perspective:1200px;
-    position:relative;
 }
 
-/* ===== SOL CÁLIDO ===== */
-body::before{
-    content:"";
-    position:fixed;
+
+/* =====================================================
+   ✨ BRILLO GENERAL
+===================================================== */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,255,255,.65),
+            transparent 18%
+        ),
+
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(255,255,255,.5),
+            transparent 20%
+        ),
+
+        radial-gradient(
+            circle at 50% 65%,
+            rgba(255,255,255,.18),
+            transparent 32%
+        );
+
+    z-index: -20;
+}
+
+
+/* =====================================================
+   ☀️ SOL SUAVE
+===================================================== */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
     top: 8%;
-    right: 12%;
-    width: 130px;
-    height: 130px;
-    border-radius:50%;
-    background: radial-gradient(circle at 50% 50%, #fff4cc 0%, #ffd166 45%, #ffb347 100%);
+    right: 10%;
+
+    width: 105px;
+    height: 105px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff 0%,
+            #f7f5ff 55%,
+            #ded6f2 100%
+        );
+
     box-shadow:
-        0 0 60px rgba(255, 209, 102, 0.8),
-        0 0 120px rgba(255, 179, 71, 0.5),
-        0 0 200px rgba(255, 154, 91, 0.3);
-    pointer-events:none;
-    animation:pulsarSol 6s ease-in-out infinite;
-    z-index:-2;
+        0 0 35px rgba(255,255,255,.7);
+
+    pointer-events: none;
+
+    z-index: -18;
+
+    animation: solSuave 6s ease-in-out infinite;
 }
 
-@keyframes pulsarSol{
-    0%,100%{ transform: scale(1); filter: brightness(1); }
-    50%{ transform: scale(1.05); filter: brightness(1.08); }
+@keyframes solSuave {
+    0%,100% {
+        transform: scale(1);
+        opacity: .85;
+    }
+
+    50% {
+        transform: scale(1.07);
+        opacity: 1;
+    }
 }
 
-/* ===== ARCOÍRIS SUTIL ===== */
-.arcoiris{
-    position:fixed;
-    top: 15%;
+
+/* =====================================================
+   🌈 ARCOÍRIS MINIMALISTA
+===================================================== */
+
+.arcoiris {
+    position: fixed;
+
+    top: 10%;
     left: 50%;
-    transform: translateX(-50%);
+
     width: 900px;
     max-width: 120vw;
     height: 450px;
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+
+    transform: translateX(-50%);
+
+    border-radius:
+        50% 50% 0 0 /
+        100% 100% 0 0;
+
     background:
-        radial-gradient(ellipse at 50% 100%,
+        radial-gradient(
+            ellipse at 50% 100%,
+
             transparent 38%,
-            rgba(255, 179, 186, 0.35) 39%,
-            rgba(255, 223, 165, 0.35) 44%,
-            rgba(255, 245, 168, 0.35) 49%,
-            rgba(195, 240, 210, 0.35) 54%,
-            rgba(180, 220, 255, 0.35) 59%,
-            rgba(205, 180, 250, 0.35) 64%,
-            transparent 69%
+
+            rgba(255,255,255,.35) 39%,
+            rgba(255,255,255,.35) 44%,
+
+            rgba(185,230,250,.45) 45%,
+            rgba(185,230,250,.45) 51%,
+
+            rgba(216,204,242,.45) 52%,
+            rgba(216,204,242,.45) 58%,
+
+            rgba(169,217,189,.35) 59%,
+            rgba(169,217,189,.35) 64%,
+
+            transparent 65%
         );
-    pointer-events:none;
-    z-index:-3;
-    animation:arcoFlotar 14s ease-in-out infinite;
+
+    pointer-events: none;
+
+    z-index: -17;
+
+    animation: arcoFlotar 14s ease-in-out infinite;
 }
 
-@keyframes arcoFlotar{
-    0%,100%{ transform: translateX(-50%) translateY(0); opacity:.85; }
-    50%{ transform: translateX(-50%) translateY(-15px); opacity:1; }
+@keyframes arcoFlotar {
+    0%,100% {
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            translateY(-12px);
+    }
 }
 
-/* ===== COLINA FRONTAL (verde menta) ===== */
-.colina1{
-    position:fixed;
-    bottom: -35%;
-    left: -15%;
+
+/* =====================================================
+   ☁️ NUBES
+===================================================== */
+
+.nube {
+    position: fixed;
+
+    background: rgba(255,255,255,.88);
+
+    border-radius: 100px;
+
+    pointer-events: none;
+
+    z-index: -12;
+
+    filter: blur(.3px);
+
+    box-shadow:
+        0 10px 25px rgba(80,130,160,.10);
+}
+
+.nube::before,
+.nube::after {
+    content: "";
+
+    position: absolute;
+
+    background: rgba(255,255,255,.88);
+
+    border-radius: 50%;
+}
+
+
+/* Nube 1 */
+
+.nube1 {
+    width: 180px;
+    height: 48px;
+
+    top: 17%;
+    left: -220px;
+
+    animation:
+        viajar 38s linear infinite;
+}
+
+.nube1::before {
+    width: 72px;
+    height: 72px;
+
+    top: -32px;
+    left: 25px;
+}
+
+.nube1::after {
+    width: 95px;
+    height: 95px;
+
+    top: -50px;
+    left: 72px;
+}
+
+
+/* Nube 2 */
+
+.nube2 {
+    width: 130px;
+    height: 38px;
+
+    top: 32%;
+    left: -180px;
+
+    opacity: .72;
+
+    animation:
+        viajar 48s linear infinite;
+
+    animation-delay: -12s;
+}
+
+.nube2::before {
+    width: 55px;
+    height: 55px;
+
+    top: -24px;
+    left: 20px;
+}
+
+.nube2::after {
+    width: 72px;
+    height: 72px;
+
+    top: -38px;
+    left: 53px;
+}
+
+
+/* Nube 3 */
+
+.nube3 {
+    width: 210px;
+    height: 52px;
+
+    top: 8%;
+    left: -260px;
+
+    opacity: .5;
+
+    animation:
+        viajar 65s linear infinite;
+
+    animation-delay: -28s;
+}
+
+.nube3::before {
+    width: 82px;
+    height: 82px;
+
+    top: -35px;
+    left: 32px;
+}
+
+.nube3::after {
+    width: 105px;
+    height: 105px;
+
+    top: -55px;
+    left: 80px;
+}
+
+
+@keyframes viajar {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform:
+            translateX(calc(100vw + 500px));
+    }
+}
+
+
+/* =====================================================
+   🌿 PRADERA
+===================================================== */
+
+.colina1,
+.colina2,
+.colina3 {
+    position: fixed;
+
+    pointer-events: none;
+
+    border-radius: 50%;
+
+    z-index: -10;
+}
+
+
+/* Colina izquierda */
+
+.colina1 {
+    bottom: -53%;
+    left: -25%;
+
+    width: 95%;
+    height: 78%;
+
+    background:
+        linear-gradient(
+            160deg,
+            #dff4e7,
+            #c8ead5
+        );
+
+    box-shadow:
+        inset 0 20px 40px rgba(255,255,255,.4);
+
+    animation:
+        moveHill1 18s ease-in-out infinite;
+}
+
+
+/* Colina derecha */
+
+.colina2 {
+    bottom: -49%;
+    right: -25%;
+
+    width: 95%;
+    height: 75%;
+
+    background:
+        linear-gradient(
+            150deg,
+            #cfeedd,
+            #b7dfc6
+        );
+
+    animation:
+        moveHill2 22s ease-in-out infinite;
+}
+
+
+/* Colina central */
+
+.colina3 {
+    bottom: -60%;
+    left: 20%;
+
     width: 80%;
-    height: 80%;
-    border-radius:50%;
-    background: linear-gradient(135deg, #b8ead6 0%, #9be3c2 60%, #7fd4ad 100%);
-    pointer-events:none;
-    animation:moveHill1 18s ease-in-out infinite;
-    z-index:-2;
-    box-shadow: inset 0 -20px 60px rgba(0,0,0,.05);
+    height: 65%;
+
+    background: #d8eee0;
+
+    opacity: .9;
+
+    animation:
+        moveHill3 20s ease-in-out infinite;
 }
 
-/* ===== COLINA TRASERA (verde menta más profundo) ===== */
-.colina2{
-    position:fixed;
-    bottom: -30%;
-    right: -20%;
-    width: 90%;
-    height: 90%;
-    border-radius:50%;
-    background: linear-gradient(135deg, #a5dcc6 0%, #8fd4b5 60%, #6fc59e 100%);
-    pointer-events:none;
-    animation:moveHill2 22s ease-in-out infinite;
-    z-index:-2;
+
+@keyframes moveHill1 {
+    0%,100% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(25px,-15px);
+    }
 }
 
-/* ===== COLINA MEDIO (amarillo pastel suave) ===== */
-.colina3{
-    position:fixed;
-    bottom: -45%;
-    left: 30%;
-    width: 70%;
-    height: 70%;
-    border-radius:50%;
-    background: linear-gradient(135deg, #fff4cc 0%, #ffe9a8 100%);
-    pointer-events:none;
-    animation:moveHill3 20s ease-in-out infinite;
-    z-index:-2;
-    opacity:.9;
+@keyframes moveHill2 {
+    0%,100% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(-30px,-18px);
+    }
 }
 
-@keyframes moveHill1{
-    0%,100%{ transform: translate(0, 0); }
-    50%{ transform: translate(30px, -10px); }
-}
-@keyframes moveHill2{
-    0%,100%{ transform: translate(0, 0); }
-    50%{ transform: translate(-40px, -15px); }
-}
-@keyframes moveHill3{
-    0%,100%{ transform: translate(0, 0); }
-    50%{ transform: translate(20px, 8px); }
+@keyframes moveHill3 {
+    0%,100% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(20px,8px);
+    }
 }
 
-/* ===== NUBES FLOTANTES ===== */
-.nube{
-    position:fixed;
-    background: rgba(255,255,255,.75);
-    border-radius:100px;
-    filter: blur(1px);
-    pointer-events:none;
-    z-index:-2;
-}
-.nube::before, .nube::after{
-    content:"";
-    position:absolute;
-    background: rgba(255,255,255,.75);
-    border-radius:50%;
-}
-.nube1{
-    width:140px; height:40px;
-    top:12%; left:-15%;
-    animation:viajar 38s linear infinite;
-}
-.nube1::before{ width:60px;height:60px;top:-25px;left:25px; }
-.nube1::after{ width:80px;height:80px;top:-40px;left:55px; }
 
-.nube2{
-    width:110px; height:35px;
-    top:22%; left:-20%;
-    animation:viajar 50s linear infinite;
-    animation-delay:-12s;
-    opacity:.85;
-}
-.nube2::before{ width:50px;height:50px;top:-22px;left:18px; }
-.nube2::after{ width:65px;height:65px;top:-35px;left:45px; }
+/* =====================================================
+   ✨ DESTELLOS
+===================================================== */
 
-.nube3{
-    width:160px; height:45px;
-    top:6%; left:-25%;
-    animation:viajar 60s linear infinite;
-    animation-delay:-30s;
-    opacity:.7;
-}
-.nube3::before{ width:70px;height:70px;top:-30px;left:30px; }
-.nube3::after{ width:90px;height:90px;top:-48px;left:65px; }
+.destello {
+    position: fixed;
 
-@keyframes viajar{
-    0%{ transform: translateX(0); }
-    100%{ transform: translateX(calc(100vw + 250px)); }
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 8px #ffffff,
+        0 0 15px rgba(216,204,242,.8);
+
+    pointer-events: none;
+
+    z-index: -3;
+
+    animation:
+        titilar 2.8s ease-in-out infinite;
 }
 
-/* ===== DESTELLOS MÁGICOS ===== */
-.destello{
-    position:fixed;
-    width:6px;
-    height:6px;
-    background: #fff;
-    border-radius:50%;
-    box-shadow: 0 0 8px #fff, 0 0 16px #ffe5b4;
-    pointer-events:none;
-    z-index:-1;
-    animation: titilar 3s ease-in-out infinite;
+@keyframes titilar {
+    0%,100% {
+        opacity: .15;
+        transform: scale(.5);
+    }
+
+    50% {
+        opacity: .9;
+        transform: scale(1.4);
+    }
 }
 
-@keyframes titilar{
-    0%,100%{ opacity:0; transform: scale(.5); }
-    50%{ opacity:1; transform: scale(1.3); }
+
+/* =====================================================
+   🦋 MARIPOSA
+===================================================== */
+
+.mariposa {
+    position: fixed;
+
+    top: 38%;
+    left: -70px;
+
+    font-size: 30px;
+
+    pointer-events: none;
+
+    z-index: -2;
+
+    filter:
+        grayscale(.15)
+        drop-shadow(
+            0 5px 6px rgba(100,100,140,.12)
+        );
+
+    animation:
+        volar 24s linear infinite;
 }
 
-/* ===== MARIPOSA VOLANDO ===== */
-.mariposa{
-    position:fixed;
-    top: 35%;
-    left: -50px;
-    font-size: 28px;
-    pointer-events:none;
-    z-index:-1;
-    animation: volar 25s linear infinite;
-}
-@keyframes volar{
-    0%{ transform: translate(0, 0) rotate(0deg); }
-    25%{ transform: translate(30vw, -40px) rotate(8deg); }
-    50%{ transform: translate(60vw, 30px) rotate(-5deg); }
-    75%{ transform: translate(85vw, -20px) rotate(10deg); }
-    100%{ transform: translate(calc(100vw + 80px), 0) rotate(0deg); }
+@keyframes volar {
+
+    0% {
+        transform:
+            translate(0,0)
+            rotate(0deg);
+    }
+
+    25% {
+        transform:
+            translate(25vw,-40px)
+            rotate(8deg);
+    }
+
+    50% {
+        transform:
+            translate(55vw,30px)
+            rotate(-6deg);
+    }
+
+    75% {
+        transform:
+            translate(80vw,-25px)
+            rotate(7deg);
+    }
+
+    100% {
+        transform:
+            translate(calc(100vw + 120px),0)
+            rotate(0deg);
+    }
 }
 
-/* ===== Contenedor principal con Glassmorphism ===== */
-#juego{
-    width:1100px;
-    max-width:95%;
-    margin:30px auto;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border-radius:30px;
-    padding:30px;
-    box-shadow: 0 20px 60px rgba(167, 139, 109, 0.25), 0 5px 20px rgba(0,0,0,.06);
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    position:relative;
-    z-index:1;
+
+/* =====================================================
+   🎮 PANEL DEL JUEGO
+===================================================== */
+
+#juego {
+    width: 1100px;
+    max-width: 95%;
+
+    margin: 30px auto;
+
+    padding: 34px;
+
+    position: relative;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.92),
+            rgba(255,255,255,.76)
+        );
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+
+    border-radius: 38px;
+
+    border:
+        3px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        0 30px 70px rgba(80,120,150,.18),
+        0 10px 30px rgba(255,255,255,.55),
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+    overflow: hidden;
 }
 
-#pantallaFinal{
-    position:fixed;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    background: linear-gradient(135deg, rgba(255,214,231,.9), rgba(200,240,229,.9));
-    backdrop-filter: blur(10px);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    font-size:90px;
-    font-weight:bold;
-    color:#27ae60;
+
+/* Línea superior */
+
+#juego::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 10%;
+
+    width: 80%;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #b9e6fa,
+            #d8ccf2,
+            #b9e6fa,
+            transparent
+        );
+
+    opacity: .8;
+}
+
+
+/* Luz decorativa */
+
+#juego::after {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    top: -150px;
+    right: -100px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(216,204,242,.25),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   🧸 TÍTULO
+===================================================== */
+
+h1 {
+    margin-top: 15px;
+    margin-bottom: 8px;
+
+    font-size:
+        clamp(48px, 6vw, 76px);
+
+    font-weight: 900;
+
+    color: var(--texto);
+
+    letter-spacing: -2px;
+
+    text-shadow:
+        0 4px 0 #ffffff,
+        0 7px 18px rgba(80,110,140,.16);
+
+    animation:
+        tituloEntrada .8s ease-out;
+}
+
+@keyframes tituloEntrada {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-15px)
+            scale(.95);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =====================================================
+   🏆 NIVEL
+===================================================== */
+
+#nivel {
+    font-size: 40px;
+
+    margin: 10px;
+
+    color: #667b8c;
+
+    font-weight: 900;
+}
+
+
+/* =====================================================
+   💬 MENSAJE
+===================================================== */
+
+#mensaje {
+    font-size: 30px;
+
+    min-height: 40px;
+
+    margin: 20px;
+
+    font-weight: 900;
+
+    color: #6d9b82;
+
+    text-shadow:
+        0 2px 0 #ffffff;
+}
+
+
+/* =====================================================
+   🌈 BARRA DE PROGRESO
+===================================================== */
+
+#barra {
+    width: 340px;
+    max-width: 90%;
+
+    height: 20px;
+
+    margin: 18px auto;
+
+    background:
+        rgba(255,255,255,.8);
+
+    border-radius: 30px;
+
+    border:
+        3px solid rgba(255,255,255,.95);
+
+    box-shadow:
+        inset 0 3px 7px rgba(80,120,150,.10),
+        0 5px 15px rgba(100,140,170,.10);
+
+    overflow: hidden;
+}
+
+#progreso {
+    width: 0%;
+    height: 100%;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #b9e6fa,
+            #d8ccf2,
+            #b9e6fa
+        );
+
+    box-shadow:
+        0 0 15px rgba(185,230,250,.55);
+
+    transition:
+        width .45s ease,
+        background .5s ease;
+}
+
+
+/* =====================================================
+   🔢 CONTADOR
+===================================================== */
+
+#contador {
+    font-size: 40px;
+
+    color: #617789;
+
+    font-weight: 900;
+
+    margin-bottom: 18px;
+}
+
+
+/* =====================================================
+   🎨 CONTENEDORES
+===================================================== */
+
+.contenedor {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 25px;
+}
+
+
+.zona {
+    width: 230px;
+    height: 230px;
+
+    border-radius: 32px;
+
+    border:
+        4px solid rgba(255,255,255,.82);
+
+    background:
+        rgba(255,255,255,.30);
+
+    box-shadow:
+        0 15px 30px rgba(80,120,150,.14),
+        inset 0 3px 12px rgba(255,255,255,.65);
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.zona:hover {
+    transform:
+        translateY(-8px)
+        scale(1.04);
+
+    box-shadow:
+        0 20px 35px rgba(80,120,150,.18);
+}
+
+
+/* =====================================================
+   ⭐ FORMAS
+===================================================== */
+
+.formas {
+    margin-top: 35px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+}
+
+
+.forma {
+    width: 130px;
+    height: 130px;
+
+    border-radius: 28px;
+
+    cursor: grab;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 38px;
+
+    border:
+        4px solid rgba(255,255,255,.78);
+
+    box-shadow:
+        0 12px 25px rgba(80,120,150,.15),
+        inset 0 3px 10px rgba(255,255,255,.55);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    animation:
+        aparecer .45s ease;
+}
+
+
+.forma:hover {
+    transform:
+        translateY(-9px)
+        rotate(2deg)
+        scale(1.08);
+
+    box-shadow:
+        0 20px 35px rgba(80,120,150,.20),
+        0 0 18px rgba(255,255,255,.8);
+}
+
+
+.forma:active {
+    cursor: grabbing;
+
+    transform:
+        scale(.92)
+        rotate(-2deg);
+}
+
+
+/* =====================================================
+   ✅ CORRECTO
+===================================================== */
+
+.correcto {
+    animation:
+        correcto .55s ease;
+
+    box-shadow:
+        0 0 20px #ffffff,
+        0 0 35px #a9d9bd;
+}
+
+
+@keyframes correcto {
+
+    0% {
+        transform: scale(1);
+    }
+
+    30% {
+        transform:
+            scale(1.18)
+            rotate(3deg);
+    }
+
+    55% {
+        transform:
+            scale(.95)
+            rotate(-2deg);
+    }
+
+    80% {
+        transform:
+            scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* =====================================================
+   ❌ ERROR
+===================================================== */
+
+.error {
+    animation:
+        error .4s ease;
+}
+
+@keyframes error {
+
+    0%,100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-9px);
+    }
+
+    40% {
+        transform: translateX(9px);
+    }
+
+    60% {
+        transform: translateX(-7px);
+    }
+
+    80% {
+        transform: translateX(7px);
+    }
+}
+
+
+/* =====================================================
+   ✨ APARICIÓN
+===================================================== */
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(.3)
+            rotate(-12deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+/* =====================================================
+   🏆 PANTALLA FINAL
+===================================================== */
+
+#pantallaFinal {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,.95),
+            rgba(224,242,250,.95) 45%,
+            rgba(221,215,242,.95) 75%,
+            rgba(215,239,224,.96)
+        );
+
+    backdrop-filter: blur(15px);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 90px;
+
+    font-weight: 900;
+
+    color: #6d9b82;
+
     z-index: 10;
-    text-shadow: 0 4px 20px rgba(0,0,0,.15);
+
+    text-shadow:
+        0 5px 0 white,
+        0 8px 20px rgba(70,130,100,.12);
 }
 
-h1{
-    font-size:76px;
-    margin-top:15px;
-    color:#34495e;
-    text-shadow: 0 3px 8px rgba(0,0,0,.1);
+
+/* =====================================================
+   📱 TABLETS
+===================================================== */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 15px;
+    }
+
+    #juego {
+        max-width: 96%;
+
+        padding: 22px;
+
+        border-radius: 28px;
+    }
+
+    h1 {
+        font-size: 48px;
+
+        letter-spacing: -1px;
+    }
+
+    #nivel {
+        font-size: 28px;
+    }
+
+    #mensaje {
+        font-size: 22px;
+    }
+
+    .zona {
+        width: 150px;
+        height: 150px;
+    }
+
+    .forma {
+        width: 90px;
+        height: 90px;
+
+        font-size: 28px;
+
+        border-radius: 22px;
+    }
+
+    .arcoiris {
+        width: 700px;
+    }
+
+    body::after {
+        width: 90px;
+        height: 90px;
+
+        right: 5%;
+    }
+
+    .destello {
+        width: 6px;
+        height: 6px;
+    }
 }
 
-#nivel{
-    font-size:40px;
-    margin:10px;
-    color:#2c3e50;
+
+/* =====================================================
+   📱 TELÉFONOS PEQUEÑOS
+===================================================== */
+
+@media (max-width: 450px) {
+
+    body {
+        padding: 8px;
+    }
+
+    #juego {
+        max-width: 96%;
+
+        padding: 16px;
+
+        border-radius: 24px;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    #nivel {
+        font-size: 23px;
+    }
+
+    #mensaje {
+        font-size: 19px;
+    }
+
+    #contador {
+        font-size: 30px;
+    }
+
+    #barra {
+        width: 260px;
+        height: 17px;
+    }
+
+    .zona {
+        width: 110px;
+        height: 110px;
+
+        border-radius: 22px;
+    }
+
+    .forma {
+        width: 75px;
+        height: 75px;
+
+        font-size: 24px;
+
+        border-radius: 18px;
+    }
+
+    .nube {
+        transform: scale(.7);
+    }
+
+    body::after {
+        width: 70px;
+        height: 70px;
+    }
+
+    .arcoiris {
+        width: 550px;
+        top: 12%;
+    }
 }
 
-#mensaje{
-    font-size:30px;
-    height:40px;
-    margin:20px;
-    font-weight:bold;
-    color:#27ae60;
-}
 
-/* ===== BARRA DE PROGRESO ===== */
-#barra{
-    width:300px;
-    max-width:90%;
-    height:18px;
-    margin:15px auto;
-    background:#dfe6e9;
-    border-radius:30px;
-    overflow:hidden;
-    box-shadow:inset 0 0 6px rgba(0,0,0,.15);
-}
+/* =====================================================
+   🌙 REDUCIR ANIMACIONES
+===================================================== */
 
-#progreso{
-    width:0%;
-    height:100%;
-    background:linear-gradient(90deg,#2ecc71,#58d68d);
-    transition: width .45s, background .5s;
-}
+@media (prefers-reduced-motion: reduce) {
 
-#contador{
-    font-size:40px;
-    color:#34495e;
-    font-weight:bold;
-    margin-bottom:15px;
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
 }
-
-.contenedor{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:25px;
-}
-
-.zona{
-    width:230px;
-    height:230px;
-    border-radius:22px;
-    border:none;
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
-    transition:.25s;
-    backdrop-filter:blur(8px);
-}
-
-.formas{
-    margin-top:30px;
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:20px;
-}
-
-.correcto{
-    animation:correcto .45s;
-    box-shadow: 0 0 25px #fff, 0 0 45px #2ecc71;
-}
-
-.forma{
-    width:130px;
-    height:130px;
-    border-radius:15px;
-    cursor:grab;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:36px;
-    box-shadow: 0 8px 18px rgba(0,0,0,.18);
-    transition:.25s;
-    animation:aparecer .4s;
-}
-
-.forma:active{ transform:scale(.9); }
-.forma:hover{ transform: translateY(-6px) scale(1.08); }
-.zona:hover{ transform:scale(1.05); }
-
-/* ===== ANIMACIONES ===== */
-@keyframes aparecer{
-    from{ opacity:0; transform:scale(.2); }
-    to{ opacity:1; transform:scale(1); }
-}
-@keyframes correcto{
-    0%{ transform:scale(1); }
-    35%{ transform:scale(1.18); }
-    70%{ transform:scale(.94); }
-    100%{ transform:scale(1); }
-}
-@keyframes error{
-    0%{transform:translateX(0);}
-    20%{transform:translateX(-8px);}
-    40%{transform:translateX(8px);}
-    60%{transform:translateX(-8px);}
-    80%{transform:translateX(8px);}
-    100%{transform:translateX(0);}
-}
-.error{ animation:error .4s; }

@@ -18,7 +18,7 @@
 
 <body>
 
-    <!-- Paisaje monocromático beige -->
+        <!-- Paisaje con colores pastel -->
     <div class="landscape">
         <svg viewBox="0 0 1440 900"
              preserveAspectRatio="xMidYMid slice"
@@ -26,19 +26,19 @@
 
             <defs>
 
-                <!-- Cielo -->
+                <!-- Cielo degradable azul a durazno -->
                 <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#FAF6EF"/>
-                    <stop offset="40%" stop-color="#F5F0E8"/>
-                    <stop offset="75%" stop-color="#EDE5D8"/>
-                    <stop offset="100%" stop-color="#E2D8C8"/>
+                    <stop offset="0%" stop-color="#D6EAF8"/>
+                    <stop offset="40%" stop-color="#E8F4FD"/>
+                    <stop offset="75%" stop-color="#FDF2E9"/>
+                    <stop offset="100%" stop-color="#FDEBD0"/>
                 </linearGradient>
 
-                <!-- Sol -->
+                <!-- Sol amarillo/naranja pastel -->
                 <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#EDE0CA"/>
-                    <stop offset="40%" stop-color="#E8DCC8" stop-opacity=".6"/>
-                    <stop offset="100%" stop-color="#E8DCC8" stop-opacity="0"/>
+                    <stop offset="0%" stop-color="#FFD89B"/>
+                    <stop offset="40%" stop-color="#FFCC80" stop-opacity=".6"/>
+                    <stop offset="100%" stop-color="#FFCC80" stop-opacity="0"/>
                 </radialGradient>
 
                 <!-- Nubes -->
@@ -70,34 +70,34 @@
 
             <!-- Sol -->
             <circle cx="1100" cy="180" r="120" fill="url(#sunGlow)"/>
-            <circle cx="1100" cy="180" r="42" fill="#EDE0CA" opacity=".7"/>
-            <circle cx="1100" cy="180" r="30" fill="#F0E6D2" opacity=".5"/>
+            <circle cx="1100" cy="180" r="42" fill="#FFD54F" opacity=".7"/>
+            <circle cx="1100" cy="180" r="30" fill="#FFF176" opacity=".5"/>
 
-            <!-- Nube 1 -->
-            <g opacity=".35" filter="url(#cloudSoft)" class="cloud-1">
-                <ellipse cx="300" cy="140" rx="90" ry="22" fill="#E8E0D4"/>
-                <ellipse cx="340" cy="132" rx="55" ry="18" fill="#EAE2D6"/>
+            <!-- Nube 1 (Toque azulino) -->
+            <g opacity=".4" filter="url(#cloudSoft)" class="cloud-1">
+                <ellipse cx="300" cy="140" rx="90" ry="22" fill="#FFFFFF"/>
+                <ellipse cx="340" cy="132" rx="55" ry="18" fill="#F0F4FF"/>
             </g>
 
-            <!-- Nube 2 -->
-            <g opacity=".25" filter="url(#cloudSoft)" class="cloud-2">
-                <ellipse cx="780" cy="110" rx="70" ry="16" fill="#E5DDD0"/>
-                <ellipse cx="810" cy="104" rx="45" ry="13" fill="#E8E0D4"/>
+            <!-- Nube 2 (Toque rosado) -->
+            <g opacity=".3" filter="url(#cloudSoft)" class="cloud-2">
+                <ellipse cx="780" cy="110" rx="70" ry="16" fill="#FFFFFF"/>
+                <ellipse cx="810" cy="104" rx="45" ry="13" fill="#FFF5F5"/>
             </g>
 
             <!-- Nube 3 -->
-            <g opacity=".3" filter="url(#cloudSoft)" class="cloud-3">
-                <ellipse cx="180" cy="200" rx="60" ry="14" fill="#E2D9CC"/>
-                <ellipse cx="210" cy="194" rx="40" ry="12" fill="#E5DDD0"/>
+            <g opacity=".35" filter="url(#cloudSoft)" class="cloud-3">
+                <ellipse cx="180" cy="200" rx="60" ry="14" fill="#F8FAFF"/>
+                <ellipse cx="210" cy="194" rx="40" ry="12" fill="#FFFFFF"/>
             </g>
 
-            <!-- Nube 4 -->
-            <g opacity=".2" filter="url(#cloudSoft)" class="cloud-1">
-                <ellipse cx="1250" cy="250" rx="80" ry="18" fill="#E0D6C8"/>
-                <ellipse cx="1290" cy="242" rx="50" ry="14" fill="#E4DACE"/>
+            <!-- Nube 4 (Toque cálido) -->
+            <g opacity=".25" filter="url(#cloudSoft)" class="cloud-1">
+                <ellipse cx="1250" cy="250" rx="80" ry="18" fill="#FFFFFF"/>
+                <ellipse cx="1290" cy="242" rx="50" ry="14" fill="#FFF8F0"/>
             </g>
 
-            <!-- Montañas -->
+            <!-- Montañas (Lila pastel) -->
             <path
                 d="M0 520
                    Q180 380 360 460
@@ -107,10 +107,10 @@
                    Q1380 350 1440 390
                    L1440 900
                    L0 900Z"
-                fill="#DDD2C0"
+                fill="#D0D4E8"
                 opacity=".6"/>
 
-            <!-- Colinas medias -->
+            <!-- Colinas medias (Verde salvia) -->
             <path
                 d="M0 580
                    Q120 480 300 530
@@ -120,10 +120,10 @@
                    Q1370 450 1440 470
                    L1440 900
                    L0 900Z"
-                fill="#D6C9B4"
+                fill="#C5D9CC"
                 opacity=".7"/>
 
-            <!-- Colinas cercanas -->
+            <!-- Colinas cercanas (Menta apagado) -->
             <path
                 d="M0 640
                    Q200 560 400 600
@@ -133,17 +133,17 @@
                    Q1420 540 1440 550
                    L1440 900
                    L0 900Z"
-                fill="#CEBFA8"
+                fill="#AECFB8"
                 opacity=".55"/>
 
-            <!-- Suelo -->
+            <!-- Suelo (Verde primavera suave) -->
             <path
                 d="M0 720
                    Q360 670 720 700
                    Q1080 680 1440 710
                    L1440 900
                    L0 900Z"
-                fill="#C4B49C"
+                fill="#C8E6C0"
                 opacity=".5"/>
 
             <!-- Textura -->
@@ -155,7 +155,6 @@
 
         </svg>
     </div>
-
 
     <!-- APP -->
     <div class="app" id="app">

@@ -6,12 +6,12 @@
 }
 
 :root {
-    --primary: #7c5cfc;
-    --secondary: #00e5ff;
-    --success: #2ed573;
-    --danger: #ff4757;
-    --warning: #ffa502;
-    --dark: #1a1a3e;
+    --primary: #cbbff5;
+    --secondary: #9fe7ef;
+    --success: #79e6a6;
+    --danger: #fd8993;
+    --warning: #fdd58d;
+    --dark: #474771;
     --light: #f1f2f6;
     --white: #ffffff;
 }
@@ -498,11 +498,11 @@ body {
 
     background: conic-gradient(
         from var(--border-angle,0deg),
-        #7c5cfc,
-        #00e5ff,
-        #2ed573,
-        #ffa502,
-        #ff4757,
+        #c7bbf8,
+        #7be6f1,
+        #94eab8,
+        #fcd183,
+        #f58e96,
         #7c5cfc
     );
 

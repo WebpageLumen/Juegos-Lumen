@@ -1,3 +1,4 @@
+
 :root {
     --bulb-size: 150px;
 
@@ -48,7 +49,7 @@
 
 
 /* =========================
-   BODY
+   BODY & FONDO ANIMADO
 ========================= */
 
 body {
@@ -58,28 +59,13 @@ body {
     justify-content: center;
     align-items: center;
 
-    background:
-        radial-gradient(
-            circle at 20% 30%,
-            rgba(248, 164, 184, 0.12) 0%,
-            transparent 50%
-        ),
-        radial-gradient(
-            circle at 80% 70%,
-            rgba(184, 212, 248, 0.12) 0%,
-            transparent 50%
-        ),
-        radial-gradient(
-            circle at 50% 90%,
-            rgba(200, 240, 208, 0.1) 0%,
-            transparent 50%
-        ),
-        linear-gradient(
-            135deg,
-            var(--bg-1),
-            var(--bg-2),
-            var(--bg-3)
-        );
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(248, 164, 184, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(184, 212, 248, 0.15) 0%, transparent 50%),
+        linear-gradient(-45deg, #fff5f5, #fff0f5, #f0f7ff, #f5fff0, #fef5ff, #fff5f5);
+    
+    background-size: 100% 100%, 100% 100%, 600% 600%;
+    animation: gradientShift 20s ease infinite;
 
     background-attachment: fixed;
 
@@ -91,6 +77,101 @@ body {
     padding: 20px;
 
     position: relative;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 0%, 0% 0%, 0% 50%; }
+    50% { background-position: 0% 0%, 0% 0%, 100% 50%; }
+    100% { background-position: 0% 0%, 0% 0%, 0% 50%; }
+}
+
+
+/* =========================
+   PAISAJE SUTIL
+========================= */
+
+.paisaje {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.sol {
+    position: absolute;
+    top: 8%;
+    right: 12%;
+    width: 80px;
+    height: 80px;
+    background: #fff8e1;
+    border-radius: 50%;
+    box-shadow: 0 0 60px rgba(248, 216, 164, 0.6), 0 0 120px rgba(248, 216, 164, 0.2);
+    animation: pulsoSol 6s ease-in-out infinite;
+}
+
+@keyframes pulsoSol {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(248, 216, 164, 0.6), 0 0 120px rgba(248, 216, 164, 0.2); }
+    50% { transform: scale(1.05); box-shadow: 0 0 80px rgba(248, 216, 164, 0.8), 0 0 150px rgba(248, 216, 164, 0.3); }
+}
+
+.nube {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50px;
+    filter: blur(8px);
+}
+
+.nube-1 {
+    top: 15%;
+    left: -150px;
+    width: 180px;
+    height: 50px;
+    animation: moverNube 35s linear infinite;
+}
+
+.nube-2 {
+    top: 25%;
+    left: -200px;
+    width: 120px;
+    height: 35px;
+    animation: moverNube 45s linear infinite;
+    animation-delay: 10s;
+}
+
+.nube-3 {
+    top: 10%;
+    left: -100px;
+    width: 90px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.4);
+    animation: moverNube 55s linear infinite;
+    animation-delay: 25s;
+}
+
+@keyframes moverNube {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(100vw + 300px)); }
+}
+
+.colina {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35vh; /* Altura de las colinas */
+}
+
+.colina-lejos {
+    z-index: 2;
+}
+
+.colina-cerca {
+    z-index: 3;
+    height: 28vh;
 }
 
 
@@ -109,22 +190,20 @@ body::before {
     bottom: 0;
 
     background-image:
-        radial-gradient(
-            circle,
-            rgba(248, 164, 184, 0.08) 1.2px,
-            transparent 1.2px
-        );
+        radial-gradient(circle, rgba(200, 180, 248, 0.1) 1.5px, transparent 1.5px),
+        radial-gradient(circle, rgba(248, 164, 184, 0.07) 1px, transparent 1px);
 
-    background-size: 38px 38px;
+    background-size: 40px 40px, 26px 26px;
+    background-position: 0 0, 13px 13px;
 
     pointer-events: none;
 
-    z-index: 0;
+    z-index: 4; /* Encima del paisaje pero detrás del juego */
 }
 
 
 /* =========================
-   BLOBS
+   BLOBS (Ajustados al cielo)
 ========================= */
 
 .blob {
@@ -134,61 +213,62 @@ body::before {
 
     pointer-events: none;
 
-    z-index: 0;
+    z-index: 2; /* Detrás de los puntos y el juego */
 
-    filter: blur(50px);
+    filter: blur(80px);
+    opacity: 0.5;
 }
 
 
 .blob-1 {
-    width: 320px;
-    height: 320px;
+    width: 400px;
+    height: 400px;
 
-    background: rgba(248, 164, 184, 0.18);
+    background: rgba(248, 164, 184, 0.25);
 
-    top: -80px;
-    right: -60px;
+    top: -100px;
+    left: -80px; /* Movido a la izquierda */
 
-    animation: float1 10s ease-in-out infinite;
+    animation: float1 20s ease-in-out infinite;
 }
 
 
 .blob-2 {
-    width: 280px;
-    height: 280px;
+    width: 350px;
+    height: 350px;
 
-    background: rgba(184, 212, 248, 0.18);
+    background: rgba(184, 212, 248, 0.25);
 
-    bottom: -50px;
-    left: -40px;
+    top: -50px; /* Movido arriba */
+    right: -60px;
 
-    animation: float2 12s ease-in-out infinite;
+    animation: float2 24s ease-in-out infinite;
 }
 
 
 .blob-3 {
-    width: 220px;
-    height: 220px;
+    width: 300px;
+    height: 300px;
 
-    background: rgba(200, 240, 208, 0.14);
+    background: rgba(200, 240, 208, 0.2);
 
-    top: 40%;
-    left: 5%;
+    top: 20%; /* En el cielo */
+    left: 50%;
 
-    animation: float3 14s ease-in-out infinite;
+    animation: float3 22s ease-in-out infinite;
 }
 
 
 .blob-4 {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
 
-    background: rgba(248, 216, 164, 0.14);
+    background: rgba(248, 216, 164, 0.2);
 
-    top: 15%;
-    right: 10%;
+    top: 5%; /* Cerca del sol */
+    right: 20%;
 
-    animation: float1 11s ease-in-out infinite reverse;
+    animation: float1 18s ease-in-out infinite reverse;
 }
 
 
@@ -198,33 +278,36 @@ body::before {
 
 @keyframes float1 {
     0%, 100% {
-        transform: translate(0, 0);
+        transform: translate(0, 0) scale(1);
     }
-
-    50% {
-        transform: translate(-30px, 30px);
+    33% {
+        transform: translate(-40px, 30px) scale(1.1);
+    }
+    66% {
+        transform: translate(20px, -20px) scale(0.9);
     }
 }
 
 
 @keyframes float2 {
     0%, 100% {
-        transform: translate(0, 0);
+        transform: translate(0, 0) scale(1);
     }
-
-    50% {
-        transform: translate(30px, -20px);
+    33% {
+        transform: translate(30px, -20px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 30px) scale(0.95);
     }
 }
 
 
 @keyframes float3 {
     0%, 100% {
-        transform: translate(0, 0);
+        transform: translate(0, 0) scale(1);
     }
-
     50% {
-        transform: translate(20px, -30px);
+        transform: translate(30px, -30px) scale(1.1);
     }
 }
 
@@ -238,9 +321,9 @@ body::before {
 
     pointer-events: none;
 
-    z-index: 1;
+    z-index: 5; /* Encima del paisaje */
 
-    opacity: 0.18;
+    opacity: 0.2;
 
     font-size: 22px;
 
@@ -267,7 +350,7 @@ body::before {
 
 
 .deco-3 {
-    bottom: 12%;
+    bottom: 35%; /* Subido para no entorpecer colinas */
     left: 10%;
 
     animation: float3 8s ease-in-out infinite;
@@ -277,7 +360,7 @@ body::before {
 
 
 .deco-4 {
-    bottom: 20%;
+    bottom: 40%; /* Subido */
     right: 6%;
 
     animation: float1 10s ease-in-out infinite reverse;
@@ -320,7 +403,7 @@ body::before {
 
     text-align: center;
 
-    z-index: 10;
+    z-index: 10; /* Siempre encima del paisaje */
 
     position: relative;
 
@@ -333,6 +416,11 @@ body::before {
     gap: 22px;
 
     animation: fadeInUp 0.6s ease-out;
+    
+    /* Fallback de fondo por si el tablero se hace muy largo y se superpone al paisaje */
+    background: linear-gradient(to bottom, rgba(255,245,245,0) 0%, rgba(255,245,245,0.85) 15%, rgba(255,245,245,0.95) 100%);
+    padding: 30px 20px;
+    border-radius: 30px;
 }
 
 
@@ -414,9 +502,9 @@ h1::after {
 ========================= */
 
 .caja-regla {
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.65);
 
-    border: 2px solid var(--border-soft);
+    border: 2px solid rgba(255, 255, 255, 0.6);
 
     border-radius: 28px;
 
@@ -434,9 +522,12 @@ h1::after {
 
     align-items: center;
 
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
     box-shadow:
-        0 8px 32px var(--card-shadow),
-        0 2px 8px rgba(200, 180, 200, 0.08);
+        0 8px 32px rgba(200, 180, 200, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.8);
 }
 
 
@@ -496,13 +587,16 @@ h1::after {
 
     height: 24px;
 
-    background: var(--progress-bg);
+    background: rgba(240, 232, 238, 0.5);
 
     border-radius: 50px;
 
     overflow: hidden;
 
-    border: 2px solid var(--border-soft);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 
@@ -665,13 +759,15 @@ h1::after {
 
     color: var(--text-main);
 
-    background: var(--card-bg);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
     padding: 14px 40px;
 
     border-radius: 40px;
 
-    border: 2px solid var(--border-soft);
+    border: 2px solid rgba(255, 255, 255, 0.6);
 
     pointer-events: none;
 
@@ -728,9 +824,10 @@ h1::after {
     right: 0;
     bottom: 0;
 
-    background: rgba(255, 245, 245, 0.93);
+    background: rgba(255, 245, 245, 0.85);
 
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     display: none;
 
@@ -924,6 +1021,21 @@ h1::after {
         font-size: 1.2rem;
         padding: 12px 28px;
         bottom: 25px;
+    }
+    
+    .sol {
+        width: 60px;
+        height: 60px;
+        top: 5%;
+        right: 5%;
+    }
+    
+    .colina {
+        height: 25vh;
+    }
+    
+    .colina-cerca {
+        height: 20vh;
     }
 }
 

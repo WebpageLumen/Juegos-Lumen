@@ -13,7 +13,25 @@
 
 <body>
 
-    <!-- Blobs decorativos flotantes -->
+    <!-- Paisaje sutil de fondo -->
+    <div class="paisaje">
+        <div class="sol"></div>
+        <div class="nube nube-1"></div>
+        <div class="nube nube-2"></div>
+        <div class="nube nube-3"></div>
+        
+        <!-- Colinas lejanas (Lila) -->
+        <svg class="colina colina-lejos" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#e8d8f8" fill-opacity="0.5" d="M0,256 C240,180 480,300 720,220 C960,140 1200,260 1440,200 L1440,320 L0,320 Z"></path>
+        </svg>
+        
+        <!-- Colinas cercanas (Verde menta) -->
+        <svg class="colina colina-cerca" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#c8f0d0" fill-opacity="0.45" d="M0,280 C360,220 720,310 1080,250 C1260,220 1440,280 1440,280 L1440,320 L0,320 Z"></path>
+        </svg>
+    </div>
+
+    <!-- Blobs decorativos flotantes (Ajustados para no tapar las colinas) -->
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
