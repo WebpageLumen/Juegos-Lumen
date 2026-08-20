@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Secuencias lógicas</title>
-
+    <title id="pageTitle">Secuencias lógicas</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="toca los elementos indicados.css">
+    <style>
+        /* Estilos mínimos para el menú de ajustes de idioma */
+        .settings-btn-lang { position: fixed; top: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; border: none; background: rgba(255,255,255,0.9); color: #333; font-size: 22px; cursor: pointer; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+        .settings-btn-lang:hover { transform: rotate(45deg); }
+        .settings-menu-lang { position: fixed; top: 75px; right: 20px; background: rgba(255,255,255,0.98); border-radius: 16px; padding: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); z-index: 1000; display: none; flex-direction: column; gap: 10px; }
+        .settings-menu-lang h3 { font-size: 12px; color: #333; text-align: center; margin: 0 0 5px 0; text-transform: uppercase; font-family: 'Nunito', sans-serif; }
+        .lang-btn { padding: 8px 12px; border-radius: 8px; border: none; font-family: 'Nunito', sans-serif; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
+        .lang-btn:hover { transform: translateY(-2px); }
+        .lang-es { background: #E3F2FD; color: #1565C0; }
+        .lang-en { background: #E8F5E9; color: #2E7D32; }
+        .lang-btn.selected { box-shadow: 0 0 0 3px rgba(51,51,51,0.2); }
+    </style>
 </head>
-
 <body>
+
+    <!-- Menú de Ajustes de Idioma -->
+    <button id="settingsBtnLang" class="settings-btn-lang">⚙️</button>
+    <div id="settingsMenuLang" class="settings-menu-lang">
+        <h3>Idioma / Language</h3>
+        <button id="langEs" class="lang-btn lang-es">🇪🇸 Español</button>
+        <button id="langEn" class="lang-btn lang-en">🇬🇧 English</button>
+    </div>
 
     <!-- Paisaje sutil de fondo -->
     <div class="paisaje">
@@ -19,81 +35,39 @@
         <div class="nube nube-1"></div>
         <div class="nube nube-2"></div>
         <div class="nube nube-3"></div>
-        
-        <!-- Colinas lejanas (Lila) -->
         <svg class="colina colina-lejos" viewBox="0 0 1440 320" preserveAspectRatio="none">
             <path fill="#e8d8f8" fill-opacity="0.5" d="M0,256 C240,180 480,300 720,220 C960,140 1200,260 1440,200 L1440,320 L0,320 Z"></path>
         </svg>
-        
-        <!-- Colinas cercanas (Verde menta) -->
         <svg class="colina colina-cerca" viewBox="0 0 1440 320" preserveAspectRatio="none">
             <path fill="#c8f0d0" fill-opacity="0.45" d="M0,280 C360,220 720,310 1080,250 C1260,220 1440,280 1440,280 L1440,320 L0,320 Z"></path>
         </svg>
     </div>
 
-    <!-- Blobs decorativos flotantes (Ajustados para no tapar las colinas) -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <div class="blob blob-4"></div>
-
-    <!-- Pequeñas decoraciones -->
-    <div class="deco deco-1">✦</div>
-    <div class="deco deco-2">♡</div>
-    <div class="deco deco-3">✧</div>
-    <div class="deco deco-4">⋆</div>
-    <div class="deco deco-5">✿</div>
-    <div class="deco deco-6">◈</div>
+    <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div>
+    <div class="deco deco-1">✦</div><div class="deco deco-2">♡</div><div class="deco deco-3">✧</div><div class="deco deco-4">⋆</div><div class="deco deco-5">✿</div><div class="deco deco-6">◈</div>
 
     <div class="juego">
-
-        <h1>Secuencias lógicas</h1>
-
-        <div class="nivel" id="nivelTxt">
-            Nivel 1 de 20
-        </div>
-
+        <h1 id="mainTitle">Secuencias lógicas</h1>
+        <div class="nivel" id="nivelTxt">Nivel 1 de 20</div>
         <div class="caja-regla">
-
-            <div class="titulo-regla">
-                Instrucción
-            </div>
-
-            <div class="regla" id="reglaTxt">
-                Apaga las luces
-            </div>
-
+            <div class="titulo-regla" id="ruleTitle">Instrucción</div>
+            <div class="regla" id="reglaTxt">Apaga las luces</div>
         </div>
-
         <div class="progreso-iconos" id="iconosProgreso"></div>
-
         <div class="barra-objetivo-contenedor">
             <div class="barra-objetivo" id="progreso"></div>
         </div>
-
         <div class="tablero" id="tablero"></div>
-
     </div>
 
     <div id="mensajeAcierto" class="mensaje-acierto"></div>
 
     <div class="pantalla-final" id="final">
-
-        <h2 id="mensajeFinal">
-            ¡Muy bien!
-        </h2>
-
-        <p id="subMensajeFinal">
-            Has completado el nivel
-        </p>
-
-        <button id="btnSiguiente">
-            Continuar ➜
-        </button>
-
+        <h2 id="mensajeFinal">¡Muy bien!</h2>
+        <p id="subMensajeFinal">Has completado el nivel</p>
+        <button id="btnSiguiente">Continuar ➜</button>
     </div>
 
     <script src="toca los elementos indicados.js"></script>
-
 </body>
 </html>

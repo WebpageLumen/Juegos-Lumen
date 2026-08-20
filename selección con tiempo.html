@@ -4,21 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#F4F9FF">
-
-    <title>Busca y Encuentra · Aventura Visual</title>
-
+    <title id="pageTitle">Busca y Encuentra · Aventura Visual</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Baloo+2:wght@600;700;800&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="selección con tiempo.css">
-</head>
 
-<body>
 
 <div id="app">
-
     <canvas id="bg-canvas"></canvas>
     <canvas id="particles-canvas"></canvas>
 
@@ -27,16 +20,11 @@
         <div class="panel">
             <div class="splash-logo">
                 <div class="splash-emoji">🔍</div>
-                <h1 class="splash-title">Busca y Encuentra</h1>
-                <p class="splash-subtitle">
-                    Una aventura visual para descubrir
-                </p>
+                <h1 class="splash-title" id="splashTitle">Busca y Encuentra</h1>
+                <p class="splash-subtitle" id="splashSubtitle">Una aventura visual para descubrir</p>
             </div>
-
             <div class="button-spacing">
-                <button class="btn btn--primary btn--lg" data-action="go-menu">
-                    Comenzar
-                </button>
+                <button class="btn btn--primary btn--lg" data-action="go-menu" id="splashBtn">Comenzar</button>
             </div>
         </div>
     </section>
@@ -44,331 +32,198 @@
     <!-- MENU -->
     <section class="screen" id="screen-menu">
         <div class="panel panel--menu">
-
-            <h2 class="menu-title">Menú Principal</h2>
-
+            <h2 class="menu-title" id="menuTitle">Menú Principal</h2>
             <div class="menu-buttons">
-
-                <button class="btn btn--primary btn--lg" data-action="go-levels">
-                    🎮 Jugar
-                </button>
-
-                <button class="btn btn--secondary" data-action="go-instructions">
-                    📖 Instrucciones
-                </button>
-
-                <button class="btn btn--secondary" data-action="toggle-sound" id="btn-sound">
-                    🔊 Sonido
-                </button>
-
-                <button class="btn btn--secondary" data-action="toggle-music" id="btn-music">
-                    🎵 Música
-                </button>
-
+                <button class="btn btn--primary btn--lg" data-action="go-levels" id="menuBtnPlay">🎮 Jugar</button>
+                <button class="btn btn--secondary" data-action="go-instructions" id="menuBtnInstructions">📖 Instrucciones</button>
+                <button class="btn btn--secondary" data-action="toggle-sound" id="btn-sound">🔊 Sonido</button>
+                <button class="btn btn--secondary" data-action="toggle-music" id="btn-music">🎵 Música</button>
             </div>
-
             <div class="menu-stats">
-
                 <div class="stat-card">
                     <div class="stat-icon">⭐</div>
                     <div class="stat-value" id="stat-total-stars">0</div>
-                    <div class="stat-label">Estrellas</div>
+                    <div class="stat-label" id="statLabelStarsMenu">Estrellas</div>
                 </div>
-
                 <div class="stat-card">
                     <div class="stat-icon">🏆</div>
                     <div class="stat-value" id="stat-total-trophies">0</div>
-                    <div class="stat-label">Trofeos</div>
+                    <div class="stat-label" id="statLabelTrophiesMenu">Trofeos</div>
                 </div>
-
                 <div class="stat-card">
                     <div class="stat-icon">💎</div>
                     <div class="stat-value" id="stat-total-score">0</div>
-                    <div class="stat-label">Puntos</div>
+                    <div class="stat-label" id="statLabelPointsMenu">Puntos</div>
                 </div>
-
             </div>
-
         </div>
     </section>
 
     <!-- LEVELS -->
     <section class="screen" id="screen-levels">
         <div class="panel panel--levels">
-
-            <h2 class="levels-title">Selecciona un Nivel</h2>
-
+            <h2 class="levels-title" id="levelsTitle">Selecciona un Nivel</h2>
             <div class="levels-grid" id="levels-grid"></div>
-
-            <button class="btn btn--secondary button-top-spacing" data-action="go-menu">
-                Volver
-            </button>
-
+            <button class="btn btn--secondary button-top-spacing" data-action="go-menu" id="levelsBtnBack">Volver</button>
         </div>
     </section>
 
     <!-- INSTRUCTIONS -->
     <section class="screen" id="screen-instructions">
         <div class="panel panel--instructions">
-
-            <h2 class="instructions-title">¿Cómo Jugar?</h2>
-
+            <h2 class="instructions-title" id="instructionsTitle">¿Cómo Jugar?</h2>
             <div class="instructions-content">
-
                 <div class="instruction-step">
                     <div class="step-icon">👀</div>
-                    <p>Mira la figura que aparece arriba de la pantalla.</p>
+                    <p id="step1Text">Mira la figura que aparece arriba de la pantalla.</p>
                 </div>
-
                 <div class="instruction-step">
                     <div class="step-icon">👆</div>
-                    <p>Toca la figura igual entre todas las que se mueven.</p>
+                    <p id="step2Text">Toca la figura igual entre todas las que se mueven.</p>
                 </div>
-
                 <div class="instruction-step">
                     <div class="step-icon">✨</div>
-                    <p>Encuentra todas las apariciones antes de que se acabe el tiempo.</p>
+                    <p id="step3Text">Encuentra todas las apariciones antes de que se acabe el tiempo.</p>
                 </div>
-
                 <div class="instruction-step">
                     <div class="step-icon">🎯</div>
-                    <p>Necesitas el 100% de aciertos para avanzar al siguiente nivel.</p>
+                    <p id="step4Text">Necesitas el 100% de aciertos para avanzar al siguiente nivel.</p>
                 </div>
-
                 <div class="instruction-step">
                     <div class="step-icon">🌈</div>
-                    <p>Si tocas una figura incorrecta, suma un error. ¡Sin estrés!</p>
+                    <p id="step5Text">Si tocas una figura incorrecta, suma un error. ¡Sin estrés!</p>
                 </div>
-
             </div>
-
-            <button class="btn btn--primary button-instructions" data-action="go-menu">
-                Entendido
-            </button>
-
+            <button class="btn btn--primary button-instructions" data-action="go-menu" id="instructionsBtn">Entendido</button>
         </div>
     </section>
 
     <!-- GAME -->
     <section class="screen screen--game" id="screen-game">
-
         <header class="game-header">
-
-            <button class="icon-btn" data-action="pause" aria-label="Pausa">
-                ⏸
-            </button>
-
+            <button class="icon-btn" data-action="pause" aria-label="Pausa" id="pauseBtnTitle">⏸</button>
             <div class="hud-target">
-                <span class="hud-target-label">Busca:</span>
+                <span class="hud-target-label" id="hudTargetLabel">Busca:</span>
                 <span class="hud-target-figure" id="hud-target">🐸</span>
             </div>
-
             <div class="hud-info">
-
                 <div class="hud-stat">
-                    <span class="hud-stat-label">Nivel</span>
+                    <span class="hud-stat-label" id="hudStatLabelLevel">Nivel</span>
                     <span class="hud-stat-value" id="hud-level">1</span>
                 </div>
-
                 <div class="hud-stat">
-                    <span class="hud-stat-label">Tiempo</span>
+                    <span class="hud-stat-label" id="hudStatLabelTime">Tiempo</span>
                     <span class="hud-stat-value" id="hud-time">30s</span>
                 </div>
-
                 <div class="hud-stat">
-                    <span class="hud-stat-label">Puntos</span>
+                    <span class="hud-stat-label" id="hudStatLabelScore">Puntos</span>
                     <span class="hud-stat-value" id="hud-score">0</span>
                 </div>
-
             </div>
-
         </header>
-
         <div class="hud-progress">
-
             <div class="hud-progress-bar">
                 <div class="hud-progress-fill" id="hud-progress-fill"></div>
             </div>
-
             <div class="hud-progress-info">
-                <span>
-                    Encontrados:
-                    <strong id="hud-found">0/20</strong>
-                </span>
-
-                <span>
-                    Errores:
-                    <strong id="hud-errors">0</strong>
-                </span>
+                <span id="hudFoundLabel">Encontrados: <strong id="hud-found">0/20</strong></span>
+                <span id="hudErrorsLabel">Errores: <strong id="hud-errors">0</strong></span>
             </div>
-
         </div>
-
         <div class="game-area" id="game-area"></div>
-
     </section>
 
     <!-- PAUSE -->
     <section class="screen screen--overlay" id="screen-pause">
         <div class="panel panel--pause">
-
-            <h2 class="pause-title">Pausa</h2>
-
-            <p class="pause-description">
-                Tómate un respiro
-            </p>
-
+            <h2 class="pause-title" id="pauseTitle">Pausa</h2>
+            <p class="pause-description" id="pauseDescription">Tómate un respiro</p>
             <div class="pause-buttons">
-
-                <button class="btn btn--primary" data-action="resume">
-                    ▶ Continuar
-                </button>
-
-                <button class="btn btn--secondary" data-action="restart">
-                    🔄 Reiniciar
-                </button>
-
-                <button class="btn btn--secondary" data-action="go-menu">
-                    🏠 Menú Principal
-                </button>
-
+                <button class="btn btn--primary" data-action="resume" id="pauseBtnResume">▶ Continuar</button>
+                <button class="btn btn--secondary" data-action="restart" id="pauseBtnRestart">🔄 Reiniciar</button>
+                <button class="btn btn--secondary" data-action="go-menu" id="pauseBtnMenu">🏠 Menú Principal</button>
             </div>
-
         </div>
     </section>
 
     <!-- COMPLETE -->
     <section class="screen screen--overlay" id="screen-complete">
         <div class="panel panel--complete">
-
-            <h2 class="complete-title" id="complete-title">
-                ¡Excelente!
-            </h2>
-
+            <h2 class="complete-title" id="complete-title">¡Excelente!</h2>
             <div class="complete-stars" id="complete-stars">
-                <div class="star">⭐</div>
-                <div class="star">⭐</div>
-                <div class="star">⭐</div>
+                <div class="star">⭐</div><div class="star">⭐</div><div class="star">⭐</div>
             </div>
-
             <div class="complete-stats">
-
                 <div class="stat-card">
                     <div class="stat-icon">🎯</div>
                     <div class="stat-value" id="complete-found">20/20</div>
-                    <div class="stat-label">Aciertos</div>
+                    <div class="stat-label" id="statLabelHitsComplete">Aciertos</div>
                 </div>
-
                 <div class="stat-card">
                     <div class="stat-icon">❌</div>
                     <div class="stat-value" id="complete-errors">0</div>
-                    <div class="stat-label">Errores</div>
+                    <div class="stat-label" id="statLabelErrorsComplete">Errores</div>
                 </div>
-
                 <div class="stat-card">
                     <div class="stat-icon">💎</div>
                     <div class="stat-value" id="complete-score">500</div>
-                    <div class="stat-label">Puntos</div>
+                    <div class="stat-label" id="statLabelPointsComplete">Puntos</div>
                 </div>
-
             </div>
-
             <div class="complete-buttons">
-
-                <button class="btn btn--primary" data-action="next-level" id="btn-next">
-                    Siguiente Nivel
-                </button>
-
-                <button class="btn btn--secondary" data-action="go-menu">
-                    Menú Principal
-                </button>
-
+                <button class="btn btn--primary" data-action="next-level" id="btn-next">Siguiente Nivel</button>
+                <button class="btn btn--secondary" data-action="go-menu" id="completeBtnMenu">Menú Principal</button>
             </div>
-
         </div>
     </section>
 
     <!-- DEFEAT -->
     <section class="screen screen--overlay" id="screen-defeat">
         <div class="panel panel--defeat">
-
-            <h2 class="defeat-title">
-                ¡Casi lo logras!
-            </h2>
-
+            <h2 class="defeat-title" id="defeatTitle">¡Casi lo logras!</h2>
             <p class="defeat-message">
-                Encontraste
+                <span id="defeatMsg1">Encontraste</span>
                 <span id="defeat-found">0/20</span>
-                figuras.
+                <span id="defeatMsg2">figuras.</span>
             </p>
-
-            <p class="defeat-encourage">
-                ¡Inténtalo de nuevo, tú puedes!
-            </p>
-
+            <p class="defeat-encourage" id="defeatEncourage">¡Inténtalo de nuevo, tú puedes!</p>
             <div class="defeat-buttons">
-
-                <button class="btn btn--primary" data-action="restart">
-                    🔄 Reintentar
-                </button>
-
-                <button class="btn btn--secondary" data-action="go-menu">
-                    🏠 Menú Principal
-                </button>
-
+                <button class="btn btn--primary" data-action="restart" id="defeatBtnRetry">🔄 Reintentar</button>
+                <button class="btn btn--secondary" data-action="go-menu" id="defeatBtnMenu">🏠 Menú Principal</button>
             </div>
-
         </div>
     </section>
 
     <!-- VICTORY -->
     <section class="screen screen--overlay" id="screen-victory">
         <div class="panel panel--victory">
-
             <div class="victory-trophy">🏆</div>
-
-            <h2 class="victory-title">
-                ¡Victoria Final!
-            </h2>
-
-            <p class="victory-message">
-                Has completado todos los niveles con éxito.
-            </p>
-
+            <h2 class="victory-title" id="victoryTitle">¡Victoria Final!</h2>
+            <p class="victory-message" id="victoryMessage">Has completado todos los niveles con éxito.</p>
             <div class="victory-stats">
-
                 <div class="stat-card">
                     <div class="stat-icon">⭐</div>
                     <div class="stat-value" id="victory-stars">0</div>
-                    <div class="stat-label">Estrellas</div>
+                    <div class="stat-label" id="statLabelStarsVictory">Estrellas</div>
                 </div>
-
                 <div class="stat-card">
                     <div class="stat-icon">🏆</div>
                     <div class="stat-value">4/4</div>
-                    <div class="stat-label">Niveles</div>
+                    <div class="stat-label" id="statLabelLevelsVictory">Niveles</div>
                 </div>
-
                 <div class="stat-card">
                     <div class="stat-icon">💎</div>
                     <div class="stat-value" id="victory-score">0</div>
-                    <div class="stat-label">Puntos</div>
+                    <div class="stat-label" id="statLabelPointsVictory">Puntos</div>
                 </div>
-
             </div>
-
-            <button class="btn btn--primary btn--lg victory-button" data-action="go-menu">
-                Volver al Menú
-            </button>
-
+            <button class="btn btn--primary btn--lg victory-button" data-action="go-menu" id="victoryBtnMenu">Volver al Menú</button>
         </div>
     </section>
 
     <div id="toast-container"></div>
-
 </div>
 
 <script src="selección con tiempo.js"></script>
-
 </body>
 </html>

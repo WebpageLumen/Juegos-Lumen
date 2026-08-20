@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUMEN</title>
+  <link rel="icon" type="image/png" href="Imagenes/Lg.png"/>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles2.css"/>
+  <link rel="stylesheet" href="transiciones.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+ 
+<body>
+ 
+  <!-- ==========================================
+       PRIMERA SECCIÓN – HERO
+  ========================================== -->
+  <section class="hero" id="heroSection">
+ 
+    <!-- NAVBAR -->
+    <nav class="navbar" role="navigation" aria-label="Navegación principal">
+ 
+      <!-- Logo a la izquierda -->
+      <div class="nav-logo">
+        <img src="Imagenes/Lg.png" alt="Logo Lumen" class="logo-img"/>
+      </div>
+ 
+      <!-- Links centrados -->
+      <div class="nav-links">
+ 
+        <!-- Inicio -->
+        <a href="index.html" class="nav-btn" data-i18n="nav_home" target="_blank">Inicio</a>
+ 
+        <!-- =====================================================
+             INFORMACIÓN GENERAL – con dropdown
+             Al hacer clic muestra submenú con temas de autismo
+        ===================================================== -->
+        <div class="nav-item">
+          <a href="InfoGene1.html" class="nav-btn nav-link" data-i18n="nav_info" target="_blank">Información general</a>
+          <!-- Submenú de Información general -->
+          <div class="nav-dropdown">
+            <a href="InfoGene1.html#sec-autism" class="nav-drop-link" data-i18n="drop_autism" target="_blank">¿Qué es el autismo?</a>
+            <a href="InfoGene1.html#sec-causes" class="nav-drop-link" data-i18n="drop_causes" target="_blank">Causas del autismo</a>
+            <a href="InfoGene1.html#sec-levels" class="nav-drop-link" data-i18n="drop_levels" target="_blank">Niveles de autismo</a>
+            <a href="InfoGene1.html#sec-signs" class="nav-drop-link" data-i18n="drop_signs" target="_blank">Señales de alerta</a>
+            <a href="InfoGene1.html#sec-girls" class="nav-drop-link" data-i18n="drop_girls" target="_blank">Autismo en niñas y...</a>
+            <a href="InfoGene1.html#sec-conditions" class="nav-drop-link" data-i18n="drop_conditions" target="_blank">Condiciones asociadas...</a>
+          </div>
+        </div>
+ 
+        <!-- Lumen Shop: enlace simple sin submenú -->
+        <a href="Lumenshop.html" class="nav-btn" data-i18n="nav_shop" target="_blank">Lumen Shop</a>
+ 
+        <!-- Centros: enlace simple sin submenú -->
+        <a href="Centros1.html" class="nav-btn" data-i18n="nav_centers" target="_blank">Centros</a>
+ 
+        <!-- Giras inclusivas: enlace simple sin submenú -->
+        <a href="Giras.html" class="nav-btn" data-i18n="nav_tours" target="_blank">Giras inclusivas</a>
+ 
+        <!-- Profesionales: enlace simple sin submenú -->
+        <a href="Profesionales.html" class="nav-btn" data-i18n="nav_pros" target="_blank">Profesionales</a>
+ 
+        <!-- =====================================================
+             SOBRE NOSOTROS – con dropdown
+             Al hacer clic muestra submenú con páginas internas
+        ===================================================== -->
+        <div class="nav-item">
+          <button class="nav-btn" data-i18n="nav_about">Sobre nosotros</button>
+          <!-- Submenú de Sobre nosotros -->
+          <div class="nav-dropdown">
+            <a href="#" class="nav-drop-link" data-i18n="drop_who">¿Quiénes somos?</a>
+            <a href="#" class="nav-drop-link" data-i18n="drop_mission">Misión y visión</a>
+            <a href="#" class="nav-drop-link" data-i18n="drop_contact">Contacto</a>
+          </div>
+        </div>
+ 
+      </div>
+ 
+      <!-- Controles: solo idioma (el tema está en sections-header) -->
+      <div class="nav-controls">
+ 
+        <!-- Selector de idioma -->
+        <div class="lang-wrapper" id="langWrapper">
+          <button class="lang-btn" id="langBtn"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                  aria-label="Seleccionar idioma">
+            <img src="https://flagcdn.com/w80/es.png" class="flag" id="langFlag" alt="Bandera"/>
+            <span id="langLabel">ES</span>
+            <span class="lang-chevron"></span>
+          </button>
+ 
+          <div class="lang-dropdown" id="langDropdown" role="listbox">
+            <div class="lang-option selected" role="option" data-lang="es" tabindex="0">
+              <img src="https://flagcdn.com/w80/es.png" class="flag" alt="Español"/>
+              <span>ES</span>
+            </div>
+            <div class="lang-option" role="option" data-lang="en" tabindex="0">
+              <img src="https://flagcdn.com/w80/gb.png" class="flag" alt="English"/>
+              <span>EN</span>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+    </nav>
+ 
+    <!-- CONTENIDO HERO -->
+    <div class="hero-content">
+ 
+      <div class="hero-text">
+        <!-- Título con palabra resaltada -->
+        <h1 class="hero-title">
+          <span data-i18n="hero_title_1">Un espacio pensado<br>para acompañarte<br>en </span>
+          <span class="hero-highlight" data-i18n="hero_title_highlight">cada paso</span>
+        </h1>
+ 
+        <!-- Descripción -->
+        <p class="hero-description" data-i18n="hero_desc">
+          Lumen acompaña a niños, niñas y jóvenes en su desarrollo, brindando herramientas,
+          actividades y experiencias inclusivas que promueven su bienestar y autonomía.
+        </p>
+      </div>
+ 
+    </div>
+ 
+  </section>
+ 
+  <!-- ==========================================
+       SEGUNDA SECCIÓN – ¿QUÉ ENCUENTRAS EN LUMEN?
+  ========================================== -->
+  <section class="sections-wrapper" aria-labelledby="sectionsHeading">
+ 
+    <!-- Botón de tema reubicado aquí, reemplaza el badge "Modo Guiado" -->
+    <div class="sections-header">
+      <h2 class="sections-title" id="sectionsHeading" data-i18n="sections_title">
+        ¿Qué encuentras en Lumen?
+      </h2>
+      <!-- Botón modo oscuro/claro -->
+      <button class="theme-btn" id="themeBtn" aria-label="Cambiar tema">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+      </button>
+    </div>
+  
+    <div class="cards-grid">
+ 
+      <!-- JUEGOS EDUCATIVOS -->
+      <a class="section-card card-blue" href="selección con tiempo.html" target="_blank">
+        <div class="card-img-area">
+          <div class="card-img-placeholder">
+            <img src="Imagenes/J.E.png" alt="Juegos educativos"/>
+          </div>
+        </div>
+        <div class="card-label" data-i18n="card_juegos">Juegos<br>educativos</div>
+        <div class="card-arrow">→</div>
+      </a>
+ 
+      <!-- ACTIVIDADES SOCIALES -->
+      <a class="section-card card-yellow" href="Actividades.html" target="_blank">
+        <div class="card-img-area">
+          <div class="card-img-placeholder">
+            <img src="Imagenes/actividades sociales.png" alt="Actividades sociales"/>
+          </div>
+        </div>
+        <div class="card-label" data-i18n="card_actividades">Actividades<br>sociales</div>
+        <div class="card-arrow">→</div>
+      </a>
+ 
+      <!-- REGULACIÓN EMOCIONAL -->
+      <a class="section-card card-purple" href="#" target="_blank">
+        <div class="card-img-area">
+          <div class="card-img-placeholder">
+            <img src="Imagenes/Re.E..png" alt="Regulación emocional"/>
+          </div>
+        </div>
+        <div class="card-label" data-i18n="card_regulacion">Regulación<br>emocional</div>
+        <div class="card-arrow">→</div>
+      </a>
+ 
+      <!-- RECURSOS EXTRAS -->
+      <a class="section-card card-blue" href="Recursos.html" target="_blank">
+        <div class="card-img-area">
+          <div class="card-img-placeholder">
+            <img src="Imagenes/Recursos Extra.png" alt="Recursos extras"/>
+          </div>
+        </div>
+        <div class="card-label" data-i18n="card_recursos">Recursos<br>extras</div>
+        <div class="card-arrow">→</div>
+      </a>
+ 
+    </div>
+  </section>
+ 
+  <!-- ==========================================
+       TERCERA SECCIÓN – GIRAS INCLUSIVAS
+  ========================================== -->
+  <section id="giras" class="tours-section" aria-labelledby="toursHeading">
+ 
+    <div class="tours-left">
+      <h2 class="tours-title" id="toursHeading" data-i18n="tours_title">Giras inclusivas</h2>
+      <p class="tours-desc" data-i18n="tours_desc">Experiencias reales, lugares increíbles y recuerdos que iluminan.</p>
+      <a href="Giras2.html" class="tours-btn" data-i18n="tours_btn" target="_blank">Ver todas las giras →</a>
+    </div>
+ 
+    <div class="tours-cards">
+ 
+      <div class="tour-card">
+        <div class="tour-img-wrap">
+          <img src="Imagenes/MC.png" alt="Museo del Canal" class="tour-img"/>
+        </div>
+        <div class="tour-card-label">
+          <span data-i18n="tour1_name">Explora</span>
+          <span class="tour-tag tour-tag-edu" data-i18n="tour1_tag">Educativa</span>
+        </div>
+      </div>
+ 
+      <div class="tour-card">
+        <div class="tour-img-wrap">
+          <img src="Imagenes/Create.png" alt="Crea" class="tour-img" />
+        </div>
+        <div class="tour-card-label">
+          <span data-i18n="tour2_name">Crea</span>
+          <span class="tour-tag tour-tag-rec" data-i18n="tour2_tag">Recreativa</span>
+        </div>
+      </div>
+ 
+      <div class="tour-card">
+        <div class="tour-img-wrap">
+          <img src="Imagenes/S.png" alt="Descubre" class="tour-img"/>
+        </div>
+        <div class="tour-card-label">
+          <span data-i18n="tour3_name">Descubre</span>
+          <span class="tour-tag tour-tag-exp" data-i18n="tour3_tag">Explorativa</span>
+        </div>
+      </div>
+ 
+    </div>
+  </section>
+ 
+  <!-- ==========================================
+       CUARTA SECCIÓN – LUMEN SHOP
+  ========================================== -->
+  <section id="shop" class="shop-section" aria-labelledby="shopHeading">
+ 
+    <div class="shop-left">
+      <p class="shop-icon-label">🛒 <span data-i18n="shop_label">Lumen Shop</span></p>
+      <h2 class="shop-title" id="shopHeading" data-i18n="shop_title">Lumen Shop</h2>
+      <p class="shop-desc" data-i18n="shop_desc">Productos pensados para acompañar el bienestar emocional, sensorial y reforzar conocimientos.</p>
+      <a href="#" class="shop-btn" data-i18n="shop_btn" target="_blank">Ir a la tienda →</a>
+    </div>
+ 
+    <div class="shop-products">
+ 
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="Imagenes/Spinner.png" alt="Spinner Cromado" class="product-img"/>
+        </div>
+        <p class="product-name" data-i18n="prod1">Spinner<br>Cromado</p>
+      </div>
+ 
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="Imagenes/Cubo.png" alt="Cubo Antiestres" class="product-img"/>
+        </div>
+        <p class="product-name" data-i18n="prod2">Cubo<br>Antiestres</p>
+      </div>
+ 
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="Imagenes/POP.png" alt="Pop it Arcoiris" class="product-img"/>
+        </div>
+        <p class="product-name" data-i18n="prod3">Pop it<br>Arcoiris</p>
+      </div>
+ 
+      <div class="product-card">
+        <div class="product-img-wrap">
+          <img src="Imagenes/Pelota.png" alt="Pelota Antiestres" class="product-img"/>
+        </div>
+        <p class="product-name" data-i18n="prod4">Pelota<br>Antiestres</p>
+      </div>
+ 
+    </div>
+  </section>
+ 
+  <!-- ==========================================
+       FOOTER
+  ========================================== -->
+  <footer class="site-footer" role="contentinfo">
+ 
+    <div class="footer-brand">
+      <div class="footer-logo-wrap">
+        <img src="Imagenes/cloud.png" alt="Logo Lumen" class="footer-logo-img"/>
+            </div>
+      <p class="footer-copy">
+        <span class="copy-icon">‎ ‎ ‎ ‎ ‎ ‎ ‎ ©</span>
+        <span data-i18n="footer_copy">2026 Lumen. Todos los derechos reservados.</span>
+      </p>
+    </div>
+ 
+    <div class="footer-links">
+      <p class="footer-col-title" data-i18n="footer_access">Accesos rápidos</p>
+      <ul>
+        <li><a href="index.html" data-i18n="nav_home" target="_blank">Inicio</a></li>
+        <li><a href="infogene1.html" data-i18n="nav_info" target="_blank">Información general</a></li>
+        <li><a href="shop.html" data-i18n="nav_shop" target="_blank">Lumen Shop</a></li>
+        <li><a href="centers.html" data-i18n="nav_centers" target="_blank">Centros</a></li>
+        <li><a href="tours.html" data-i18n="nav_tours" target="_blank">Giras inclusivas</a></li>
+        <li><a href="pros.html" data-i18n="nav_pros" target="_blank">Profesionales</a></li>
+        <li><a href="about.html" data-i18n="nav_about" target="_blank">Sobre nosotros</a></li>
+      </ul>
+    </div>
+ 
+    <div class="footer-social">
+      <a class="footer-social-line" data-i18n="footer_community" href="https://engage.cloud.microsoft/main/org/superate.org/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIyMzU0NTMyMDI0MzIifQ" target="_blank">¡Visita nuestra comunidad!</a>
+      <p class="footer-social-line" data-i18n="footer_contact">Contáctanos</p>
+      <p class="footer-social-line" data-i18n="footer_email_label">Correo electrónico:</p>
+
+      <div class="social-icons">
+        <a href="https://www.youtube.com/" class="social-icon" aria-label="YouTube" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M10.5 9.2v5.6l4.8-2.8-4.8-2.8z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com" class="social-icon" aria-label="Instagram" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="4.4" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="17.3" cy="6.7" r="1.15" fill="currentColor"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+ 
+    <div class="footer-mascot" aria-hidden="true">
+      <img src="Imagenes/numa2.0.png" alt="Mascota Lumen" class="mascot-img"/>
+    </div>
+ 
+  </footer>
+ 
+  <script src="script2.js"></script>
+  <script src="transiciones.js"></script>
+</body>
+</html>
