@@ -3,18 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Empareja letra con imagen</title>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap"
-        rel="stylesheet"
-    >
-
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="letra con imagen.css">
-</head>
 
-<body>
 
     <!-- Paisaje monocromático esmeralda -->
     <div class="paisaje" id="paisaje">
@@ -41,48 +33,26 @@
 
     <!-- Contenido del juego -->
     <div class="contenido">
-
-        <h1>Empareja la letra con la imagen</h1>
+        <h1 id="titleText">Empareja la letra con la imagen</h1>
 
         <div id="juego">
-
             <div id="letra"></div>
-
             <div class="opciones" id="opciones"></div>
-
             <div id="mensaje"></div>
-
             <div id="progreso"></div>
-
             <div class="barra-progreso">
-                <div
-                    class="barra-progreso-relleno"
-                    id="barraRelleno"
-                ></div>
+                <div class="barra-progreso-relleno" id="barraRelleno"></div>
             </div>
-
         </div>
 
         <!-- Pantalla final -->
         <div id="pantallaFinal">
-
-            <div id="finalTexto">
-                ¡Excelente!
-            </div>
-
-            <div id="finalEmoji">
-                🏆
-            </div>
-
-            <button id="reiniciarBtn">
-                Volver a jugar
-            </button>
-
+            <div id="finalTexto">¡Excelente!</div>
+            <div id="finalEmoji">🏆</div>
+            <button id="reiniciarBtn">Volver a jugar</button>
         </div>
-
     </div>
 
     <script src="letra con imagen.js"></script>
-
 </body>
 </html>

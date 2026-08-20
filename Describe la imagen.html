@@ -1,76 +1,41 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Describe la Imagen - Paisaje Soñador</title>
-
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="describe la imagen.css">
-<script src="describe la imagen.js" defer></script>
-
-
+    <title>Describe la Imagen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="describe la imagen.css">
+    <script src="describe la imagen.js" defer></script>
 </head>
-
 <body>
 
 <!-- Paisaje -->
-
 <div class="paisaje">
     <div class="sol"></div>
-
-
-<div class="nube nube-1"></div>
-<div class="nube nube-2"></div>
-<div class="nube nube-3"></div>
-<div class="nube nube-4"></div>
-
-<div class="pajaro pajaro-1"></div>
-<div class="pajaro pajaro-2"></div>
-<div class="pajaro pajaro-3"></div>
-
-<div class="colina colina-1"></div>
-<div class="colina colina-2"></div>
-<div class="colina colina-3"></div>
-<div class="colina colina-4"></div>
-
-<div class="arbol arbol-1">
-    <div class="arbol-tronco"></div>
-    <div class="arbol-copa"></div>
-</div>
-
-<div class="arbol arbol-2">
-    <div class="arbol-tronco"></div>
-    <div class="arbol-copa"></div>
-</div>
-
-<div class="arbol arbol-3">
-    <div class="arbol-tronco"></div>
-    <div class="arbol-copa"></div>
-</div>
-
-<div class="arbol arbol-4">
-    <div class="arbol-tronco"></div>
-    <div class="arbol-copa"></div>
-</div>
-
-<div class="arbol arbol-5">
-    <div class="arbol-tronco"></div>
-    <div class="arbol-copa"></div>
-</div>
-
-<div class="casita">
-    <div class="casita-cuerpo">
-        <div class="casita-techo"></div>
-        <div class="casita-ventana"></div>
-        <div class="casita-puerta"></div>
+    <div class="nube nube-1"></div>
+    <div class="nube nube-2"></div>
+    <div class="nube nube-3"></div>
+    <div class="nube nube-4"></div>
+    <div class="pajaro pajaro-1"></div>
+    <div class="pajaro pajaro-2"></div>
+    <div class="pajaro pajaro-3"></div>
+    <div class="colina colina-1"></div>
+    <div class="colina colina-2"></div>
+    <div class="colina colina-3"></div>
+    <div class="colina colina-4"></div>
+    <div class="arbol arbol-1"><div class="arbol-tronco"></div><div class="arbol-copa"></div></div>
+    <div class="arbol arbol-2"><div class="arbol-tronco"></div><div class="arbol-copa"></div></div>
+    <div class="arbol arbol-3"><div class="arbol-tronco"></div><div class="arbol-copa"></div></div>
+    <div class="arbol arbol-4"><div class="arbol-tronco"></div><div class="arbol-copa"></div></div>
+    <div class="arbol arbol-5"><div class="arbol-tronco"></div><div class="arbol-copa"></div></div>
+    <div class="casita">
+        <div class="casita-cuerpo">
+            <div class="casita-techo"></div>
+            <div class="casita-ventana"></div>
+            <div class="casita-puerta"></div>
+        </div>
     </div>
-</div>
-
-
 </div>
 
 <div class="estrellas" id="estrellas"></div>
@@ -78,78 +43,36 @@
 <div class="container" id="mainContainer">
 
 
-<h1>🖼️ Describe la Imagen</h1>
+    <h1 id="mainTitle">🖼️ Describe la Imagen</h1>
+    <p class="subtitle" id="subtitleText">Selecciona 4 palabras que describan correctamente lo que ves</p>
 
-<p class="subtitle">
-    Selecciona 4 palabras que describan correctamente lo que ves
-</p>
-
-<div id="game">
-
-    <div class="top">
-        <div class="info">
-            Nivel: <span id="level">1</span>/4
+    <div id="game">
+        <div class="top">
+            <div class="info"><span id="levelLabel">Nivel:</span> <span id="level">1</span>/4</div>
+            <div class="info"><span id="scoreLabel">Puntos:</span> <span id="score">0</span></div>
+            <div class="info streak-badge" id="streakBadge"><span id="streakLabel">🔥 Racha:</span> <span id="streak">0</span></div>
         </div>
 
-        <div class="info">
-            Puntos: <span id="score">0</span>
+        <div class="level-name" id="levelName">Nivel: Animales</div>
+        <div class="progress"><div class="bar" id="bar"></div></div>
+        <div class="imageBox"><img id="image" src="" alt="Imagen del nivel"></div>
+        <div class="words" id="words"></div>
+
+        <div class="action">
+            <button class="mainBtn btn-disabled" id="check">Comprobar (0/4)</button>
+            <button class="hintBtn" id="hintBtn">💡 Pista (-5 pts)</button>
         </div>
-
-        <div class="info streak-badge" id="streakBadge">
-            🔥 Racha: <span id="streak">0</span>
-        </div>
+        <div id="message"></div>
     </div>
 
-    <div class="level-name" id="levelName">
-        Nivel: Animales
+    <div class="screen" id="victory">
+        <h2 id="victoryTitle">🏆 ¡Felicidades!</h2>
+        <p id="victoryDesc">Completaste todos los niveles del juego.</p>
+        <br>
+        <h3 id="victoryScoreLabel">Puntaje final: <span id="finalScore"></span></h3>
+        <br>
+        <button class="mainBtn" id="playAgainBtn" onclick="location.reload()">Jugar de nuevo 🔄</button>
     </div>
-
-    <div class="progress">
-        <div class="bar" id="bar"></div>
-    </div>
-
-    <div class="imageBox">
-        <img id="image" src="" alt="Imagen del nivel">
-    </div>
-
-    <div class="words" id="words"></div>
-
-    <div class="action">
-
-        <button class="mainBtn btn-disabled" id="check">
-            Comprobar (0/4)
-        </button>
-
-        <button class="hintBtn" id="hintBtn">
-            💡 Pista (-5 pts)
-        </button>
-
-    </div>
-
-    <div id="message"></div>
-
-</div>
-
-<div class="screen" id="victory">
-
-    <h2>🏆 ¡Felicidades!</h2>
-
-    <p>Completaste todos los niveles del juego.</p>
-
-    <br>
-
-    <h3>
-        Puntaje final: <span id="finalScore"></span>
-    </h3>
-
-    <br>
-
-    <button class="mainBtn" onclick="location.reload()">
-        Jugar de nuevo 🔄
-    </button>
-
-</div>
-
 
 </div>
 

@@ -8,17 +8,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="encuentra al intruso.css" />
+
 </head>
 <body>
+
+
   <div class="app">
     <div class="top">
       <div class="titleBox">
-        <h1>Encuentra la Figura Magica</h1>
+        <h1 id="titleText">Encuentra la Figura Mágica</h1>
         <p class="subtitle"></p>
 
         <div class="basket" id="basket">
           <h3>
-            <span class="basketTitle">🪄 Bolsa Magica</span>
+            <span class="basketTitle" id="basketTitle">🪄 Bolsa Mágica</span>
             <span class="magicCount" id="magicCount">✨ ×0</span>
           </h3>
 
@@ -26,9 +29,7 @@
             <div class="basketBase"></div>
             <div class="magicCircle"></div>
             <div class="runeRing"></div>
-
             <div class="bagGlow"></div>
-
             <div class="magicBag" id="magicBag">
               <div class="bagShadow"></div>
               <div class="bagTop"></div>
@@ -45,14 +46,13 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <div class="uiBox">
         <div class="stats">
-          <div class="stat"><span>Nivel</span><strong id="level">Nivel 1 - 1/10</strong></div>
-          <div class="stat"><span>Tiempo</span><strong id="timer">02:30</strong></div>
-          <div class="stat"><span>Progreso</span><strong id="score">0</strong></div>
+          <div class="stat"><span id="statLevel">Nivel</span><strong id="level">Nivel 1 - 1/10</strong></div>
+          <div class="stat"><span id="statTime">Tiempo</span><strong id="timer">02:30</strong></div>
+          <div class="stat"><span id="statScore">Progreso</span><strong id="score">0</strong></div>
         </div>
 
         <div class="targetLine">
@@ -77,7 +77,7 @@
 
   <div class="overlay" id="overlay">
     <div class="modal" id="overlayContent">
-      <h2>Se acabo el tiempo!</h2>
+      <h2>Se acabó el tiempo!</h2>
       <p>Respira hondo y vuelve a intentarlo. Cada intento te hace mejor!</p>
       <button id="overlayRestartBtn">✨ Comenzar de nuevo</button>
     </div>

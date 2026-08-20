@@ -1,3 +1,120 @@
+(function() {
+/* =========================================================
+   TRADUCCIONES (DICCIONARIO DE IDIOMAS)
+========================================================= */
+const translations = {
+    es: {
+        title: "Encuentra la Figura Mágica",
+        basketTitle: "🪄 Bolsa Mágica",
+        statLevel: "Nivel", statTime: "Tiempo", statScore: "Progreso",
+        hintBtn: "Necesito una Pista ✨",
+        levelText: (lvl, sub) => `Nivel ${lvl} - ${sub}/10`,
+        targetText: (lvl) => `Nivel ${lvl}: Encuentra la figura intrusa. Mira su borde brillante!`,
+        hintMsg: "La figura intrusa tiene un suave resplandor mágico en su borde. Obsérvala con atención.",
+        winTitle: "¡Completaste todos los niveles!",
+        winDesc: (count) => `Encontraste las ${count} figuras mágicas. ¡Tu vista es poderosa!`,
+        winBtn: "✨ Jugar de nuevo",
+        loseTitle: "¡Se acabó el tiempo!",
+        loseDesc: "Respira hondo y vuelve a intentarlo. ¡Cada intento te hace mejor!",
+        loseBtn: "✨ Comenzar de nuevo",
+        praiseMsgs: [
+            "¡Brillante! La encontraste como un verdadero mago.",
+            "¡Súper! Tu atención está creciendo muchísimo.",
+            "¡Genial! Eres rapidísimo buscando la intrusa.",
+            "¡Fantástico! Vas dominando cada nivel.",
+            "¡Excelente! Tu mirada está muy entrenada.",
+            "¡Wow! Lo hiciste con mucha precisión.",
+            "¡Perfecto! Cada vez lo haces mejor.",
+            "¡Increíble! Estás concentrando de maravilla.",
+            "¡Muy bien! Tu ojo mágico está afinadísimo.",
+            "¡Lo lograste! Sigue así, vas excelente."
+        ]
+    },
+    en: {
+        title: "Find the Magic Figure",
+        basketTitle: "🪄 Magic Bag",
+        statLevel: "Level", statTime: "Time", statScore: "Progress",
+        hintBtn: "Need a Hint ✨",
+        levelText: (lvl, sub) => `Level ${lvl} - ${sub}/10`,
+        targetText: (lvl) => `Level ${lvl}: Find the intruder figure. Look at its shiny edge!`,
+        hintMsg: "The intruder figure has a soft magical glow on its edge. Look at it carefully.",
+        winTitle: "You completed all levels!",
+        winDesc: (count) => `You found the ${count} magic figures. Your sight is powerful!`,
+        winBtn: "✨ Play again",
+        loseTitle: "Time is up!",
+        loseDesc: "Take a deep breath and try again. Every attempt makes you better!",
+        loseBtn: "✨ Start over",
+        praiseMsgs: [
+            "Brilliant! You found it like a true magician.",
+            "Super! Your attention is growing so much.",
+            "Great! You are super fast finding the intruder.",
+            "Fantastic! You are mastering each level.",
+            "Excellent! Your sight is well trained.",
+            "Wow! You did it with great precision.",
+            "Perfect! You do it better every time.",
+            "Incredible! You are concentrating wonderfully.",
+            "Very good! Your magic eye is finely tuned.",
+            "You did it! Keep it up, you are doing great."
+        ]
+    }
+};
+
+let currentLang = localStorage.getItem("lumen-lang") || "es";
+let t = translations[currentLang] || translations["es"];
+
+function changeLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem("lumen-lang", lang);
+    t = translations[lang] || translations["es"];
+
+    const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+    setText("titleText", t.title);
+    setText("basketTitle", t.basketTitle);
+    setText("statLevel", t.statLevel);
+    setText("statTime", t.statTime);
+    setText("statScore", t.statScore);
+    setText("hintBtn", t.hintBtn);
+
+    // Actualizar textos dinámicos si el juego está activo
+    if (typeof state !== 'undefined' && !state.gameOver) {
+        const levelNum = state.level < 10 ? 1 : 2;
+        const subLevelNum = (state.level % 10) + 1;
+        setText("level", t.levelText(levelNum, subLevelNum));
+        setText("targetText", t.targetText(levelNum));
+    }
+
+    const langEsBtn = document.getElementById("langEs");
+    const langEnBtn = document.getElementById("langEn");
+    if (langEsBtn) langEsBtn.classList.toggle("selected", lang === "es");
+    if (langEnBtn) langEnBtn.classList.toggle("selected", lang === "en");
+}
+
+// Configurar menú de ajustes
+const settingsBtn = document.getElementById("settingsBtn");
+const settingsMenu = document.getElementById("settingsMenu");
+if (settingsBtn) {
+    settingsBtn.addEventListener("click", () => {
+        const isVisible = settingsMenu.style.display === "flex";
+        settingsMenu.style.display = isVisible ? "none" : "flex";
+    });
+}
+if (document.getElementById("langEs")) {
+    document.getElementById("langEs").addEventListener("click", () => {
+        changeLanguage("es");
+        settingsMenu.style.display = "none";
+    });
+}
+if (document.getElementById("langEn")) {
+    document.getElementById("langEn").addEventListener("click", () => {
+        changeLanguage("en");
+        settingsMenu.style.display = "none";
+    });
+}
+
+/* =========================================================
+   LÓGICA ORIGINAL DEL JUEGO
+========================================================= */
+
 const board = document.getElementById('board');
 const fxLayer = document.getElementById('fxLayer');
 const basketBox = document.getElementById('basketBox');
@@ -18,13 +135,10 @@ const toast = document.getElementById('toast');
 const hintBtn = document.getElementById('hintBtn');
 
 const GAME_TIME = 150;
-/* Solo 2 niveles: circulos y cuadrados */
 const TOTAL_SUBLEVELS = 20; // 2 niveles x 10 subniveles
 
-// Generador dinamico de configuracion por subnivel
 function generateLevelConfig(levelIdx) {
   if (levelIdx < 10) {
-    // Nivel 1: Circulos, 1 color base
     const i = levelIdx;
     const h = 286 + (i % 3) * 2;
     return {
@@ -34,7 +148,6 @@ function generateLevelConfig(levelIdx) {
       count: 20 + (i % 5)
     };
   } else {
-    // Nivel 2: Cuadrados, colores analogos
     const i = levelIdx - 10;
     const h1 = (20 + (i % 5) * 15) % 360;
     const h2 = (h1 + 30 + (i % 3) * 10) % 360;
@@ -70,18 +183,7 @@ function fmtTime(total) {
 function hsl(h, s, l) { return `hsl(${h} ${s}% ${l}%)`; }
 
 function praiseMessages() {
-  return [
-    "Brillante! La encontraste como un verdadero mago.",
-    "Super! Tu atencion esta creciendo muchisimo.",
-    "Genial! Eres rapidisimo buscando la intrusa.",
-    "Fantastico! Vas dominando cada nivel.",
-    "Excelente! Tu mirada esta muy entrenada.",
-    "Wow! Lo hiciste con mucha precision.",
-    "Perfecto! Cada vez lo haces mejor.",
-    "Increible! Estas concentrandote de maravilla.",
-    "Muy bien! Tu ojo magico esta afinadisimo.",
-    "Lo lograste! Sigue asi, vas excelente."
-  ];
+  return t.praiseMsgs;
 }
 
 function showPraise() {
@@ -99,7 +201,7 @@ function showPraise() {
 
 function showHint() {
   if (state.gameOver) return;
-  toast.textContent = "La figura intrusa tiene un suave resplandor magico en su borde. Observala con atencion.";
+  toast.textContent = t.hintMsg;
   toast.classList.remove('show-praise');
   toast.classList.remove('show-hint');
   void toast.offsetWidth;
@@ -116,10 +218,10 @@ function updateMagicCount() {
 
 function updateUI() {
   scoreEl.textContent = state.level;
-  /* Solo 2 niveles ahora */
   const levelNum = state.level < 10 ? 1 : 2;
   const subLevelNum = (state.level % 10) + 1;
-  levelEl.textContent = `Nivel ${levelNum} - ${subLevelNum}/10`;
+  
+  levelEl.textContent = t.levelText(levelNum, subLevelNum);
   timerEl.textContent = fmtTime(state.remaining);
   progressBar.style.width = `${(state.level / TOTAL_SUBLEVELS) * 100}%`;
 
@@ -131,14 +233,13 @@ function updateUI() {
 
   targetBubble.style.background = `radial-gradient(circle at 30% 30%, ${hsl(targetH, targetS + 18, Math.min(92, targetL + 18))}, ${hsl(targetH, targetS, targetL)} 58%, ${hsl(targetH - 5, targetS + 8, Math.max(8, targetL - 16))} 100%)`;
 
-  // Actualizar la forma del targetBubble para que coincida con el nivel
   targetBubble.style.clipPath = 'none';
   targetBubble.style.borderRadius = '50%';
   if (levelNum === 2) {
     targetBubble.style.borderRadius = '15%';
   }
 
-  targetText.textContent = `Nivel ${levelNum}: Encuentra la figura intrusa. Mira su borde brillante!`;
+  targetText.textContent = t.targetText(levelNum);
 }
 
 function clearTimer() {
@@ -176,11 +277,10 @@ function createBubble({ x, y, size, shape, role, bg }) {
   el.style.background = bg;
   el.dataset.role = role;
 
-  // Aplicar la forma geometrica correspondiente
   if (shape === 'square') {
     el.style.borderRadius = '15%';
   } else {
-    el.style.borderRadius = '50%'; // Circulo por defecto
+    el.style.borderRadius = '50%';
   }
 
   el.addEventListener('click', () => {
@@ -474,18 +574,18 @@ function endGame(won) {
     overlayContent.className = 'modal winModal';
     overlayContent.innerHTML = `
       <div class="winIcon">🏆</div>
-      <h2>Completaste todos los niveles!</h2>
+      <h2>${t.winTitle}</h2>
       <div class="winStars">⭐⭐⭐</div>
-      <p>Encontraste las ${state.bagCount} figuras magicas. Tu vista es poderosa!</p>
-      <button id="overlayRestartBtn">✨ Jugar de nuevo</button>
+      <p>${t.winDesc(state.bagCount)}</p>
+      <button id="overlayRestartBtn">${t.winBtn}</button>
     `;
     confettiRain(90, 3.2);
   } else {
     overlayContent.className = 'modal';
     overlayContent.innerHTML = `
-      <h2>Se acabo el tiempo!</h2>
-      <p>Respira hondo y vuelve a intentarlo. Cada intento te hace mejor!</p>
-      <button id="overlayRestartBtn">✨ Comenzar de nuevo</button>
+      <h2>${t.loseTitle}</h2>
+      <p>${t.loseDesc}</p>
+      <button id="overlayRestartBtn">${t.loseBtn}</button>
     `;
   }
 
@@ -510,7 +610,8 @@ function restartGame() {
 
 hintBtn.addEventListener('click', showHint);
 
-// Inicio
+// Iniciar idioma y juego
+changeLanguage(currentLang);
 generateLevel();
 ambientParticles();
 ambientTimer = setInterval(ambientParticles, 18000);
@@ -522,3 +623,5 @@ window.addEventListener('resize', () => {
     nextFrameBuild(cfg);
   }
 });
+
+})();

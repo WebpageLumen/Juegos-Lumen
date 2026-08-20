@@ -1,3 +1,105 @@
+(function() {
+/* =========================================================
+   TRADUCCIONES (DICCIONARIO DE IDIOMAS)
+========================================================= */
+const translations = {
+    es: {
+        title: "Encajar Figuras",
+        infoBtn: "Instrucciones",
+        nextBtn: "Siguiente ➜",
+        resetBtn: "Reiniciar",
+        modalTitle: "¿Cómo Jugar?",
+        step1: "Arrastra la figura con tu dedo o ratón.",
+        step2: "Suelta la figura sobre la silueta que sea igual.",
+        step3: "Si te acercas mucho, ¡se soltará sola!",
+        step4: "Si te equivocas, no pasa nada. Vuelve a intentarlo.",
+        step5: "¡Llena todos los espacios para ganar!",
+        closeInfoBtn: "¡Entendido!",
+        mascotInitial: "¡Muy bien!",
+        completeInitial: "¡Nivel Completado!",
+        continueBtn: "Continuar",
+        mascotMsgs: ['¡Muy bien!', '¡Excelente!', '¡Sigue así!', '¡Lo lograste!', '¡Genial!', '¡Gran trabajo!'],
+        inspireMsgs: ['¡Eres increíble! 🌟', '¡Lo hiciste genial! 🎉', '¡Muy buen trabajo! 🧩', '¡Sigue así, campeón! 🚀', '¡Tu mente es brillante! ✨', '¡Fantástico! 🌈', '¡Eres imparable! 💪']
+    },
+    en: {
+        title: "Fit Shapes",
+        infoBtn: "Instructions",
+        nextBtn: "Next ➜",
+        resetBtn: "Reset",
+        modalTitle: "How to Play?",
+        step1: "Drag the shape with your finger or mouse.",
+        step2: "Drop the shape onto the matching silhouette.",
+        step3: "If you get very close, it will snap by itself!",
+        step4: "If you make a mistake, it's okay. Try again.",
+        step5: "Fill all the spaces to win!",
+        closeInfoBtn: "Got it!",
+        mascotInitial: "Great job!",
+        completeInitial: "Level Complete!",
+        continueBtn: "Continue",
+        mascotMsgs: ['Very good!', 'Excellent!', 'Keep it up!', 'You did it!', 'Great!', 'Great job!'],
+        inspireMsgs: ['You are amazing! 🌟', 'You did great! 🎉', 'Very good job! 🧩', 'Keep it up, champ! 🚀', 'Your mind is brilliant! ✨', 'Fantastic! 🌈', 'You are unstoppable! 💪']
+    }
+};
+
+let currentLang = localStorage.getItem("lumen-lang") || "es";
+let t = translations[currentLang] || translations["es"];
+
+let MASCOT_MSGS = t.mascotMsgs;
+let INSPIRE_MSGS = t.inspireMsgs;
+
+function changeLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem("lumen-lang", lang);
+    t = translations[lang] || translations["es"];
+    MASCOT_MSGS = t.mascotMsgs;
+    INSPIRE_MSGS = t.inspireMsgs;
+
+    // Actualizar textos estáticos
+    const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+    setText("titleText", t.title);
+    setText("infoBtn", t.infoBtn);
+    setText("nextBtn", t.nextBtn);
+    setText("resetBtn", t.resetBtn);
+    setText("modalTitle", t.modalTitle);
+    setText("step1", t.step1);
+    setText("step2", t.step2);
+    setText("step3", t.step3);
+    setText("step4", t.step4);
+    setText("step5", t.step5);
+    setText("closeInfoBtn", t.closeInfoBtn);
+    setText("continueBtn", t.continueBtn);
+    setText("mascotBubble", t.mascotInitial);
+    setText("completeText", t.completeInitial);
+
+    // Resaltar botón de idioma
+    const langEsBtn = document.getElementById("langEs");
+    const langEnBtn = document.getElementById("langEn");
+    if (langEsBtn) langEsBtn.classList.toggle("selected", lang === "es");
+    if (langEnBtn) langEnBtn.classList.toggle("selected", lang === "en");
+}
+
+// Configurar menú de ajustes
+const settingsBtn = document.getElementById("settingsBtn");
+const settingsMenu = document.getElementById("settingsMenu");
+if (settingsBtn) {
+    settingsBtn.addEventListener("click", () => {
+        const isVisible = settingsMenu.style.display === "flex";
+        settingsMenu.style.display = isVisible ? "none" : "flex";
+    });
+}
+if (document.getElementById("langEs")) {
+    document.getElementById("langEs").addEventListener("click", () => {
+        changeLanguage("es");
+        settingsMenu.style.display = "none";
+    });
+}
+if (document.getElementById("langEn")) {
+    document.getElementById("langEn").addEventListener("click", () => {
+        changeLanguage("en");
+        settingsMenu.style.display = "none";
+    });
+}
+
 /* =========================================================
    FIGURAS
 ========================================================= */
@@ -11,7 +113,7 @@ const SHAPES = [
   'M50 5 C68 25 84 43 84 60 C84 79 69 95 50 95 C31 95 16 79 16 60 C16 43 32 25 50 5 Z',
   'M58 5 L24 55 L49 55 L38 95 L76 42 L52 42 Z',
   'M50 7 C75 18 91 43 83 67 C74 92 44 96 24 81 C7 73 5 39 18 23 C26 13 38 7 50 7 Z',
-  'M50 15 C58 2 77 4 82 19 C94 18 100 33 92 43 C99 53 93 67 81 66 C76 82 57 84 49 71 C37 84 18 82 13 66 C1 67 -5 53 2 43 C-6 33 0 18 12 19 C17 4 36 2 44 15 Z',
+  'M50 15 C58 2 77 4 82 19 C94 18 100 33 92 43 C99 53 93 67 81 66 C76 82 57 84 49 71 C37 84 18 82 13 66 C1 67 -5 53 2 43 C-6 33 0 18 12 19 C17 4 36 2 44 15 C50 15 50 15 50 15 Z',
   'M62 8 C45 8 31 20 27 36 C21 62 39 86 65 86 C75 86 85 83 92 76 C85 85 72 94 55 94 C29 94 8 73 8 47 C8 24 25 5 48 5 C53 5 58 6 62 8 Z',
   'M50 6 L93 38 L76 89 L24 89 L7 38 Z',
   'M50 5 L91 18 L86 58 C83 77 68 90 50 95 C32 90 17 77 14 58 L9 18 Z',
@@ -46,119 +148,38 @@ const SHAPES = [
 ========================================================= */
 
 const COLORS = [
-  '#F48FB1',
-  '#29B6F6',
-  '#FFEE58',
-  '#CE93D8',
-  '#FF8A65',
-  '#EC407A',
-  '#0288D1',
-  '#FDD835',
-  '#AB47BC',
-  '#FF7043',
-  '#F06292',
-  '#03A9F4',
-  '#FFCA28',
-  '#BA68C8',
-  '#FFA726',
-  '#FF80AB',
-  '#4FC3F7',
-  '#FFF176',
-  '#E040FB',
-  '#FFAB91',
-  '#F8BBD0',
-  '#B3E5FC',
-  '#FFF9C4',
-  '#EA80FC',
-  '#FFCC80'
+  '#F48FB1', '#29B6F6', '#FFEE58', '#CE93D8', '#FF8A65',
+  '#EC407A', '#0288D1', '#FDD835', '#AB47BC', '#FF7043',
+  '#F06292', '#03A9F4', '#FFCA28', '#BA68C8', '#FFA726',
+  '#FF80AB', '#4FC3F7', '#FFF176', '#E040FB', '#FFAB91',
+  '#F8BBD0', '#B3E5FC', '#FFF9C4', '#EA80FC', '#FFCC80'
 ];
 
 const SHAPE_COLOR_OVERRIDES = {
   29: '#7B1FA2' // luna delgadita: morado bien saturado
 };
+
 /* =========================================================
    NIVELES
 ========================================================= */
 
 const LEVELS = [
   {
-    rows: 3,
-    cols: 3,
-    theme: {
-      bg1: '#E0F7FA',
-      bg2: '#B3E5FC',
-      panel: '#81D4FA',
-      accent: '#29B6F6',
-      text: '#5D5D81',
-      elements: 'clouds',
-      name: 'Cielo Celeste'
-    }
+    rows: 3, cols: 3,
+    theme: { bg1: '#E0F7FA', bg2: '#B3E5FC', panel: '#81D4FA', accent: '#29B6F6', text: '#5D5D81', elements: 'clouds', name: 'Cielo Celeste' }
   },
-
   {
-    rows: 4,
-    cols: 4,
-    theme: {
-      bg1: '#FCE4EC',
-      bg2: '#F8BBD0',
-      panel: '#F48FB1',
-      accent: '#F06292',
-      text: '#5D5D81',
-      elements: 'bubbles',
-      name: 'Rosa Pastel'
-    }
+    rows: 4, cols: 4,
+    theme: { bg1: '#FCE4EC', bg2: '#F8BBD0', panel: '#F48FB1', accent: '#F06292', text: '#5D5D81', elements: 'bubbles', name: 'Rosa Pastel' }
   },
-
   {
-    rows: 5,
-    cols: 5,
-    theme: {
-      bg1: '#FFFDE7',
-      bg2: '#FFF9C4',
-      panel: '#FFF176',
-      accent: '#FDD835',
-      text: '#5D5D81',
-      elements: 'stars',
-      name: 'Sol Amarillo'
-    }
+    rows: 5, cols: 5,
+    theme: { bg1: '#FFFDE7', bg2: '#FFF9C4', panel: '#FFF176', accent: '#FDD835', text: '#5D5D81', elements: 'stars', name: 'Sol Amarillo' }
   },
-
   {
-    rows: 6,
-    cols: 6,
-    theme: {
-      bg1: '#F3E5F5',
-      bg2: '#E1BEE7',
-      panel: '#CE93D8',
-      accent: '#AB47BC',
-      text: '#5D5D81',
-      elements: 'flowers',
-      name: 'Lunas Violetas'
-    }
+    rows: 6, cols: 6,
+    theme: { bg1: '#F3E5F5', bg2: '#E1BEE7', panel: '#CE93D8', accent: '#AB47BC', text: '#5D5D81', elements: 'flowers', name: 'Lunas Violetas' }
   }
-];
-
-/* =========================================================
-   MENSAJES
-========================================================= */
-
-const MASCOT_MSGS = [
-  '¡Muy bien!',
-  '¡Excelente!',
-  '¡Sigue así!',
-  '¡Lo lograste!',
-  '¡Genial!',
-  '¡Gran trabajo!'
-];
-
-const INSPIRE_MSGS = [
-  '¡Eres increíble! 🌟',
-  '¡Lo hiciste genial! 🎉',
-  '¡Muy buen trabajo! 🧩',
-  '¡Sigue así, campeón! 🚀',
-  '¡Tu mente es brillante! ✨',
-  '¡Fantástico! 🌈',
-  '¡Eres imparable! 💪'
 ];
 
 /* =========================================================
@@ -176,7 +197,7 @@ let pieces = [];
 let dragging = null;
 
 /* =========================================================
-   ELEMENTOS DEL INDEX.HTML
+   ELEMENTOS DEL HTML
 ========================================================= */
 
 const appRoot = document.getElementById('appRoot');
@@ -187,64 +208,18 @@ const progressStars = document.getElementById('progressStars');
 const nextBtn = document.getElementById('nextBtn');
 const resetBtn = document.getElementById('resetBtn');
 
-const levelCompleteEl =
-  document.getElementById('levelComplete');
+const levelCompleteEl = document.getElementById('levelComplete');
+const completeText = document.getElementById('completeText');
+const continueBtn = document.getElementById('continueBtn');
 
-const completeText =
-  document.getElementById('completeText');
+const bgLayer = document.getElementById('bgLayer');
 
-const continueBtn =
-  document.getElementById('continueBtn');
+const mascotBubble = document.getElementById('mascotBubble');
+const mascotFox = document.getElementById('mascotFox');
 
-const bgLayer =
-  document.getElementById('bgLayer');
-
-const mascotBubble =
-  document.getElementById('mascotBubble');
-
-const mascotFox =
-  document.getElementById('mascotFox');
-
-const infoBtn =
-  document.getElementById('infoBtn');
-
-const infoModal =
-  document.getElementById('infoModal');
-
-const closeInfoBtn =
-  document.getElementById('closeInfoBtn');
-
-/* =========================================================
-   COMPROBAR ELEMENTOS DEL HTML
-========================================================= */
-
-const requiredElements = {
-  appRoot,
-  puzzleEl,
-  trayEl,
-  progressStars,
-  nextBtn,
-  resetBtn,
-  levelCompleteEl,
-  completeText,
-  continueBtn,
-  bgLayer,
-  mascotBubble,
-  mascotFox,
-  infoBtn,
-  infoModal,
-  closeInfoBtn
-};
-
-Object.entries(requiredElements).forEach(
-  ([name, element]) => {
-    if (!element) {
-      console.warn(
-        `No se encontró el elemento #${name} en index.html`
-      );
-    }
-  }
-);
+const infoBtn = document.getElementById('infoBtn');
+const infoModal = document.getElementById('infoModal');
+const closeInfoBtn = document.getElementById('closeInfoBtn');
 
 /* =========================================================
    CREAR SVG
@@ -255,18 +230,8 @@ function svgMarkup(d, fill, isSlot = false) {
   const strokeWidth = isSlot ? '0' : '4';
 
   return `
-    <svg
-      viewBox="0 0 100 100"
-      preserveAspectRatio="xMidYMid meet"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="${d}"
-        fill="${fill}"
-        stroke="${stroke}"
-        stroke-width="${strokeWidth}"
-        stroke-linejoin="round"
-      />
+    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+      <path d="${d}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}" stroke-linejoin="round" />
     </svg>
   `;
 }
@@ -277,13 +242,9 @@ function svgMarkup(d, fill, isSlot = false) {
 
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(
-      Math.random() * (i + 1)
-    );
-
+    const j = Math.floor(Math.random() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
-
   return arr;
 }
 
@@ -293,87 +254,36 @@ function shuffleArray(arr) {
 
 function generateBgElements(type) {
   if (!bgLayer) return;
-
   bgLayer.innerHTML = '';
-
   const count = 15;
-
-  const colors = [
-    'rgba(255,255,255,0.6)',
-    'rgba(244,143,177,0.2)',
-    'rgba(41,182,246,0.2)'
-  ];
+  const colors = ['rgba(255,255,255,0.6)', 'rgba(244,143,177,0.2)', 'rgba(41,182,246,0.2)'];
 
   for (let i = 0; i < count; i++) {
     const el = document.createElement('div');
-
     el.classList.add('floating-element');
-
-    el.style.left =
-      Math.random() * 100 + 'vw';
-
-    el.style.animationDuration =
-      10 + Math.random() * 15 + 's';
-
-    el.style.animationDelay =
-      Math.random() * 5 + 's';
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = 10 + Math.random() * 15 + 's';
+    el.style.animationDelay = Math.random() * 5 + 's';
 
     if (type === 'clouds') {
       el.classList.add('cloud');
-
-      el.style.width =
-        60 + Math.random() * 60 + 'px';
-
-      el.style.background =
-        colors[
-          Math.floor(
-            Math.random() * colors.length
-          )
-        ];
-
+      el.style.width = 60 + Math.random() * 60 + 'px';
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
     } else if (type === 'bubbles') {
-      el.style.width =
-        20 + Math.random() * 30 + 'px';
-
-      el.style.height =
-        el.style.width;
-
-      el.style.background =
-        'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(244,143,177,0.3))';
-
+      el.style.width = 20 + Math.random() * 30 + 'px';
+      el.style.height = el.style.width;
+      el.style.background = 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(244,143,177,0.3))';
     } else if (type === 'stars') {
-      el.style.width =
-        15 + Math.random() * 20 + 'px';
-
-      el.style.height =
-        el.style.width;
-
+      el.style.width = 15 + Math.random() * 20 + 'px';
+      el.style.height = el.style.width;
       el.style.borderRadius = '0';
-
       el.style.background = '#FFF9C4';
-
       el.style.transform = 'rotate(45deg)';
-
     } else if (type === 'flowers') {
-      el.style.width =
-        20 + Math.random() * 20 + 'px';
-
-      el.style.height =
-        el.style.width;
-
-      const flowerColors = [
-        '#F8BBD0',
-        '#E1BEE7',
-        '#B3E5FC',
-        '#FFF9C4'
-      ];
-
-      el.style.background =
-        flowerColors[
-          Math.floor(
-            Math.random() * flowerColors.length
-          )
-        ];
+      el.style.width = 20 + Math.random() * 20 + 'px';
+      el.style.height = el.style.width;
+      const flowerColors = ['#F8BBD0', '#E1BEE7', '#B3E5FC', '#FFF9C4'];
+      el.style.background = flowerColors[Math.floor(Math.random() * flowerColors.length)];
     }
 
     bgLayer.appendChild(el);
@@ -386,32 +296,11 @@ function generateBgElements(type) {
 
 function applyTheme(theme) {
   const root = document.documentElement;
-
-  root.style.setProperty(
-    '--bg-1',
-    theme.bg1
-  );
-
-  root.style.setProperty(
-    '--bg-2',
-    theme.bg2
-  );
-
-  root.style.setProperty(
-    '--panel-border',
-    theme.panel
-  );
-
-  root.style.setProperty(
-    '--accent',
-    theme.accent
-  );
-
-  root.style.setProperty(
-    '--text',
-    theme.text
-  );
-
+  root.style.setProperty('--bg-1', theme.bg1);
+  root.style.setProperty('--bg-2', theme.bg2);
+  root.style.setProperty('--panel-border', theme.panel);
+  root.style.setProperty('--accent', theme.accent);
+  root.style.setProperty('--text', theme.text);
   generateBgElements(theme.elements);
 }
 
@@ -420,633 +309,245 @@ function applyTheme(theme) {
 ========================================================= */
 
 function initLevel() {
-  if (
-    !puzzleEl ||
-    !trayEl ||
-    !progressStars
-  ) {
-    return;
-  }
+  if (!puzzleEl || !trayEl || !progressStars) return;
 
   const lvl = LEVELS[currentLevel];
-
-  totalSlots =
-    lvl.rows * lvl.cols;
-
+  totalSlots = lvl.rows * lvl.cols;
   placedCount = 0;
 
-  document.documentElement.style.setProperty(
-    '--piece-size',
-    lvl.rows > 4
-      ? '60px'
-      : '75px'
-  );
-
-  puzzleEl.style.gap =
-    lvl.rows > 4
-      ? '10px'
-      : '15px';
+  document.documentElement.style.setProperty('--piece-size', lvl.rows > 4 ? '60px' : '75px');
+  puzzleEl.style.gap = lvl.rows > 4 ? '10px' : '15px';
 
   applyTheme(lvl.theme);
 
-  /* Crear lista de figuras */
-
-  let availableShapes =
-    Array.from(
-      { length: SHAPES.length },
-      (_, i) => i
-    );
-
+  let availableShapes = Array.from({ length: SHAPES.length }, (_, i) => i);
   shuffleArray(availableShapes);
-
-  activeShapes =
-    availableShapes.slice(
-      0,
-      totalSlots
-    );
-
+  activeShapes = availableShapes.slice(0, totalSlots);
   shuffleArray(activeShapes);
 
-  /* Ocultar pantalla de victoria */
-
   if (levelCompleteEl) {
-    levelCompleteEl.classList.remove(
-      'show'
-    );
-
-    levelCompleteEl
-      .querySelectorAll(
-        '.confetti-piece'
-      )
-      .forEach(conf => conf.remove());
+    levelCompleteEl.classList.remove('show');
+    levelCompleteEl.querySelectorAll('.confetti-piece').forEach(conf => conf.remove());
   }
-
-  /* Estrellas */
 
   progressStars.innerHTML = '';
-
-  for (
-    let i = 0;
-    i < totalSlots;
-    i++
-  ) {
-    const starSvg = `
-      <svg
-        class="star-icon"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M12 2l3.09 6.26L22 9.27l-5 4.87
-             1.18 6.88L12 17.77l-6.18 3.25
-             L7 14.14 2 9.27l6.91-1.01L12 2z"
-        />
-      </svg>
-    `;
-
-    progressStars.insertAdjacentHTML(
-      'beforeend',
-      starSvg
-    );
+  for (let i = 0; i < totalSlots; i++) {
+    const starSvg = `<svg class="star-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>`;
+    progressStars.insertAdjacentHTML('beforeend', starSvg);
   }
 
-  /* Configurar grid */
-
-  puzzleEl.style.setProperty(
-    '--rows',
-    lvl.rows
-  );
-
-  puzzleEl.style.setProperty(
-    '--cols',
-    lvl.cols
-  );
-
+  puzzleEl.style.setProperty('--rows', lvl.rows);
+  puzzleEl.style.setProperty('--cols', lvl.cols);
   puzzleEl.innerHTML = '';
   trayEl.innerHTML = '';
 
   slots = [];
   pieces = [];
 
-  /* Crear espacios */
+  activeShapes.forEach((shapeIdx, i) => {
+    const slotDiv = document.createElement('div');
+    slotDiv.className = 'slot';
+    slotDiv.dataset.slotId = i;
+    slotDiv.dataset.shapeIdx = shapeIdx;
+    slotDiv.innerHTML = svgMarkup(SHAPES[shapeIdx], 'rgba(93,93,129,0.25)', true);
+    puzzleEl.appendChild(slotDiv);
+    slots.push({ id: i, el: slotDiv, shapeIdx: shapeIdx, occupied: false });
+  });
 
-  activeShapes.forEach(
-    (shapeIdx, i) => {
-      const slotDiv =
-        document.createElement('div');
-
-      slotDiv.className = 'slot';
-
-      slotDiv.dataset.slotId = i;
-
-      slotDiv.dataset.shapeIdx =
-        shapeIdx;
-
-      slotDiv.innerHTML =
-        svgMarkup(
-          SHAPES[shapeIdx],
-          'rgba(93,93,129,0.25)',
-          true
-        );
-
-      puzzleEl.appendChild(
-        slotDiv
-      );
-
-      slots.push({
-        id: i,
-        el: slotDiv,
-        shapeIdx: shapeIdx,
-        occupied: false
-      });
-    }
-  );
-
-  /* Crear piezas */
-
-  const trayShapes =
-    [...activeShapes];
-
+  const trayShapes = [...activeShapes];
   shuffleArray(trayShapes);
 
-  trayShapes.forEach(
-    shapeIdx => {
-      const color =
-        SHAPE_COLOR_OVERRIDES[shapeIdx] ||
-        COLORS[
-          shapeIdx %
-          COLORS.length
-        ];
-
-      const pieceDiv =
-        document.createElement('div');
-
-      pieceDiv.className = 'piece';
-
-      pieceDiv.dataset.shapeIdx =
-        shapeIdx;
-
-      pieceDiv.innerHTML =
-        svgMarkup(
-          SHAPES[shapeIdx],
-          color,
-          false
-        );
-
-      trayEl.appendChild(
-        pieceDiv
-      );
-
-      pieces.push({
-        el: pieceDiv,
-        shapeIdx: shapeIdx,
-        placed: false,
-        isAnimating: false,
-        forceCleanup: null,
-        originRect: null
-      });
-    }
-  );
+  trayShapes.forEach(shapeIdx => {
+    const color = SHAPE_COLOR_OVERRIDES[shapeIdx] || COLORS[shapeIdx % COLORS.length];
+    const pieceDiv = document.createElement('div');
+    pieceDiv.className = 'piece';
+    pieceDiv.dataset.shapeIdx = shapeIdx;
+    pieceDiv.innerHTML = svgMarkup(SHAPES[shapeIdx], color, false);
+    trayEl.appendChild(pieceDiv);
+    pieces.push({ el: pieceDiv, shapeIdx: shapeIdx, placed: false, isAnimating: false, forceCleanup: null, originRect: null });
+  });
 }
 
 /* =========================================================
    ÉXITO
 ========================================================= */
 
-function triggerSuccess(
-  pieceData,
-  pieceDiv,
-  targetSlot
-) {
-  if (
-    !pieceData ||
-    !pieceDiv ||
-    !targetSlot
-  ) {
-    return;
-  }
+function triggerSuccess(pieceData, pieceDiv, targetSlot) {
+  if (!pieceData || !pieceDiv || !targetSlot) return;
 
   pieceData.isAnimating = true;
+  const appRect = appRoot.getBoundingClientRect();
+  const slotRect = targetSlot.el.getBoundingClientRect();
+  const pieceRect = pieceDiv.getBoundingClientRect();
 
-  const appRect =
-    appRoot.getBoundingClientRect();
+  pieceDiv.classList.remove('dragging');
+  pieceDiv.style.transition = 'left 0.4s cubic-bezier(.25,.75,.5,1.25), top 0.4s cubic-bezier(.25,.75,.5,1.25), transform 0.4s cubic-bezier(.25,.75,.5,1.25)';
 
-  const slotRect =
-    targetSlot.el.getBoundingClientRect();
+  const targetLeftView = slotRect.left + slotRect.width / 2 - pieceRect.width / 2;
+  const targetTopView = slotRect.top + slotRect.height / 2 - pieceRect.height / 2;
 
-  const pieceRect =
-    pieceDiv.getBoundingClientRect();
-
-  pieceDiv.classList.remove(
-    'dragging'
-  );
-
-  pieceDiv.style.transition =
-    'left 0.4s cubic-bezier(.25,.75,.5,1.25), top 0.4s cubic-bezier(.25,.75,.5,1.25), transform 0.4s cubic-bezier(.25,.75,.5,1.25)';
-
-  const targetLeftView =
-    slotRect.left +
-    slotRect.width / 2 -
-    pieceRect.width / 2;
-
-  const targetTopView =
-    slotRect.top +
-    slotRect.height / 2 -
-    pieceRect.height / 2;
-
-  pieceDiv.style.left =
-    targetLeftView -
-    appRect.left +
-    'px';
-
-  pieceDiv.style.top =
-    targetTopView -
-    appRect.top +
-    'px';
-
-  pieceDiv.classList.add(
-    'snap-success'
-  );
-
-  targetSlot.el.classList.add(
-    'flash-success'
-  );
-
+  pieceDiv.style.left = targetLeftView - appRect.left + 'px';
+  pieceDiv.style.top = targetTopView - appRect.top + 'px';
+  pieceDiv.classList.add('snap-success');
+  targetSlot.el.classList.add('flash-success');
   targetSlot.occupied = true;
-
   pieceData.placed = true;
 
-  /* Brillos */
-
-  const sparkleContainer =
-    document.createElement('div');
-
-  sparkleContainer.classList.add(
-    'sparkle-container'
-  );
-
-  sparkleContainer.style.left =
-    slotRect.left +
-    slotRect.width / 2 +
-    'px';
-
-  sparkleContainer.style.top =
-    slotRect.top +
-    slotRect.height / 2 +
-    'px';
-
-  document.body.appendChild(
-    sparkleContainer
-  );
+  const sparkleContainer = document.createElement('div');
+  sparkleContainer.classList.add('sparkle-container');
+  sparkleContainer.style.left = slotRect.left + slotRect.width / 2 + 'px';
+  sparkleContainer.style.top = slotRect.top + slotRect.height / 2 + 'px';
+  document.body.appendChild(sparkleContainer);
 
   for (let i = 0; i < 8; i++) {
-    const sp =
-      document.createElement('div');
-
+    const sp = document.createElement('div');
     sp.classList.add('sparkle');
-
-    sp.style.background = [
-      '#F48FB1',
-      '#29B6F6',
-      '#FFEE58',
-      '#FFFFFF'
-    ][
-      Math.floor(
-        Math.random() * 4
-      )
-    ];
-
-    const angle =
-      Math.random() *
-      Math.PI *
-      2;
-
-    const dist =
-      20 +
-      Math.random() * 30;
-
-    sp.style.transform =
-      `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px)`;
-
+    sp.style.background = ['#F48FB1', '#29B6F6', '#FFEE58', '#FFFFFF'][Math.floor(Math.random() * 4)];
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 20 + Math.random() * 30;
+    sp.style.transform = `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px)`;
     sparkleContainer.appendChild(sp);
   }
 
-  setTimeout(() => {
-    sparkleContainer.remove();
-  }, 1200);
-
+  setTimeout(() => sparkleContainer.remove(), 1200);
   showMascotMessage();
 
   let isCleanedUp = false;
-
   const cleanup = () => {
     if (isCleanedUp) return;
-
     isCleanedUp = true;
 
-    pieceDiv.classList.remove(
-      'snap-success'
-    );
-
-    pieceDiv.style.transition =
-      'none';
-
-    pieceDiv.style.position =
-      'absolute';
-
-    pieceDiv.style.width =
-      '100%';
-
-    pieceDiv.style.height =
-      '100%';
-
+    pieceDiv.classList.remove('snap-success');
+    pieceDiv.style.transition = 'none';
+    pieceDiv.style.position = 'absolute';
+    pieceDiv.style.width = '100%';
+    pieceDiv.style.height = '100%';
     pieceDiv.style.left = '0';
     pieceDiv.style.top = '0';
-
     pieceDiv.style.zIndex = '5';
+    pieceDiv.classList.add('placed');
 
-    pieceDiv.classList.add(
-      'placed'
-    );
-
-    targetSlot.el.appendChild(
-      pieceDiv
-    );
-
-    targetSlot.el.classList.add(
-      'occupied'
-    );
+    targetSlot.el.appendChild(pieceDiv);
+    targetSlot.el.classList.add('occupied');
 
     placedCount++;
 
-    if (
-      progressStars.children[
-        placedCount - 1
-      ]
-    ) {
-      progressStars.children[
-        placedCount - 1
-      ].classList.add(
-        'earned'
-      );
+    if (progressStars.children[placedCount - 1]) {
+      progressStars.children[placedCount - 1].classList.add('earned');
     }
 
-    pieceData.isAnimating =
-      false;
+    pieceData.isAnimating = false;
+    pieceData.forceCleanup = null;
 
-    pieceData.forceCleanup =
-      null;
-
-    if (
-      placedCount ===
-      totalSlots
-    ) {
-      setTimeout(
-        showLevelComplete,
-        600
-      );
+    if (placedCount === totalSlots) {
+      setTimeout(showLevelComplete, 600);
     }
   };
 
-  const transitionHandler =
-    e => {
-      if (
-        e.propertyName !== 'left'
-      ) {
-        return;
-      }
+  const transitionHandler = e => {
+    if (e.propertyName !== 'left') return;
+    pieceDiv.removeEventListener('transitionend', transitionHandler);
+    cleanup();
+  };
 
-      pieceDiv.removeEventListener(
-        'transitionend',
-        transitionHandler
-      );
-
-      cleanup();
-    };
-
-  pieceDiv.addEventListener(
-    'transitionend',
-    transitionHandler
-  );
-
-  setTimeout(
-    cleanup,
-    500
-  );
+  pieceDiv.addEventListener('transitionend', transitionHandler);
+  setTimeout(cleanup, 500);
 }
 
 /* =========================================================
    FALLA
 ========================================================= */
 
-function triggerFail(
-  pieceData,
-  pieceDiv
-) {
-  if (
-    !pieceData ||
-    !pieceDiv
-  ) {
-    return;
-  }
+function triggerFail(pieceData, pieceDiv) {
+  if (!pieceData || !pieceDiv) return;
 
   pieceData.isAnimating = true;
-
-  pieceDiv.classList.remove(
-    'dragging'
-  );
-
-  pieceDiv.classList.add(
-    'snap-fail'
-  );
-
-  pieceDiv.style.transition =
-    'left 0.6s ease-in-out, top 0.6s ease-in-out, transform 0.6s ease-in-out';
-
-  pieceDiv.style.left =
-    pieceData.originRect.left +
-    'px';
-
-  pieceDiv.style.top =
-    pieceData.originRect.top +
-    'px';
+  pieceDiv.classList.remove('dragging');
+  pieceDiv.classList.add('snap-fail');
+  pieceDiv.style.transition = 'left 0.6s ease-in-out, top 0.6s ease-in-out, transform 0.6s ease-in-out';
+  pieceDiv.style.left = pieceData.originRect.left + 'px';
+  pieceDiv.style.top = pieceData.originRect.top + 'px';
 
   let isCleanedUp = false;
-
   const cleanup = () => {
     if (isCleanedUp) return;
-
     isCleanedUp = true;
 
-    pieceDiv.classList.remove(
-      'snap-fail'
-    );
-
-    pieceDiv.style.transition =
-      'none';
-
-    pieceDiv.style.position =
-      'relative';
-
+    pieceDiv.classList.remove('snap-fail');
+    pieceDiv.style.transition = 'none';
+    pieceDiv.style.position = 'relative';
     pieceDiv.style.width = '';
     pieceDiv.style.height = '';
     pieceDiv.style.left = '';
     pieceDiv.style.top = '';
-
     pieceDiv.style.zIndex = '10';
 
-    trayEl.appendChild(
-      pieceDiv
-    );
+    trayEl.appendChild(pieceDiv);
 
-    pieceData.isAnimating =
-      false;
-
-    pieceData.forceCleanup =
-      null;
+    pieceData.isAnimating = false;
+    pieceData.forceCleanup = null;
   };
 
-  pieceData.forceCleanup =
-    cleanup;
+  pieceData.forceCleanup = cleanup;
 
-  const transitionHandler =
-    e => {
-      if (
-        e.propertyName !== 'left'
-      ) {
-        return;
-      }
+  const transitionHandler = e => {
+    if (e.propertyName !== 'left') return;
+    pieceDiv.removeEventListener('transitionend', transitionHandler);
+    cleanup();
+  };
 
-      pieceDiv.removeEventListener(
-        'transitionend',
-        transitionHandler
-      );
-
-      cleanup();
-    };
-
-  pieceDiv.addEventListener(
-    'transitionend',
-    transitionHandler
-  );
-
-  setTimeout(
-    cleanup,
-    700
-  );
+  pieceDiv.addEventListener('transitionend', transitionHandler);
+  setTimeout(cleanup, 700);
 }
 
 /* =========================================================
    INICIAR ARRASTRE
 ========================================================= */
 
-function startDrag(
-  e,
-  pieceDiv
-) {
+function startDrag(e, pieceDiv) {
   if (dragging) return;
-
   e.preventDefault();
 
-  const shapeIdx =
-    parseInt(
-      pieceDiv.dataset.shapeIdx,
-      10
-    );
+  const shapeIdx = parseInt(pieceDiv.dataset.shapeIdx, 10);
+  const pieceData = pieces.find(p => p.shapeIdx === shapeIdx && !p.placed);
 
-  const pieceData =
-    pieces.find(
-      p =>
-        p.shapeIdx === shapeIdx &&
-        !p.placed
-    );
-
-  if (!pieceData) {
-    return;
-  }
-
-  if (
-    pieceData.isAnimating &&
-    pieceData.forceCleanup
-  ) {
+  if (!pieceData) return;
+  if (pieceData.isAnimating && pieceData.forceCleanup) {
     pieceData.forceCleanup();
   }
 
-  const appRect =
-    appRoot.getBoundingClientRect();
-
-  const rect =
-    pieceDiv.getBoundingClientRect();
+  const appRect = appRoot.getBoundingClientRect();
+  const rect = pieceDiv.getBoundingClientRect();
 
   pieceData.originRect = {
-    left:
-      rect.left -
-      appRect.left,
-
-    top:
-      rect.top -
-      appRect.top,
-
-    width:
-      rect.width,
-
-    height:
-      rect.height
+    left: rect.left - appRect.left,
+    top: rect.top - appRect.top,
+    width: rect.width,
+    height: rect.height
   };
 
-  pieceDiv.classList.add(
-    'dragging'
-  );
+  pieceDiv.classList.add('dragging');
+  pieceDiv.style.position = 'absolute';
+  pieceDiv.style.left = pieceData.originRect.left + 'px';
+  pieceDiv.style.top = pieceData.originRect.top + 'px';
+  pieceDiv.style.width = pieceData.originRect.width + 'px';
+  pieceDiv.style.height = pieceData.originRect.height + 'px';
+  pieceDiv.style.zIndex = '9999';
 
-  pieceDiv.style.position =
-    'absolute';
-
-  pieceDiv.style.left =
-    pieceData.originRect.left +
-    'px';
-
-  pieceDiv.style.top =
-    pieceData.originRect.top +
-    'px';
-
-  pieceDiv.style.width =
-    pieceData.originRect.width +
-    'px';
-
-  pieceDiv.style.height =
-    pieceData.originRect.height +
-    'px';
-
-  pieceDiv.style.zIndex =
-    '9999';
-
-  appRoot.appendChild(
-    pieceDiv
-  );
+  appRoot.appendChild(pieceDiv);
 
   dragging = {
     piece: pieceData,
     el: pieceDiv,
-    offsetX:
-      e.clientX -
-      rect.left,
-
-    offsetY:
-      e.clientY -
-      rect.top,
-
-    pointerId:
-      e.pointerId
+    offsetX: e.clientX - rect.left,
+    offsetY: e.clientY - rect.top,
+    pointerId: e.pointerId
   };
 
   try {
-    pieceDiv.setPointerCapture(
-      e.pointerId
-    );
+    pieceDiv.setPointerCapture(e.pointerId);
   } catch (error) {
-    console.warn(
-      'No se pudo capturar el puntero.',
-      error
-    );
+    console.warn('No se pudo capturar el puntero.', error);
   }
 }
 
@@ -1055,90 +556,33 @@ function startDrag(
 ========================================================= */
 
 function moveDrag(e) {
-  if (!dragging) {
-    return;
-  }
+  if (!dragging) return;
 
-  const appRect =
-    appRoot.getBoundingClientRect();
+  const appRect = appRoot.getBoundingClientRect();
+  dragging.el.style.left = e.clientX - appRect.left - dragging.offsetX + 'px';
+  dragging.el.style.top = e.clientY - appRect.top - dragging.offsetY + 'px';
 
-  dragging.el.style.left =
-    e.clientX -
-    appRect.left -
-    dragging.offsetX +
-    'px';
+  const correctSlot = slots.find(s => s.shapeIdx === dragging.piece.shapeIdx && !s.occupied);
+  if (!correctSlot) return;
 
-  dragging.el.style.top =
-    e.clientY -
-    appRect.top -
-    dragging.offsetY +
-    'px';
+  const r = correctSlot.el.getBoundingClientRect();
+  const cx = r.left + r.width / 2;
+  const cy = r.top + r.height / 2;
+  const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
 
-  const correctSlot =
-    slots.find(
-      s =>
-        s.shapeIdx ===
-          dragging.piece.shapeIdx &&
-        !s.occupied
-    );
-
-  if (!correctSlot) {
-    return;
-  }
-
-  const r =
-    correctSlot.el.getBoundingClientRect();
-
-  const cx =
-    r.left +
-    r.width / 2;
-
-  const cy =
-    r.top +
-    r.height / 2;
-
-  const dist =
-    Math.hypot(
-      e.clientX - cx,
-      e.clientY - cy
-    );
-
-  if (
-    dist <
-    r.width * 0.3
-  ) {
-    correctSlot.el.classList.add(
-      'magnet-hover'
-    );
-
-    const pd =
-      dragging.piece;
-
-    const el =
-      dragging.el;
-
+  if (dist < r.width * 0.3) {
+    correctSlot.el.classList.add('magnet-hover');
+    const pd = dragging.piece;
+    const el = dragging.el;
     dragging = null;
-
-    triggerSuccess(
-      pd,
-      el,
-      correctSlot
-    );
-
+    triggerSuccess(pd, el, correctSlot);
     return;
   }
 
-  if (
-    dist <
-    r.width * 0.6
-  ) {
-    correctSlot.el.classList.add(
-      'magnet-hover'
-    );
+  if (dist < r.width * 0.6) {
+    correctSlot.el.classList.add('magnet-hover');
   } else {
-    correctSlot.el.classList.remove(
-      'magnet-hover'
-    );
+    correctSlot.el.classList.remove('magnet-hover');
   }
 }
 
@@ -1147,92 +591,38 @@ function moveDrag(e) {
 ========================================================= */
 
 function endDrag() {
-  if (!dragging) {
-    return;
-  }
+  if (!dragging) return;
 
-  const pieceData =
-    dragging.piece;
-
-  const pieceDiv =
-    dragging.el;
-
+  const pieceData = dragging.piece;
+  const pieceDiv = dragging.el;
   dragging = null;
 
-  slots.forEach(
-    s => {
-      s.el.classList.remove(
-        'magnet-hover'
-      );
-    }
-  );
+  slots.forEach(s => s.el.classList.remove('magnet-hover'));
 
-  const pieceRect =
-    pieceDiv.getBoundingClientRect();
-
-  const pcx =
-    pieceRect.left +
-    pieceRect.width / 2;
-
-  const pcy =
-    pieceRect.top +
-    pieceRect.height / 2;
+  const pieceRect = pieceDiv.getBoundingClientRect();
+  const pcx = pieceRect.left + pieceRect.width / 2;
+  const pcy = pieceRect.top + pieceRect.height / 2;
 
   let targetSlot = null;
+  let minDist = Infinity;
 
-  let minDist =
-    Infinity;
+  slots.forEach(s => {
+    if (s.occupied) return;
+    const r = s.el.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
+    const dist = Math.hypot(pcx - cx, pcy - cy);
 
-  slots.forEach(
-    s => {
-      if (s.occupied) {
-        return;
-      }
-
-      const r =
-        s.el.getBoundingClientRect();
-
-      const cx =
-        r.left +
-        r.width / 2;
-
-      const cy =
-        r.top +
-        r.height / 2;
-
-      const dist =
-        Math.hypot(
-          pcx - cx,
-          pcy - cy
-        );
-
-      if (
-        dist <
-          r.width * 0.6 &&
-        dist <
-          minDist
-      ) {
-        minDist = dist;
-        targetSlot = s;
-      }
+    if (dist < r.width * 0.6 && dist < minDist) {
+      minDist = dist;
+      targetSlot = s;
     }
-  );
+  });
 
-  if (
-    targetSlot &&
-    targetSlot.shapeIdx ===
-      pieceData.shapeIdx
-  ) {
-    triggerSuccess(
-      pieceData,
-      pieceDiv,
-      targetSlot
-    );
+  if (targetSlot && targetSlot.shapeIdx === pieceData.shapeIdx) {
+    triggerSuccess(pieceData, pieceDiv, targetSlot);
   } else {
-    triggerFail(
-      pieceData,
-      pieceDiv
-    );
+    triggerFail(pieceData, pieceDiv);
   }
 }
 
@@ -1241,44 +631,15 @@ function endDrag() {
 ========================================================= */
 
 function showMascotMessage() {
-  if (!mascotBubble) {
-    return;
-  }
+  if (!mascotBubble) return;
+  const msg = MASCOT_MSGS[Math.floor(Math.random() * MASCOT_MSGS.length)];
+  mascotBubble.textContent = msg;
+  mascotBubble.classList.add('show');
 
-  const msg =
-    MASCOT_MSGS[
-      Math.floor(
-        Math.random() *
-        MASCOT_MSGS.length
-      )
-    ];
+  if (mascotFox) mascotFox.classList.add('bounce');
 
-  mascotBubble.textContent =
-    msg;
-
-  mascotBubble.classList.add(
-    'show'
-  );
-
-  if (mascotFox) {
-    mascotFox.classList.add(
-      'bounce'
-    );
-  }
-
-  setTimeout(() => {
-    mascotBubble.classList.remove(
-      'show'
-    );
-  }, 2500);
-
-  if (mascotFox) {
-    setTimeout(() => {
-      mascotFox.classList.remove(
-        'bounce'
-      );
-    }, 600);
-  }
+  setTimeout(() => mascotBubble.classList.remove('show'), 2500);
+  if (mascotFox) setTimeout(() => mascotFox.classList.remove('bounce'), 600);
 }
 
 /* =========================================================
@@ -1286,73 +647,24 @@ function showMascotMessage() {
 ========================================================= */
 
 function showLevelComplete() {
-  if (!levelCompleteEl) {
-    return;
-  }
+  if (!levelCompleteEl) return;
 
-  const msg =
-    INSPIRE_MSGS[
-      Math.floor(
-        Math.random() *
-        INSPIRE_MSGS.length
-      )
-    ];
+  const msg = INSPIRE_MSGS[Math.floor(Math.random() * INSPIRE_MSGS.length)];
+  if (completeText) completeText.textContent = msg;
 
-  if (completeText) {
-    completeText.textContent =
-      msg;
-  }
+  levelCompleteEl.classList.add('show');
 
-  levelCompleteEl.classList.add(
-    'show'
-  );
+  const theme = LEVELS[currentLevel].theme;
+  const pastelColors = [theme.bg1, theme.bg2, theme.panel, theme.accent, '#FFD700', '#FFFFFF'];
 
-  const theme =
-    LEVELS[currentLevel].theme;
-
-  const pastelColors = [
-    theme.bg1,
-    theme.bg2,
-    theme.panel,
-    theme.accent,
-    '#FFD700',
-    '#FFFFFF'
-  ];
-
-  for (
-    let i = 0;
-    i < 50;
-    i++
-  ) {
-    const conf =
-      document.createElement('div');
-
-    conf.classList.add(
-      'confetti-piece'
-    );
-
-    conf.style.left =
-      Math.random() * 100 +
-      'vw';
-
-    conf.style.top =
-      '-50px';
-
-    conf.style.background =
-      pastelColors[
-        Math.floor(
-          Math.random() *
-          pastelColors.length
-        )
-      ];
-
-    conf.style.animationDelay =
-      Math.random() * 2 +
-      's';
-
-    levelCompleteEl.appendChild(
-      conf
-    );
+  for (let i = 0; i < 50; i++) {
+    const conf = document.createElement('div');
+    conf.classList.add('confetti-piece');
+    conf.style.left = Math.random() * 100 + 'vw';
+    conf.style.top = '-50px';
+    conf.style.background = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+    conf.style.animationDelay = Math.random() * 2 + 's';
+    levelCompleteEl.appendChild(conf);
   }
 }
 
@@ -1361,185 +673,69 @@ function showLevelComplete() {
 ========================================================= */
 
 function clearConfetti() {
-  if (!levelCompleteEl) {
-    return;
-  }
-
-  levelCompleteEl
-    .querySelectorAll(
-      '.confetti-piece'
-    )
-    .forEach(
-      conf => conf.remove()
-    );
+  if (!levelCompleteEl) return;
+  levelCompleteEl.querySelectorAll('.confetti-piece').forEach(conf => conf.remove());
 }
 
 /* =========================================================
    EVENTOS
 ========================================================= */
 
-/* Arrastrar */
+document.addEventListener('pointerdown', e => {
+  const pieceDiv = e.target.closest('.piece:not(.placed)');
+  if (pieceDiv) startDrag(e, pieceDiv);
+});
 
-document.addEventListener(
-  'pointerdown',
-  e => {
-    const pieceDiv =
-      e.target.closest(
-        '.piece:not(.placed)'
-      );
-
-    if (pieceDiv) {
-      startDrag(
-        e,
-        pieceDiv
-      );
-    }
-  }
-);
-
-document.addEventListener(
-  'pointermove',
-  moveDrag
-);
-
-document.addEventListener(
-  'pointerup',
-  endDrag
-);
-
-document.addEventListener(
-  'pointercancel',
-  endDrag
-);
-
-/* =========================================================
-   BOTÓN INFORMACIÓN
-========================================================= */
+document.addEventListener('pointermove', moveDrag);
+document.addEventListener('pointerup', endDrag);
+document.addEventListener('pointercancel', endDrag);
 
 if (infoBtn && infoModal) {
-  infoBtn.addEventListener(
-    'click',
-    () => {
-      infoModal.classList.add(
-        'show'
-      );
-    }
-  );
+  infoBtn.addEventListener('click', () => infoModal.classList.add('show'));
 }
 
-/* =========================================================
-   CERRAR INFORMACIÓN
-========================================================= */
-
-if (
-  closeInfoBtn &&
-  infoModal
-) {
-  closeInfoBtn.addEventListener(
-    'click',
-    () => {
-      infoModal.classList.remove(
-        'show'
-      );
-    }
-  );
+if (closeInfoBtn && infoModal) {
+  closeInfoBtn.addEventListener('click', () => infoModal.classList.remove('show'));
 }
-
-/* =========================================================
-   SIGUIENTE NIVEL
-========================================================= */
 
 if (nextBtn) {
-  nextBtn.addEventListener(
-    'click',
-    () => {
-      currentLevel =
-        (currentLevel + 1) %
-        LEVELS.length;
-
-      initLevel();
-    }
-  );
+  nextBtn.addEventListener('click', () => {
+    currentLevel = (currentLevel + 1) % LEVELS.length;
+    initLevel();
+  });
 }
-
-/* =========================================================
-   REINICIAR
-========================================================= */
 
 if (resetBtn) {
-  resetBtn.addEventListener(
-    'click',
-    () => {
-      if (levelCompleteEl) {
-        levelCompleteEl.classList.remove(
-          'show'
-        );
-      }
-
-      clearConfetti();
-
-      initLevel();
-    }
-  );
+  resetBtn.addEventListener('click', () => {
+    if (levelCompleteEl) levelCompleteEl.classList.remove('show');
+    clearConfetti();
+    initLevel();
+  });
 }
-
-/* =========================================================
-   CONTINUAR
-========================================================= */
 
 if (continueBtn) {
-  continueBtn.addEventListener(
-    'click',
-    () => {
-      if (levelCompleteEl) {
-        levelCompleteEl.classList.remove(
-          'show'
-        );
-      }
-
-      clearConfetti();
-
-      currentLevel =
-        (currentLevel + 1) %
-        LEVELS.length;
-
-      initLevel();
-    }
-  );
+  continueBtn.addEventListener('click', () => {
+    if (levelCompleteEl) levelCompleteEl.classList.remove('show');
+    clearConfetti();
+    currentLevel = (currentLevel + 1) % LEVELS.length;
+    initLevel();
+  });
 }
 
-/* =========================================================
-   CERRAR MODAL AL HACER CLICK FUERA
-========================================================= */
-
 if (infoModal) {
-  infoModal.addEventListener(
-    'click',
-    e => {
-      if (
-        e.target === infoModal
-      ) {
-        infoModal.classList.remove(
-          'show'
-        );
-      }
-    }
-  );
+  infoModal.addEventListener('click', e => {
+    if (e.target === infoModal) infoModal.classList.remove('show');
+  });
 }
 
 /* =========================================================
    INICIAR JUEGO
 ========================================================= */
 
-document.addEventListener(
-  'DOMContentLoaded',
-  () => {
-    if (infoModal) {
-      infoModal.classList.add(
-        'show'
-      );
-    }
-
+document.addEventListener('DOMContentLoaded', () => {
+    changeLanguage(currentLang); // Aplicar idioma guardado al cargar
+    if (infoModal) infoModal.classList.add('show');
     initLevel();
-  }
-);
+});
+
+})();

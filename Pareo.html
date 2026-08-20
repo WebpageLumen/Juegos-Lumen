@@ -3,516 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Pareo de Emojis y Palabras</title>
-
+    <title id="pageTitle">Pareo de Emojis y Palabras</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <!-- CSS -->
     <link rel="stylesheet" href="pareo.css">
-</head>
 
-<body>
-
-        <!-- Paisaje con colores pastel -->
+    <!-- Paisaje con colores pastel -->
     <div class="landscape">
-        <svg viewBox="0 0 1440 900"
-             preserveAspectRatio="xMidYMid slice"
-             xmlns="http://www.w3.org/2000/svg">
-
+        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <defs>
-
-                <!-- Cielo degradable azul a durazno -->
                 <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#D6EAF8"/>
                     <stop offset="40%" stop-color="#E8F4FD"/>
                     <stop offset="75%" stop-color="#FDF2E9"/>
                     <stop offset="100%" stop-color="#FDEBD0"/>
                 </linearGradient>
-
-                <!-- Sol amarillo/naranja pastel -->
                 <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
                     <stop offset="0%" stop-color="#FFD89B"/>
                     <stop offset="40%" stop-color="#FFCC80" stop-opacity=".6"/>
                     <stop offset="100%" stop-color="#FFCC80" stop-opacity="0"/>
                 </radialGradient>
-
-                <!-- Nubes -->
-                <filter id="cloudSoft">
-                    <feGaussianBlur stdDeviation="3"/>
-                </filter>
-
-                <!-- Textura -->
+                <filter id="cloudSoft"><feGaussianBlur stdDeviation="3"/></filter>
                 <filter id="grain">
-                    <feTurbulence
-                        type="fractalNoise"
-                        baseFrequency="0.65"
-                        numOctaves="3"
-                        stitchTiles="stitch"/>
+                    <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
                     <feColorMatrix type="saturate" values="0"/>
-                    <feBlend
-                        in="SourceGraphic"
-                        mode="multiply"
-                        result="blend"/>
-                    <feComponentTransfer>
-                        <feFuncA type="linear" slope="0.06"/>
-                    </feComponentTransfer>
+                    <feBlend in="SourceGraphic" mode="multiply" result="blend"/>
+                    <feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer>
                 </filter>
-
             </defs>
-
-            <!-- Cielo -->
             <rect width="1440" height="900" fill="url(#sky)"/>
-
-            <!-- Sol -->
             <circle cx="1100" cy="180" r="120" fill="url(#sunGlow)"/>
             <circle cx="1100" cy="180" r="42" fill="#FFD54F" opacity=".7"/>
             <circle cx="1100" cy="180" r="30" fill="#FFF176" opacity=".5"/>
-
-            <!-- Nube 1 (Toque azulino) -->
-            <g opacity=".4" filter="url(#cloudSoft)" class="cloud-1">
-                <ellipse cx="300" cy="140" rx="90" ry="22" fill="#FFFFFF"/>
-                <ellipse cx="340" cy="132" rx="55" ry="18" fill="#F0F4FF"/>
-            </g>
-
-            <!-- Nube 2 (Toque rosado) -->
-            <g opacity=".3" filter="url(#cloudSoft)" class="cloud-2">
-                <ellipse cx="780" cy="110" rx="70" ry="16" fill="#FFFFFF"/>
-                <ellipse cx="810" cy="104" rx="45" ry="13" fill="#FFF5F5"/>
-            </g>
-
-            <!-- Nube 3 -->
-            <g opacity=".35" filter="url(#cloudSoft)" class="cloud-3">
-                <ellipse cx="180" cy="200" rx="60" ry="14" fill="#F8FAFF"/>
-                <ellipse cx="210" cy="194" rx="40" ry="12" fill="#FFFFFF"/>
-            </g>
-
-            <!-- Nube 4 (Toque cálido) -->
-            <g opacity=".25" filter="url(#cloudSoft)" class="cloud-1">
-                <ellipse cx="1250" cy="250" rx="80" ry="18" fill="#FFFFFF"/>
-                <ellipse cx="1290" cy="242" rx="50" ry="14" fill="#FFF8F0"/>
-            </g>
-
-            <!-- Montañas (Lila pastel) -->
-            <path
-                d="M0 520
-                   Q180 380 360 460
-                   Q500 340 680 420
-                   Q820 320 1000 400
-                   Q1150 340 1280 380
-                   Q1380 350 1440 390
-                   L1440 900
-                   L0 900Z"
-                fill="#D0D4E8"
-                opacity=".6"/>
-
-            <!-- Colinas medias (Verde salvia) -->
-            <path
-                d="M0 580
-                   Q120 480 300 530
-                   Q480 440 650 500
-                   Q800 430 950 490
-                   Q1100 440 1250 480
-                   Q1370 450 1440 470
-                   L1440 900
-                   L0 900Z"
-                fill="#C5D9CC"
-                opacity=".7"/>
-
-            <!-- Colinas cercanas (Menta apagado) -->
-            <path
-                d="M0 640
-                   Q200 560 400 600
-                   Q560 530 720 580
-                   Q880 520 1050 570
-                   Q1200 530 1350 560
-                   Q1420 540 1440 550
-                   L1440 900
-                   L0 900Z"
-                fill="#AECFB8"
-                opacity=".55"/>
-
-            <!-- Suelo (Verde primavera suave) -->
-            <path
-                d="M0 720
-                   Q360 670 720 700
-                   Q1080 680 1440 710
-                   L1440 900
-                   L0 900Z"
-                fill="#C8E6C0"
-                opacity=".5"/>
-
-            <!-- Textura -->
-            <rect
-                width="1440"
-                height="900"
-                filter="url(#grain)"
-                opacity=".4"/>
-
+            <g opacity=".4" filter="url(#cloudSoft)" class="cloud-1"><ellipse cx="300" cy="140" rx="90" ry="22" fill="#FFFFFF"/><ellipse cx="340" cy="132" rx="55" ry="18" fill="#F0F4FF"/></g>
+            <g opacity=".3" filter="url(#cloudSoft)" class="cloud-2"><ellipse cx="780" cy="110" rx="70" ry="16" fill="#FFFFFF"/><ellipse cx="810" cy="104" rx="45" ry="13" fill="#FFF5F5"/></g>
+            <g opacity=".35" filter="url(#cloudSoft)" class="cloud-3"><ellipse cx="180" cy="200" rx="60" ry="14" fill="#F8FAFF"/><ellipse cx="210" cy="194" rx="40" ry="12" fill="#FFFFFF"/></g>
+            <g opacity=".25" filter="url(#cloudSoft)" class="cloud-1"><ellipse cx="1250" cy="250" rx="80" ry="18" fill="#FFFFFF"/><ellipse cx="1290" cy="242" rx="50" ry="14" fill="#FFF8F0"/></g>
+            <path d="M0 520 Q180 380 360 460 Q500 340 680 420 Q820 320 1000 400 Q1150 340 1280 380 Q1380 350 1440 390 L1440 900 L0 900Z" fill="#D0D4E8" opacity=".6"/>
+            <path d="M0 580 Q120 480 300 530 Q480 440 650 500 Q800 430 950 490 Q1100 440 1250 480 Q1370 450 1440 470 L1440 900 L0 900Z" fill="#C5D9CC" opacity=".7"/>
+            <path d="M0 640 Q200 560 400 600 Q560 530 720 580 Q880 520 1050 570 Q1200 530 1350 560 Q1420 540 1440 550 L1440 900 L0 900Z" fill="#AECFB8" opacity=".55"/>
+            <path d="M0 720 Q360 670 720 700 Q1080 680 1440 710 L1440 900 L0 900Z" fill="#C8E6C0" opacity=".5"/>
+            <rect width="1440" height="900" filter="url(#grain)" opacity=".4"/>
         </svg>
     </div>
 
     <!-- APP -->
     <div class="app" id="app">
-
         <!-- HEADER -->
         <header class="header">
-
             <div class="header-left">
-                <div class="level-badge" id="levelBadge">
-                    Nivel 1
-                </div>
-
-                <div class="level-name" id="levelName">
-                    Animales
-                </div>
+                <div class="level-badge" id="levelBadge">Nivel 1</div>
+                <div class="level-name" id="levelName">Animales</div>
             </div>
-
             <div class="header-right">
-
                 <div class="stars-display">
                     <i class="fas fa-star"></i>
                     <span id="starCount">0</span>
                 </div>
-
-                <button
-                    class="icon-btn"
-                    id="hintBtn"
-                    title="Pista"
-                    aria-label="Mostrar pista">
-
+                <button class="icon-btn" id="hintBtn" title="Pista" aria-label="Mostrar pista">
                     <i class="fas fa-lightbulb"></i>
                 </button>
-
-                <button
-                    class="icon-btn"
-                    id="settingsBtn"
-                    title="Ajustes"
-                    aria-label="Abrir ajustes">
-
+                <button class="icon-btn" id="settingsBtn" title="Ajustes" aria-label="Abrir ajustes">
                     <i class="fas fa-cog"></i>
                 </button>
-
             </div>
-
         </header>
-
 
         <!-- PROGRESO -->
         <div class="progress-section">
-
             <div class="level-map" id="levelMap"></div>
-
             <div class="progress-row">
-
                 <div class="progress-bar">
-                    <div
-                        class="progress-fill"
-                        id="progressFill">
-                    </div>
+                    <div class="progress-fill" id="progressFill"></div>
                 </div>
-
-                <div
-                    class="progress-text"
-                    id="progressText">
-                    0 de 4
-                </div>
-
+                <div class="progress-text" id="progressText">0 de 4</div>
             </div>
-
         </div>
-
 
         <!-- ZONA DE JUEGO -->
         <main class="game-area">
-
             <div class="instruction-area">
-
                 <div class="instruction-text">
-
                     <i class="fas fa-hand-pointer instruction-icon"></i>
-
-                    Toca el emoji de:
-
+                    <span id="instructionText">Toca el emoji de:</span>
                 </div>
-
-                <div
-                    class="target-word"
-                    id="targetWord">
-                    —
-                </div>
-
+                <div class="target-word" id="targetWord">—</div>
             </div>
-
-            <div
-                class="emoji-grid"
-                id="emojiGrid">
-            </div>
-
-            <div
-                class="feedback-area"
-                id="feedbackArea">
-            </div>
-
+            <div class="emoji-grid" id="emojiGrid"></div>
+            <div class="feedback-area" id="feedbackArea"></div>
         </main>
-
 
         <!-- FOOTER -->
         <footer class="footer">
-
-            <button
-                class="btn btn-outline"
-                id="restartBtn">
-
+            <button class="btn btn-outline" id="restartBtn">
                 <i class="fas fa-redo-alt"></i>
-
-                Reiniciar nivel
-
+                <span id="restartBtnText">Reiniciar nivel</span>
             </button>
-
-            <button
-                class="btn btn-outline"
-                id="helpBtn">
-
+            <button class="btn btn-outline" id="helpBtn">
                 <i class="fas fa-question-circle"></i>
-
-                Cómo jugar
-
+                <span id="helpBtnText">Cómo jugar</span>
             </button>
-
         </footer>
-
     </div>
-
 
     <!-- AJUSTES -->
-    <div
-        class="overlay"
-        id="settingsOverlay">
-
+    <div class="overlay" id="settingsOverlay">
         <div class="panel">
-
             <div class="settings-header">
-
-                <h2>Ajustes</h2>
-
-                <button
-                    class="icon-btn"
-                    id="closeSettings"
-                    aria-label="Cerrar ajustes">
-
+                <h2 id="settingsTitle">Ajustes</h2>
+                <button class="icon-btn" id="closeSettings" aria-label="Cerrar ajustes">
                     <i class="fas fa-times"></i>
-
                 </button>
-
             </div>
-
-
             <div class="settings-body">
-
                 <div class="setting-item">
-
-                    <span>Sonido</span>
-
-                    <button
-                        class="toggle"
-                        id="soundToggle"
-                        role="switch"
-                        aria-checked="false"
-                        aria-label="Sonido">
-
+                    <span id="soundLabel">Sonido</span>
+                    <button class="toggle" id="soundToggle" role="switch" aria-checked="false" aria-label="Sonido">
                         <span class="toggle-thumb"></span>
-
                     </button>
-
                 </div>
-
-
                 <div class="setting-item">
-
-                    <span>Modo de calma</span>
-
-                    <button
-                        class="toggle"
-                        id="calmToggle"
-                        role="switch"
-                        aria-checked="false"
-                        aria-label="Modo de calma">
-
+                    <span id="calmLabel">Modo de calma</span>
+                    <button class="toggle" id="calmToggle" role="switch" aria-checked="false" aria-label="Modo de calma">
                         <span class="toggle-thumb"></span>
-
                     </button>
-
                 </div>
-
-
                 <div class="setting-item">
-
-                    <span>Pista automática</span>
-
-                    <button
-                        class="toggle"
-                        id="autoHintToggle"
-                        role="switch"
-                        aria-checked="false"
-                        aria-label="Pista automática">
-
+                    <span id="autoHintLabel">Pista automática</span>
+                    <button class="toggle" id="autoHintToggle" role="switch" aria-checked="false" aria-label="Pista automática">
                         <span class="toggle-thumb"></span>
-
                     </button>
-
                 </div>
-
-
                 <div class="settings-reset">
-
-                    <button
-                        class="btn btn-outline"
-                        id="resetAllBtn">
-
+                    <button class="btn btn-outline" id="resetAllBtn">
                         <i class="fas fa-home"></i>
-
-                        Volver al inicio
-
+                        <span id="resetAllBtnText">Volver al inicio</span>
                     </button>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 
     <!-- MODAL -->
-    <div
-        class="overlay"
-        id="modalOverlay">
-
+    <div class="overlay" id="modalOverlay">
         <div class="panel modal-panel">
-
-            <div
-                class="modal-icon"
-                id="modalIcon">
-                🌟
-            </div>
-
-            <h2 id="modalTitle">
-                ¡Nivel completado!
-            </h2>
-
+            <div class="modal-icon" id="modalIcon">🌟</div>
+            <h2 id="modalTitle">¡Nivel completado!</h2>
             <p id="modalText"></p>
-
-            <div
-                class="modal-stars"
-                id="modalStars">
-            </div>
-
-            <button
-                class="btn btn-primary modal-button"
-                id="modalBtn">
-
-                Continuar
-
-            </button>
-
+            <div class="modal-stars" id="modalStars"></div>
+            <button class="btn btn-primary modal-button" id="modalBtn">Continuar</button>
         </div>
-
     </div>
-
 
     <!-- CÓMO JUGAR -->
-    <div
-        class="overlay"
-        id="howToPlayOverlay">
-
+    <div class="overlay" id="howToPlayOverlay">
         <div class="panel modal-panel">
-
-            <div class="modal-icon">
-                🎮
-            </div>
-
-            <h2>
-                Cómo jugar
-            </h2>
-
-
+            <div class="modal-icon">🎮</div>
+            <h2 id="howToTitle">Cómo jugar</h2>
             <div class="how-to-play">
-
                 <div class="step">
-
-                    <div class="step-icon">
-                        <i class="fas fa-eye"></i>
-                    </div>
-
-                    <div class="step-text">
-                        Mira la palabra que aparece arriba
-                    </div>
-
+                    <div class="step-icon"><i class="fas fa-eye"></i></div>
+                    <div class="step-text" id="step1Text">Mira la palabra que aparece arriba</div>
                 </div>
-
-
                 <div class="step">
-
-                    <div class="step-icon">
-                        <i class="fas fa-hand-pointer"></i>
-                    </div>
-
-                    <div class="step-text">
-                        Toca el emoji que representa esa palabra
-                    </div>
-
+                    <div class="step-icon"><i class="fas fa-hand-pointer"></i></div>
+                    <div class="step-text" id="step2Text">Toca el emoji que representa esa palabra</div>
                 </div>
-
-
                 <div class="step">
-
-                    <div class="step-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-
-                    <div class="step-text">
-                        Gana estrellas por cada respuesta correcta
-                    </div>
-
+                    <div class="step-icon"><i class="fas fa-star"></i></div>
+                    <div class="step-text" id="step3Text">Gana estrellas por cada respuesta correcta</div>
                 </div>
-
-
                 <div class="step">
-
-                    <div class="step-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-
-                    <div class="step-text">
-                        Si necesitas ayuda, toca el botón de pista
-                    </div>
-
+                    <div class="step-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="step-text" id="step4Text">Si necesitas ayuda, toca el botón de pista</div>
                 </div>
-
             </div>
-
-
-            <button
-                class="btn btn-primary modal-button"
-                id="closeHowToPlay">
-
-                Entendido
-
+            <button class="btn btn-primary modal-button" id="closeHowToPlay">
+                <span id="closeHowToText">Entendido</span>
             </button>
-
         </div>
-
     </div>
-
 
     <!-- JAVASCRIPT -->
     <script src="pareo.js"></script>
-
 </body>
 </html>

@@ -33,15 +33,7 @@
    RESET
    ===================================================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    user-select: none;
-}
 
 html,
 body {
@@ -265,7 +257,7 @@ body {
 }
 
 .title {
-    font-size: clamp(48px, 12vw, 88px);
+
     font-weight: 800;
 
     letter-spacing: -2px;
@@ -323,16 +315,6 @@ body {
     }
 }
 
-.subtitle {
-    font-size: clamp(16px, 4vw, 20px);
-
-    color: var(--navy-soft);
-
-    margin-bottom: 40px;
-
-    font-weight: 500;
-    opacity: 0.85;
-}
 
 .menu-buttons {
     display: flex;

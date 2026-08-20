@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Laberinto Fluido - Atrapador de Estrellas</title>
-
+    <title>Laberinto - Atrapador de Estrellas</title>
     <link rel="stylesheet" href="laberinto.css">
-</head>
 
+</head>
 <body>
+
 
     <!-- Paisaje Geométrico SVG -->
     <svg id="geo-bg" viewBox="0 0 1440 320" preserveAspectRatio="none">
@@ -19,209 +19,87 @@
                 <stop offset="80%" style="stop-color:#4c1d95;stop-opacity:1" />
                 <stop offset="100%" style="stop-color:#5b21b6;stop-opacity:1" />
             </linearGradient>
-
             <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
                 <stop offset="0%" style="stop-color:#fde68a;stop-opacity:0.8" />
                 <stop offset="100%" style="stop-color:#fde68a;stop-opacity:0" />
             </radialGradient>
         </defs>
-
         <rect width="1440" height="320" fill="url(#skyGrad)" />
-
         <polygon points="200,40 204,50 196,50" fill="#fde68a" opacity="0.8" />
         <polygon points="400,60 404,70 396,70" fill="#ffffff" opacity="0.6" />
         <polygon points="1200,50 1204,60 1196,60" fill="#fde68a" opacity="0.7" />
         <polygon points="1000,30 1004,40 996,40" fill="#c4b5fd" opacity="0.8" />
         <polygon points="100,100 104,110 96,110" fill="#ffffff" opacity="0.5" />
-
         <circle cx="900" cy="220" r="80" fill="url(#sunGlow)" />
-
-        <polygon
-            points="900,180 930,210 920,250 880,250 870,210"
-            fill="#fbbf24"
-        />
-
-        <polygon
-            points="900,190 920,210 910,240 890,240 880,210"
-            fill="#fde68a"
-        />
-
-        <polygon
-            points="0,200 150,120 300,180 500,80 700,160 900,100 1100,170 1300,120 1440,190 1440,320 0,320"
-            fill="#312e81"
-        />
-
-        <polygon
-            points="500,80 300,180 700,160"
-            fill="#3730a3"
-            opacity="0.7"
-        />
-
-        <polygon
-            points="900,100 700,160 1100,170"
-            fill="#3730a3"
-            opacity="0.7"
-        />
-
-        <polygon
-            points="0,260 200,160 450,230 650,140 850,210 1050,150 1250,220 1440,180 1440,320 0,320"
-            fill="#4338ca"
-        />
-
-        <polygon
-            points="650,140 450,230 850,210"
-            fill="#4f46e5"
-            opacity="0.6"
-        />
-
-        <polygon
-            points="1050,150 850,210 1250,220"
-            fill="#4f46e5"
-            opacity="0.6"
-        />
-
-        <polygon
-            points="0,300 250,200 500,270 750,180 950,250 1150,190 1350,260 1440,230 1440,320 0,320"
-            fill="#6366f1"
-        />
-
-        <polygon
-            points="750,180 500,270 950,250"
-            fill="#818cf8"
-            opacity="0.5"
-        />
-
-        <polygon
-            points="1150,190 950,250 1350,260"
-            fill="#818cf8"
-            opacity="0.5"
-        />
-
+        <polygon points="900,180 930,210 920,250 880,250 870,210" fill="#fbbf24" />
+        <polygon points="900,190 920,210 910,240 890,240 880,210" fill="#fde68a" />
+        <polygon points="0,200 150,120 300,180 500,80 700,160 900,100 1100,170 1300,120 1440,190 1440,320 0,320" fill="#312e81" />
+        <polygon points="500,80 300,180 700,160" fill="#3730a3" opacity="0.7" />
+        <polygon points="900,100 700,160 1100,170" fill="#3730a3" opacity="0.7" />
+        <polygon points="0,260 200,160 450,230 650,140 850,210 1050,150 1250,220 1440,180 1440,320 0,320" fill="#4338ca" />
+        <polygon points="650,140 450,230 850,210" fill="#4f46e5" opacity="0.6" />
+        <polygon points="1050,150 850,210 1250,220" fill="#4f46e5" opacity="0.6" />
+        <polygon points="0,300 250,200 500,270 750,180 950,250 1150,190 1350,260 1440,230 1440,320 0,320" fill="#6366f1" />
+        <polygon points="750,180 500,270 950,250" fill="#818cf8" opacity="0.5" />
+        <polygon points="1150,190 950,250 1350,260" fill="#818cf8" opacity="0.5" />
         <rect y="290" width="1440" height="30" fill="#7c3aed" />
     </svg>
 
-
     <!-- MENÚ -->
     <div id="menuScreen" class="screen active">
-
-        <h1>Laberinto Fluido</h1>
-
-        <p>Desafía la inercia y encuentra la salida</p>
+        <h1 id="titleText">Laberinto Fluido</h1>
+        <p id="subtitleText">Desafía la inercia y encuentra la salida</p>
 
         <!-- Tarjeta de instrucciones -->
         <div class="instructions-card">
-
-            <h3>Cómo Jugar</h3>
-
+            <h3 id="instructionsTitle">Cómo Jugar</h3>
             <div class="instruction-item">
                 <div class="icon-ball"></div>
-                <span>
-                    Controla la <b>bolita roja</b> a través del laberinto.
-                </span>
+                <span id="step1">Controla la <b>bolita roja</b> a través del laberinto.</span>
             </div>
-
             <div class="instruction-item">
                 <div class="icon-star">★</div>
-                <span>
-                    Llega a la <b>estrella dorada</b> para ganar el nivel.
-                </span>
+                <span id="step2">Llega a la <b>estrella dorada</b> para ganar el nivel.</span>
             </div>
-
             <div class="instruction-item">
                 <div class="icon-keys">↑↓←→</div>
-                <span>
-                    Usa las <b>Flechas</b> o teclas <b>W A S D</b> para moverte.
-                </span>
+                <span id="step3">Usa las <b>Flechas</b> o teclas <b>W A S D</b> para moverte.</span>
             </div>
-
             <div class="instruction-item"></div>
-
         </div>
-
 
         <!-- Selector de niveles -->
         <div class="level-selector">
-
-            <button class="level-btn selected" data-level="1">
-                1
-            </button>
-
-            <button class="level-btn" data-level="2">
-                2
-            </button>
-
-            <button class="level-btn" data-level="3">
-                3
-            </button>
-
-            <button class="level-btn" data-level="4">
-                4
-            </button>
-
+            <button class="level-btn selected" data-level="1">1</button>
+            <button class="level-btn" data-level="2">2</button>
+            <button class="level-btn" data-level="3">3</button>
+            <button class="level-btn" data-level="4">4</button>
         </div>
 
-
-        <button id="startBtn" class="btn">
-            Iniciar Juego
-        </button>
-
+        <button id="startBtn" class="btn">Iniciar Juego</button>
     </div>
-
 
     <!-- JUEGO -->
     <div id="gameScreen" class="screen">
-
         <div id="hud">
-
-            <span>
-                Nivel
-                <span id="hudLevel">1</span>
-            </span>
-
-            <span id="hudTimer">
-                00:00
-            </span>
-
+            <span><span id="hudLevelText">Nivel</span> <span id="hudLevel">1</span></span>
+            <span id="hudTimer">00:00</span>
         </div>
-
-
-        <div id="motivationalMessage">
-            ¡Vas genial!
-        </div>
-
-
+        <div id="motivationalMessage">¡Vas genial!</div>
         <canvas id="gameCanvas"></canvas>
-
     </div>
-
 
     <!-- VICTORIA -->
     <div id="victoryScreen" class="screen">
-
-        <h1>¡Completado!</h1>
-
-        <p>Tu tiempo:</p>
-
-        <div class="victory-time" id="victoryTime">
-            00:00
-        </div>
-
+        <h1 id="victoryTitle">¡Completado!</h1>
+        <p id="victoryTimeLabel">Tu tiempo:</p>
+        <div class="victory-time" id="victoryTime">00:00</div>
         <div>
-
-            <button id="nextLevelBtn" class="btn">
-                Siguiente Nivel
-            </button>
-
-            <button id="menuBtn" class="btn">
-                Menú
-            </button>
-
+            <button id="nextLevelBtn" class="btn">Siguiente Nivel</button>
+            <button id="menuBtn" class="btn">Menú</button>
         </div>
-
     </div>
 
-
     <script src="laberinto.js"></script>
-
 </body>
 </html>
